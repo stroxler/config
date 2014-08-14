@@ -3,36 +3,69 @@
 c = get_config()
 
 #------------------------------------------------------------------------------
-# InteractiveShellApp configuration
+# TerminalIPythonApp configuration
 #------------------------------------------------------------------------------
 
-# A Mixin for applications that start InteractiveShell instances.
-# 
-# Provides configurables for loading extensions and executing files as part of
-# configuring a Shell environment.
-# 
-# Provides init_extensions() and init_code() methods, to be called after
-# init_shell(), which must be implemented by subclasses.
+# TerminalIPythonApp will inherit config from: BaseIPythonApplication,
+# Application, InteractiveShellApp
 
 # Execute the given command string.
-# c.InteractiveShellApp.code_to_run = ''
+# c.TerminalIPythonApp.code_to_run = ''
+
+# The IPython profile to use.
+# c.TerminalIPythonApp.profile = u'default'
+
+# Set the log level by value or name.
+# c.TerminalIPythonApp.log_level = 30
 
 # lines of code to run at IPython startup.
-c.InteractiveShellApp.exec_lines = ["import numpy as np",
-                                    "import la",
-                                    "import bottleneck as bn"]
+# c.TerminalIPythonApp.exec_lines = []
+
+# Enable GUI event loop integration ('qt', 'wx', 'gtk').
+# c.TerminalIPythonApp.gui = None
+
+# Pre-load matplotlib and numpy for interactive use, selecting a particular
+# matplotlib backend and loop integration.
+# c.TerminalIPythonApp.pylab = None
+
+# Suppress warning messages about legacy config files
+# c.TerminalIPythonApp.ignore_old_config = False
+
+# If a command or file is given via the command-line, e.g. 'ipython foo.py
+# c.TerminalIPythonApp.force_interact = False
+
+# The name of the IPython directory. This directory is used for logging
+# configuration (through profiles), history storage, etc. The default is usually
+# $HOME/.ipython. This options can also be specified through the environment
+# variable IPYTHON_DIR.
+# c.TerminalIPythonApp.ipython_dir = u'/home/st/.config/ipython'
+
+# Whether to display a banner upon starting IPython.
+c.TerminalIPythonApp.display_banner = False
+
+# Start IPython quickly by skipping the loading of config files.
+# c.TerminalIPythonApp.quick = False
 
 # A list of dotted module names of IPython extensions to load.
-# c.InteractiveShellApp.extensions = []
+# c.TerminalIPythonApp.extensions = []
+
+# Whether to install the default config files into the profile dir. If a new
+# profile is being created, and IPython contains config files for that profile,
+# then they will be staged into the new directory.  Otherwise, default config
+# files will be automatically generated.
+# c.TerminalIPythonApp.copy_config_files = False
 
 # dotted module name of an IPython extension to load.
-# c.InteractiveShellApp.extra_extension = ''
+# c.TerminalIPythonApp.extra_extension = ''
 
 # List of files to run at IPython startup.
-# c.InteractiveShellApp.exec_files = []
+# c.TerminalIPythonApp.exec_files = []
+
+# Whether to overwrite existing config files when copying
+# c.TerminalIPythonApp.overwrite = False
 
 # A file to be run
-# c.InteractiveShellApp.file_to_run = ''
+# c.TerminalIPythonApp.file_to_run = ''
 
 #------------------------------------------------------------------------------
 # TerminalIPythonApp configuration
@@ -70,10 +103,10 @@ c.InteractiveShellApp.exec_lines = ["import numpy as np",
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHON_DIR.
-# c.TerminalIPythonApp.ipython_dir = u'/home/kg/.config/ipython'
+# c.TerminalIPythonApp.ipython_dir = u'/home/st/.config/ipython'
 
 # Whether to display a banner upon starting IPython.
-c.TerminalIPythonApp.display_banner = False
+# c.TerminalIPythonApp.display_banner = True
 
 # Start IPython quickly by skipping the loading of config files.
 # c.TerminalIPythonApp.quick = False
@@ -100,6 +133,39 @@ c.TerminalIPythonApp.display_banner = False
 # c.TerminalIPythonApp.file_to_run = ''
 
 #------------------------------------------------------------------------------
+# InteractiveShellApp configuration
+#------------------------------------------------------------------------------
+
+# A Mixin for applications that start InteractiveShell instances.
+# 
+# Provides configurables for loading extensions and executing files as part of
+# configuring a Shell environment.
+# 
+# Provides init_extensions() and init_code() methods, to be called after
+# init_shell(), which must be implemented by subclasses.
+
+# Execute the given command string.
+# c.InteractiveShellApp.code_to_run = ''
+
+# lines of code to run at IPython startup.
+c.InteractiveShellApp.exec_lines = ["import numpy as np",
+                                    "import la",
+                                    "import bottleneck as bn",
+                                    "import h5py"]
+
+# A list of dotted module names of IPython extensions to load.
+# c.InteractiveShellApp.extensions = []
+
+# dotted module name of an IPython extension to load.
+# c.InteractiveShellApp.extra_extension = ''
+
+# List of files to run at IPython startup.
+# c.InteractiveShellApp.exec_files = []
+
+# A file to be run
+# c.InteractiveShellApp.file_to_run = ''
+
+#------------------------------------------------------------------------------
 # TerminalInteractiveShell configuration
 #------------------------------------------------------------------------------
 
@@ -117,10 +183,10 @@ c.TerminalIPythonApp.display_banner = False
 # c.TerminalInteractiveShell.history_length = 10000
 
 # 
-c.TerminalInteractiveShell.separate_in = ''
+# c.TerminalInteractiveShell.separate_in = '\n'
 
 # Set the color scheme (NoColor, Linux, or LightBG).
-# c.TerminalInteractiveShell.colors = 'Linux'
+c.TerminalInteractiveShell.colors = 'LightBG'
 
 # Autoindent IPython code entered interactively.
 # c.TerminalInteractiveShell.autoindent = True
@@ -134,8 +200,8 @@ c.TerminalInteractiveShell.separate_in = ''
 # 
 # c.TerminalInteractiveShell.separate_out = ''
 
-# 
-######c.TerminalInteractiveShell.prompt_in1 = 'In [\\#]: '
+# prompt
+# c.TerminalInteractiveShell.prompt_in1 = 'In [\\#]: '
 
 # Enable deep (recursive) reloading by default. IPython can use the deep_reload
 # module which reloads changes in modules recursively (it replaces the reload()
@@ -173,7 +239,7 @@ c.TerminalInteractiveShell.separate_in = ''
 # c.TerminalInteractiveShell.prompts_pad_left = True
 
 # The part of the banner to be printed before the profile
-# c.TerminalInteractiveShell.banner1 = 'Python 2.7.1+ (r271:86832, Apr 11 2011, 18:13:53) \nType "copyright", "credits" or "license" for more information.\n\nIPython 0.12.dev -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
+# c.TerminalInteractiveShell.banner1 = 'Python 2.7.1+ (r271:86832, Apr 11 2011, 18:13:53) \nType "copyright", "credits" or "license" for more information.\n\nIPython 0.11 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
 
 # 
 # c.TerminalInteractiveShell.readline_parse_and_bind = ['tab: complete', '"\\C-l": clear-screen', 'set show-all-if-ambiguous on', '"\\C-o": tab-insert', '"\\C-r": reverse-search-history', '"\\C-s": forward-search-history', '"\\C-p": history-search-backward', '"\\C-n": history-search-forward', '"\\e[A": history-search-backward', '"\\e[B": history-search-forward', '"\\C-k": kill-line', '"\\C-u": unix-line-discard']
@@ -220,7 +286,7 @@ c.TerminalInteractiveShell.confirm_exit = False
 # c.TerminalInteractiveShell.logappend = ''
 
 # 
-# c.TerminalInteractiveShell.xmode = 'Context'
+c.TerminalInteractiveShell.xmode = 'Context'
 
 # 
 # c.TerminalInteractiveShell.quiet = False
@@ -232,7 +298,7 @@ c.TerminalInteractiveShell.confirm_exit = False
 # c.TerminalInteractiveShell.object_info_string_level = 0
 
 # 
-#################c.TerminalInteractiveShell.prompt_out = 'O[\\#] '
+# c.TerminalInteractiveShell.prompt_out = 'Out[\\#]: '
 
 # Set the size of the output cache.  The default is 1000, you can change it
 # permanently in your config file.  Setting it to 0 completely disables the
