@@ -22,6 +22,7 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'nvie/vim-flake8'
 Bundle 'Raimondi/delimitMate'
+Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'Lokaltog/vim-easymotion'
     let g:EasyMotion_mapping_w = '<leader>w'
 Bundle 'airblade/vim-gitgutter'
@@ -89,17 +90,11 @@ else
 endif
 
 " abbreviations
-ab im import
-ab imnp import numpy as np
-ab imbn import bottleneck as bn
+ab imp import
+ab impn import numpy as np
+ab impb import bottleneck as bn
 
-" mappings
-inoremap jj <Esc>
-nnoremap ; :
-nnoremap <F4> :bnext<CR>
-nnoremap <F3> :bprevious<CR>
-vmap Q gq
-nmap Q gqap
+" directory of current file, in command line
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Use CTRL-S for saving, also in Insert mode
@@ -119,6 +114,7 @@ inoremap <silent> <C-S> <C-[>:update<CR>
 "    stty "$STTYOPTS"
 "}
 
+" strip trailing whitespace with F6
 nnoremap <silent> <F6> :call <SID>StripTrailingWhitespaces()<CR>
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
@@ -134,7 +130,9 @@ endfunction
 
 " <leader>
 let mapleader="\<Space>"
+map <leader>n :NERDTreeToggle<CR>
 map <leader>b :CtrlPBuffer<CR>
+map <leader>d :CtrlPDir<CR>
 map <leader>d :bd<CR>
 map <leader>e :e %%
 map <leader>f :CtrlP<CR>

@@ -75,6 +75,7 @@ where:
 command   ``c`` (change), ``d`` (delete), ``v`` (select), ``y`` (yank), etc
 extent    ``i`` (inner), ``a`` (include enclosing quotes, parentheses, etc)
 object    ``w`` (word), ``s`` (sentence), ``p`` (paragraph), ``"``, ``)``, etc
+          ``i`` is a new one, added by the indent-object plugin.
 ========  ====================================================================
 
 Examples:
