@@ -23,6 +23,7 @@ Bundle 'kevinw/pyflakes-vim'
 Bundle 'nvie/vim-flake8'
 Bundle 'Raimondi/delimitMate'
 Bundle 'hynek/vim-python-pep8-indent'
+Bundle 'vim-scripts/CSApprox'
 Bundle 'Lokaltog/vim-easymotion'
     let g:EasyMotion_mapping_w = '<leader>w'
 Bundle 'airblade/vim-gitgutter'
@@ -82,11 +83,15 @@ if has('gui_running')
     set guioptions-=T  " hide toolbar
     set guioptions-=r  " remove right-hand scroll bar
     set columns=80 lines=120
-    set guifont=Monospace\ 12
+    set guifont=Monospace\ 11
+    colorscheme solarized
 else
     " highlight current line in insert mode; not command
     autocmd InsertEnter,InsertLeave * set cul!
-    set t_Co=16  " to get correct solarized colors
+    if &term =~ '^\(xterm\|screen\)$' && $COLORTERM == 'gnome-terminal'         
+        set t_Co=256                                                              
+    endif  
+    colorscheme zenburn
 endif
 
 " abbreviations
@@ -145,13 +150,12 @@ map <leader>r :CtrlPRoot<CR>
 map <leader>s :source $MYVIMRC<CR>
 map <leader>u :CtrlPMRU<CR>
 vmap <leader>y "+y
-map <leader>z Iimport ipdb; ipdb.set_trace()<CR><C-[>
+map <leader>z Iimport pudb; pudb.set_trace()<CR><C-[>
 map <leader>6 :<C-6><CR>
 map <leader><Space> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader><Up> :m-2<CR>==
 nnoremap <leader><Down> :m+<CR>==
 
-colorscheme solarized
 " From http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 " To make gnome terminal use solarized colors, enter this in a terminal:
 " gconftool-2 --set "/apps/gnome-terminal/profiles/Default/use_theme_background" --type bool false
