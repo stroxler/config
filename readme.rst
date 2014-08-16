@@ -3,7 +3,7 @@ config
 ======
 
 
-To set up a new computer, first install ghar::
+To set up a new computer, use some subset of the following:
 
     apt-get install git
     cd ~
