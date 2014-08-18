@@ -21,10 +21,11 @@ apt-get install hdfview # this also grabs java stuff
 apt-get install python-dev 
 apt-get install python-setuptools 
 easy_install pip 
+pip install nose
 pip install numpy 
 pip install scipy 
 pip install h5py 
 pip install ipython 
 pip install bottleneck 
-pip install la 
+#pip install la 
 pip install cython 
