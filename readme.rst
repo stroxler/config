@@ -5,18 +5,24 @@ config
 
 To set up a new computer, use some subset of the following:
 
-    apt-get install git
-    cd ~
-    git clone https://github.com/philips/ghar.git
-    export PATH=$PATH:`pwd`/ghar/bin/
-    cd ghar
-    git clone git@github.com:stroxler/config.git
-    cd ~
-    rm .bashrc
-    ghar install
-    ghar install --status
-    sh gnome-terminal-colors/set_light.sh
-    sh install_script.sh
+    $ apt-get install git
+    $ cd ~
+    $ git clone https://github.com/philips/ghar.git
+    $ export PATH=$PATH:`pwd`/ghar/bin/
+    $ cd ghar
+    $ git clone git@github.com:stroxler/config.git
+    $ cd ~
+    $ rm .bashrc
+    $ ghar install
+    $ ghar install --status
+    $ sh gnome-terminal-colors/set_light.sh
+
+To also install the basic stack for R and numerical python,
+and various productivity tools, use ape:
+
+    $ git clone git@github.com:stroxler/ape.git
+    [after reading ape/ape.py to see what it does]
+    $ sudo python ape/ape.py
 
 ========
 vim tips
