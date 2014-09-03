@@ -15,7 +15,7 @@ To set up a new computer, use some subset of the following:
     $ rm .bashrc
     $ ghar install
     $ ghar install --status
-    $ sh gnome-terminal-colors/set_light.sh
+    $ sh gnome-terminal-colors-solarized/set_light.sh
 
 To also install the basic stack for R and numerical python,
 and various productivity tools, use ape:
