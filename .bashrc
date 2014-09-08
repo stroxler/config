@@ -73,7 +73,7 @@ alias m8='make flake8'
 alias py='ipython'
 alias me='meld .'
 alias sb='source ~/.bashrc'
-alias v='cd /devel; vim'
+alias v='vim -c "cd /devel"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

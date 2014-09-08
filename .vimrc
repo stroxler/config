@@ -85,6 +85,7 @@ if has('gui_running')
     set columns=80 lines=120
     set guifont=Monospace\ 11
     colorscheme solarized
+    cd /devel
 else
     " highlight current line in insert mode; not command
     autocmd InsertEnter,InsertLeave * set cul!
@@ -155,6 +156,7 @@ map <leader>6 :<C-6><CR>
 map <leader><Space> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader><Up> :m-2<CR>==
 nnoremap <leader><Down> :m+<CR>==
+map <BS> :noh<CR>
 
 " From http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 " To make gnome terminal use solarized colors, enter this in a terminal:
