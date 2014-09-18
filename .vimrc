@@ -87,13 +87,14 @@ if has('gui_running')
     colorscheme solarized
     cd /devel
 else
-    " highlight current line in insert mode; not command
-    autocmd InsertEnter,InsertLeave * set cul!
     if &term =~ '^\(xterm\|screen\)$' && $COLORTERM == 'gnome-terminal'         
         set t_Co=256                                                              
     endif  
     colorscheme zenburn
 endif
+
+" highlight current line in insert mode; not command
+autocmd InsertEnter,InsertLeave * set cul!
 
 " abbreviations
 ab imp import
