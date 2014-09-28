@@ -22,6 +22,7 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'nvie/vim-flake8'
 Bundle 'Raimondi/delimitMate'
+    let delimitMate_offByDefault = 1 " turn it off... thus far it's a hassle
 Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'vim-scripts/CSApprox'
 Bundle 'Lokaltog/vim-easymotion'
@@ -135,6 +136,9 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
+" Make Y behave like C and D
+map Y y$
+
 " <leader>
 let mapleader="\<Space>"
 map <leader>n :NERDTreeToggle<CR>
@@ -152,7 +156,7 @@ map <leader>r :CtrlPRoot<CR>
 map <leader>s :source $MYVIMRC<CR>
 map <leader>u :CtrlPMRU<CR>
 vmap <leader>y "+y
-map <leader>z Iimport pudb; pudb.set_trace()<CR><C-[>
+map <leader>z Oimport pudb; pudb.set_trace()<C-S>
 map <leader>6 :<C-6><CR>
 map <leader><Space> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader><Up> :m-2<CR>==
