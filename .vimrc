@@ -146,10 +146,10 @@ map Y y$
 set shiftwidth=1
 map <C-H> <<<<<<<<
 vmap <C-H> 4<
-imap <C-H> <C-U><C-U><C-U><C-U>
+imap <C-H> <C-D><C-D><C-D><C-D>
 map <C-J> <<
 vmap <C-J> <
-imap <C-J> <C-U>
+imap <C-J> <C-D>
 map <C-K> >>
 vmap <C-K> >
 imap <C-K> <C-T>
