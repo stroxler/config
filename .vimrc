@@ -64,7 +64,7 @@ syntax on
 set autoindent
 set tabstop=4
 set expandtab
-set shiftwidth=4
+set shiftwidth=4  " this gets undone below, in my shift-operator mappings
 set mouse=a
 
 " system
@@ -138,6 +138,26 @@ endfunction
 
 " Make Y behave like C and D
 map Y y$
+
+" Indentation is a big issue... make c-h, c-j, c-k, and c-l indentation
+" operators in all three modes, where the outer ones move 4 and the inner
+" ones move 1 space. Note that this causes the default operators
+" >>, <<, c-t, and c-u to only move one space.
+set shiftwidth=1
+map <C-H> <<<<<<<<
+vmap <C-H> 4<
+imap <C-H> <C-U><C-U><C-U><C-U>
+map <C-J> <<
+vmap <C-J> <
+imap <C-J> <C-U>
+map <C-K> >>
+vmap <C-K> >
+imap <C-K> <C-T>
+map <C-L> >>>>>>>>
+vmap <C-L> 4>
+imap <C-L> <C-T><C-T><C-T><C-T>
+
+
 
 " <leader>
 let mapleader="\<Space>"
