@@ -3,6 +3,10 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# prepend to path for homebrew python to supercede system python on mac
+PATH='usr/local/bin:$PATH'
+export PATH
+
 # history
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='aa:co:ps:pl'
@@ -14,6 +18,7 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# TODO This needs updating.. I'm not using '/devel' anymore.
 PYTHONPATH="$PYTHONPATH:/devel/pathdir"
 export PYTHONPATH
 
@@ -78,14 +83,21 @@ alias me='meld .'
 alias sb='source ~/.bashrc'
 alias v='vim -c "cd /devel"'
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# Git completion and git prompt. The /etc/* is for Ubuntu, brew for OSX
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+if [ -f `brew --prefix`/etc/bash_prompt ]; then
+    . `brew --prefix`/etc/bash_prompt
+fi
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
 
-# Fancy prompt
+# Fancy promt
 PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\]:\w`__git_ps1`\$\[\033[00m\] '
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
