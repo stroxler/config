@@ -4,8 +4,7 @@
 [ -z "$PS1" ] && return
 
 # prepend to path for homebrew python to supercede system python on mac
-PATH='usr/local/bin:$PATH'
-export PATH
+export PATH=usr/local/bin:$PATH
 
 # history
 export HISTCONTROL=ignoreboth:erasedups
@@ -18,8 +17,7 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# TODO This needs updating.. I'm not using '/devel' anymore.
-PYTHONPATH="$PYTHONPATH:/devel/pathdir"
+PYTHONPATH=$PYTHONPATH:$HOME/cc/pathdir
 export PYTHONPATH
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -102,7 +100,7 @@ PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\]:\w`__git_
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 
-export PATH=$PATH:~/ghar/bin/
+export PATH=$PATH:$HOME/ghar/bin/
 
 # When vim is used in terminal (instead of gui) the terminal should pass
 # through CNTRL-S to vim (for use as 'save') instead of stop scrolling
