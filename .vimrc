@@ -106,9 +106,9 @@ ab impb import bottleneck as bn
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Use CTRL-S for saving, also in Insert mode
-noremap <silent> <C-S> :update<CR>
-vnoremap <silent> <C-S> <C-C>:update<CR>
-inoremap <silent> <C-S> <C-[>:update<CR>
+noremap <silent> <C-W> :update<CR>
+vnoremap <silent> <C-W> <C-C>:update<CR>
+inoremap <silent> <C-W> <C-[>:update<CR>
 "
 " Add this to .bashrc:
 "
@@ -176,7 +176,7 @@ map <leader>r :CtrlPRoot<CR>
 map <leader>s :source $MYVIMRC<CR>
 map <leader>u :CtrlPMRU<CR>
 vmap <leader>y "+y
-map <leader>z Oimport pudb; pudb.set_trace()<C-S>
+map <leader>z Oimport pudb; pudb.set_trace()<C-W>
 map <leader>6 :<C-6><CR>
 map <leader><Space> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader><Up> :m-2<CR>==
