@@ -158,9 +158,14 @@ vmap <C-L> 4>
 imap <C-L> <C-T><C-T><C-T><C-T>
 
 
+" NOTE: when in ctrl-p mode, you can use Enter to open in current
+" context, ctrl-s/v/t will split, vsplit, or open in new tab. You can
+" also use ctrl-j and ctrl-k to move up and down, although I'm happy
+" enough with the arrow keys.
 
 " <leader>
 let mapleader="\<Space>"
+map <leader>w <c-w>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>b :CtrlPBuffer<CR>
 map <leader>d :CtrlPDir<CR>
