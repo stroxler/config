@@ -82,11 +82,11 @@ filetype plugin indent on
 " vim/gvim setting
 if has('gui_running')
     set guioptions-=T  " hide toolbar
-    set guioptions-=r  " remove right-hand scroll bar
-    set columns=80 lines=120
-    set guifont=Monospace\ 11
+    " set guioptions-=r  " remove right-hand scroll bar
+    set guifont=Monospace\ 11 " this isn't consistent across gui backends.
+                              " this command works in ubuntu but fails in
+                              " MacVim.. but I like the MacVim default enough.
     colorscheme solarized
-    cd /devel
 else
     if &term =~ '^\(xterm\|screen\)$' && $COLORTERM == 'gnome-terminal'         
         set t_Co=256                                                              
@@ -165,25 +165,25 @@ imap <C-L> <C-T><C-T><C-T><C-T>
 
 " <leader>
 let mapleader="\<Space>"
-map <leader>w <c-w>
-map <leader>n :NERDTreeToggle<CR>
-map <leader>b :CtrlPBuffer<CR>
-map <leader>d :CtrlPDir<CR>
-map <leader>d :bd<CR>
-map <leader>e :e %%
-map <leader>f :CtrlP<CR>
-map <leader>g :GitGutterToggle<CR>
-map <leader>h :CtrlP ~<CR>
-map <leader>l :set list!<CR>  " shows whitespace
-map <leader>m "*p
-map <leader>p "+p
-map <leader>r :CtrlPRoot<CR>
-map <leader>s :source $MYVIMRC<CR>
-map <leader>u :CtrlPMRU<CR>
-vmap <leader>y "+y
-map <leader>z Oimport pudb; pudb.set_trace()<C-W>
-map <leader>6 :<C-6><CR>
-map <leader><Space> :nohlsearch<Bar>:echo<CR>
+noremap <leader>w <c-w>
+noremap <leader>n :NERDTreeToggle<CR>
+noremap <leader>b :CtrlPBuffer<CR>
+noremap <leader>d :CtrlPDir<CR>
+noremap <leader>d :bd<CR>
+noremap <leader>e :e %%
+noremap <leader>f :CtrlP<CR>
+noremap <leader>g :GitGutterToggle<CR>
+noremap <leader>h :CtrlP ~<CR>
+noremap <leader>l :set list!<CR>  " shows whitespace
+noremap <leader>m "*p
+noremap <leader>p "+p
+noremap <leader>r :CtrlPRoot<CR>
+noremap <leader>s :source $MYVIMRC<CR>
+noremap <leader>u :CtrlPMRU<CR>
+vnoremap <leader>y "+y
+noremap <leader>z Oimport pudb; pudb.set_trace()<C-W>
+noremap <leader>6 :<C-6><CR>
+noremap <leader><Space> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader><Up> :m-2<CR>==
 nnoremap <leader><Down> :m+<CR>==
-map <BS> :noh<CR>
+noremap <BS> :noh<CR>
