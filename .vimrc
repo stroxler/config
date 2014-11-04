@@ -35,12 +35,20 @@ Bundle 'kien/ctrlp.vim'
     let g:ctrlp_working_path_mode=0
     let g:ctrlp_max_height=20
 Bundle 'sjl/gundo.vim'
-    nnoremap <F5> :GundoToggle<CR>
+    nnoremap <F1> :GundoToggle<CR>
 Bundle 'scrooloose/nerdtree'
     map <F2> :NERDTreeToggle<CR>
     let NERDTreeIgnore = ['\.pyc$']
     let NERDTreeShowBookmarks=1
 Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/syntastic'
+    "let g:syntastic_r_checkers = ["lint"]
+    let g:syntastic_r_checkers = ["svtools"]
+    let g:syntastic_enable_r_svtools_checker = 1
+    noremap <F3> :SyntasticCheck<CR>
+    " It complains about = for assignment, but I'm not willing to change
+    " my typing habits..crooloose/syntastic
+    noremap <F4> :%s/ = / <- /gc<CR>
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
