@@ -156,19 +156,24 @@ map Y y$
 " I'm making the four-column commands non-sticky for now because it's less
 " often that you need them sticky, plus I want to be reminded of the `gv`
 " command for a while until it's in my long-term memory.
-set shiftwidth=1
-map <C-H> <<<<<<<<
-vmap <C-H> 4<
-imap <C-H> <C-D><C-D><C-D><C-D>
-map <C-J> <<
-vmap <C-J> <gv
-imap <C-J> <C-D>
-map <C-K> >>
-vmap <C-K> >gv
-imap <C-K> <C-T>
-map <C-L> >>>>>>>>
-vmap <C-L> 4>
-imap <C-L> <C-T><C-T><C-T><C-T>
+"
+" Also, the way I do c-j and c-k will cause issues when editing files where
+" I didn't want a shiftwidth of 4. Be aware of this. Fortunately, I should
+" only really need them in code files where the indentation isn't always a
+" multiple of 4 (this generally happens in argument lists), and I use
+" shiftwidth of 4 in all programming languages, so it shouldn't be an issue
+noremap <C-H> <<
+vnoremap <C-H> <
+inoremap <C-H> <C-D>
+noremap <C-L> >>
+vnoremap <C-L> >
+inoremap <C-L> <C-T>
+noremap <C-J> :set shiftwidth=1<CR><<:set shiftwidth=4<CR>
+vnoremap <C-J> <ESC>:set shiftwidth=1<CR>gv<:set shiftwidth=4<CR>gv
+inoremap <C-J> <ESC>mq:set shiftwidth=1<CR><<:set shiftwidth=4<CR>`qa
+noremap <C-K> :set shiftwidth=1<CR>>>:set shiftwidth=4<CR>
+vnoremap <C-K> <ESC>:set shiftwidth=1<CR>gv>:set shiftwidth=4<CR>gv
+inoremap <C-K> <ESC>mq:set shiftwidth=1<CR>>>:set shiftwidth=4<CR>`qa<Right>
 
 
 " NOTE: when in ctrl-p mode, you can use Enter to open in current
