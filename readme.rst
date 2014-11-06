@@ -18,7 +18,7 @@ To set up a new computer, use some subset of the following::
     $ sh gnome-terminal-colors-solarized/set_light.sh
 
 To also install the basic stack for R and numerical python,
-and various productivity tools, use ape:
+and various productivity tools, use ape::
 
     $ git clone git@github.com:stroxler/ape.git
     [after reading ape/ape.py to see what it does]
