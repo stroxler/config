@@ -24,7 +24,6 @@ Bundle 'nvie/vim-flake8'
 Bundle 'Raimondi/delimitMate'
     let delimitMate_offByDefault = 1 " turn it off... thus far it's a hassle
 Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'vim-scripts/CSApprox'
 Bundle 'Lokaltog/vim-easymotion'
     let g:EasyMotion_mapping_w = '<leader>w'
 Bundle 'airblade/vim-gitgutter'
