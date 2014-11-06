@@ -134,6 +134,7 @@ ex mode
 visual mode
 ===========
 
+- ``gv`` highlight last visual selection (useful b/c commands leave visual)
 - ``o`` go to other end of highlighted text
 - ``u``, ``U`` change selection to lower, upper case
 - ``I``, ``A`` insert at start, end of selection (``i``, ``a`` don't work)
