@@ -198,7 +198,7 @@ noremap <leader>r :CtrlPRoot<CR>
 noremap <leader>s :source $MYVIMRC<CR>
 noremap <leader>u :CtrlPMRU<CR>
 vnoremap <leader>y "+y
-noremap <leader>z Oimport pudb; pudb.set_trace()<C-W>
+noremap <leader>z Oimport pudb; pudb.set_trace()<ESC>:w
 noremap <leader>6 :<C-6><CR>
 noremap <leader><Space> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader><Up> :m-2<CR>==
