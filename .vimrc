@@ -131,7 +131,7 @@ inoremap <silent> <C-W> <C-[>:update<CR>
 "}
 
 " strip trailing whitespace with F6
-nnoremap <silent> <F6> :call <SID>StripTrailingWhitespaces()<CR>
+nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -151,15 +151,20 @@ map Y y$
 " operators in all three modes, where the outer ones move 4 and the inner
 " ones move 1 space. Note that this causes the default operators
 " >>, <<, c-t, and c-u to only move one space.
+"
+" IN ADDITION, I've made the visual mode one-column indenting commands sticky.
+" I'm making the four-column commands non-sticky for now because it's less
+" often that you need them sticky, plus I want to be reminded of the `gv`
+" command for a while until it's in my long-term memory.
 set shiftwidth=1
 map <C-H> <<<<<<<<
 vmap <C-H> 4<
 imap <C-H> <C-D><C-D><C-D><C-D>
 map <C-J> <<
-vmap <C-J> <
+vmap <C-J> <gv
 imap <C-J> <C-D>
 map <C-K> >>
-vmap <C-K> >
+vmap <C-K> >gv
 imap <C-K> <C-T>
 map <C-L> >>>>>>>>
 vmap <C-L> 4>
