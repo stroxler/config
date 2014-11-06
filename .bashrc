@@ -81,18 +81,19 @@ alias me='meld .'
 alias sb='source ~/.bashrc'
 alias v='vim -c "cd /devel"'
 
-# Git completion and git prompt. The /etc/* is for Ubuntu, brew for OSX
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-if [ -f `brew --prefix`/etc/bash_prompt ]; then
-    . `brew --prefix`/etc/bash_prompt
-fi
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
+if hash brew 2>/dev/null; then
+    # I'm on a mac, load up the brew git completion and prompt stuff
+    if [ -f `brew --prefix`/etc/bash_prompt ]; then
+        . `brew --prefix`/etc/bash_prompt
+    fi
+    if [ -f `brew --prefix`/etc/bash_completion ]; then
+        . `brew --prefix`/etc/bash_completion
+    fi
+else
+    # I'm probably on Ubuntu
+    if [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 # Fancy promt
