@@ -103,15 +103,17 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 
 export PATH=$PATH:$HOME/ghar/bin/
 
+# I don't use c-s any more; switched to c-w. This doesn't work on mac,
+# but does on ubuntu.
 # When vim is used in terminal (instead of gui) the terminal should pass
 # through CNTRL-S to vim (for use as 'save') instead of stop scrolling
-vim()
-{
-    local STTYOPTS="$(stty --save)"
-    stty stop '' -ixoff
-    command vim "$@"
-    stty "$STTYOPTS"
-}
+#vim()
+#{
+#    local STTYOPTS="$(stty --save)"
+#    stty stop '' -ixoff
+#    command vim "$@"
+#    stty "$STTYOPTS"
+#}
 
 # git status all (sta) -------------------------------------------------------
 #
