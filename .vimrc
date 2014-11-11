@@ -26,7 +26,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'vim-scripts/CSApprox'
 Bundle 'Lokaltog/vim-easymotion'
-    let g:EasyMotion_mapping_w = '<leader>w'
+    let g:EasyMotion_mapping_w = '<leader>e'
 Bundle 'airblade/vim-gitgutter'
     let g:gitgutter_enabled = 0
 Bundle 'ervandew/supertab'

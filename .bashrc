@@ -4,7 +4,7 @@
 [ -z "$PS1" ] && return
 
 # prepend to path for homebrew python to supercede system python on mac
-export PATH=usr/local/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 # history
 export HISTCONTROL=ignoreboth:erasedups
@@ -89,6 +89,15 @@ if hash brew 2>/dev/null; then
     if [ -f `brew --prefix`/etc/bash_completion ]; then
         . `brew --prefix`/etc/bash_completion
     fi
+    # Also, use macvim as my terminal vim
+    # why? mostly because "+ doesn't refer to the clipboard in system vim,
+    # but it does in macvim. (Of course if you are sshing into a terminal
+    # it won't matter)
+    #vim()
+    #{
+    #    command mvim -v "$@"
+    #}
+
 else
     # I'm probably on Ubuntu
     if [ -f /etc/bash_completion ]; then
