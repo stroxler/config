@@ -34,6 +34,7 @@ Bundle 'ervandew/supertab'
 Bundle 'kien/ctrlp.vim'
     let g:ctrlp_working_path_mode=0
     let g:ctrlp_max_height=20
+    noremap <F4> :CtrlPClearCache<CR>
 Bundle 'sjl/gundo.vim'
     nnoremap <F1> :GundoToggle<CR>
 Bundle 'scrooloose/nerdtree'
@@ -48,7 +49,6 @@ Bundle 'scrooloose/syntastic'
     noremap <F3> :SyntasticCheck<CR>
     " It complains about = for assignment, but I'm not willing to change
     " my typing habits..crooloose/syntastic
-    noremap <F4> :%s/ = / <- /gc<CR>
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
@@ -114,9 +114,9 @@ ab impb import bottleneck as bn
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Use CTRL-S for saving, also in Insert mode
-noremap <silent> <C-W> :update<CR>
-vnoremap <silent> <C-W> <C-C>:update<CR>
-inoremap <silent> <C-W> <C-[>:update<CR>
+noremap <silent> ;lkj :update<CR>
+vnoremap <silent> ;lkj <C-C>:update<CR>
+inoremap <silent> ;lkj <C-[>:update<CR>
 "
 " Add this to .bashrc:
 "

@@ -17,7 +17,7 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-PYTHONPATH=$PYTHONPATH:$HOME/cc/pathdir
+PYTHONPATH=$PYTHONPATH:$HOME/kp:$HOME/cc/pathdir
 export PYTHONPATH
 
 # make less more friendly for non-text input files, see lesspipe(1)
