@@ -1,27 +1,11 @@
 .First <- function() {
     options("repos" = c(CRAN = "http://cran.r-project.org/"))
-    .libPaths("~/Rpackages")
+    if (interactive()) {
+        s2 = function(...) system2(...)
+        try(utils::loadhistory(file = "~/.Rhistory"))
+    }
 }
 
-if (interactive()) {
-
-  # always load devtools for interactive
-  suppressMessages(require(devtools))
-
-  # shortcut for running shell commands.. s2('cmd', '-options args') is sort
-  # of like !cmd -options args in IPython
-  s2 = function(...) system2(...)
-
-  # shortcut to delete namespace file - it seems to get corrupted to where
-  # roxygen2 won't auto- do it fairly often.
-  dnsp = function(packagepath){
-    s2('rm', file.path(packagepath, 'NAMESPACE'))
-  }
-
-  # shortcut for updating a package: document builds the `man` directory, then
-  # install will compile / put it in the library.
-  dti = function(packagepath){
-      document(packagepath)
-      install(packagepath)
-  }
+.Last <- function(){
+    try(utils::savehistory(file = "~/.Rhistory"))
 }
