@@ -150,6 +150,9 @@ c.TerminalIPythonApp.display_banner = False
 # lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = ["import numpy as np",
                                     "import la",
+                                    "import pandas as pd",
+                                    "import sqlalchemy as sql",
+                                    "import la",
                                     "import bottleneck as bn",
                                     "import h5py"]
 
