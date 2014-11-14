@@ -114,9 +114,9 @@ ab impb import bottleneck as bn
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Use CTRL-S for saving, also in Insert mode
-noremap <silent> ;lkj :update<CR>
-vnoremap <silent> ;lkj <C-C>:update<CR>
-inoremap <silent> ;lkj <C-[>:update<CR>
+noremap <silent> lkj :update<CR>
+vnoremap <silent> lkj <C-C>:update<CR>
+inoremap <silent> lkj <C-[>:update<CR>
 "
 " Add this to .bashrc:
 "
