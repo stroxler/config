@@ -46,7 +46,7 @@ alias ch='git checkout' #; __git_complete ch _git_checkout
 alias lo='git log'
 alias cl='git clone'
 alias di='git diff'
-alias ps='git push origin master'
+alias pu='git push origin master'
 alias pl='git pull'
 alias br='git branch'
 
