@@ -17,6 +17,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/Vundle'
+Bundle 'vim-scripts/bufkill.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'kevinw/pyflakes-vim'
