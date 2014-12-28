@@ -44,12 +44,26 @@ Bundle 'scrooloose/nerdtree'
     let NERDTreeShowBookmarks=1
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
-    "let g:syntastic_r_checkers = ["lint"]
+    " This isn't normally needed, it checks on write. Every now and then,
+    " though, it seems to fail.
+    noremap <F3> :SyntasticCheck<CR>
+    " 1. PYTHON SYNTAX CHECKING : this is handled by having pyflakes installed.
+    " 2. R SYNTAX CHECKING
+    " let g:syntastic_r_checkers = ["lint"]
+    " ...This has very strict style rules, and ran into some other errors that
+    " were pretty annoying. The svtools checker is much less picky.
     let g:syntastic_r_checkers = ["svtools"]
     let g:syntastic_enable_r_svtools_checker = 1
-    noremap <F3> :SyntasticCheck<CR>
-    " It complains about = for assignment, but I'm not willing to change
-    " my typing habits..crooloose/syntastic
+    " 3. C SYNTAX CHECKING
+    " the default (gcc) is pretty good. But it isn't smart enough to scan
+    " your makefile for cflags. You can fix this in two ways. For a particluar
+    " buffer, you can temporarily fix it by doing:
+    "   let b:syntastic_c_flags = '-I/path/to/include/dir'
+    " for any nonstandard dir. If you have libraries you regularly use in
+    " unexpected places, you can instead do
+    "   let g:syntastic_c)include_dirs = ['/path/to/dir'] or ['path1', 'path2']
+    " ...and to demo, here's where various apr headers live in osx:
+    let g:syntastic_c_include_dirs = ['usr/include/apr-1']
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
