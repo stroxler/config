@@ -25,7 +25,6 @@ Bundle 'nvie/vim-flake8'
 Bundle 'Raimondi/delimitMate'
     let delimitMate_offByDefault = 1 " turn it off... thus far it's a hassle
 Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'vim-scripts/CSApprox'
 Bundle 'Lokaltog/vim-easymotion'
     let g:EasyMotion_mapping_w = '<leader>e'
 Bundle 'airblade/vim-gitgutter'
@@ -77,10 +76,13 @@ set laststatus=2
 set incsearch
 set hlsearch
 set background=dark
-set colorcolumn=80
+if version > 703
+    set colorcolumn=80
+endif
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match Overlength /\%81v.\+/
 set title
 set titleold=""
-set listchars=tab:▸\ ,eol:¬,trail:·
 syntax on
 
 " editor
@@ -115,6 +117,7 @@ else
         set t_Co=256                                                              
     endif  
     colorscheme zenburn
+    set cursorline
 endif
 
 " highlight current line in insert mode; not command

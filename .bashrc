@@ -99,9 +99,15 @@ if hash brew 2>/dev/null; then
     #}
 
 else
-    # I'm probably on Ubuntu
+    # I'm probably on Ubuntu, which packages git completion with git
     if [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
+    fi
+    # or I'm on some other linux, in which case I should wget a copy
+    # of .bash_git, eg
+    # wget https://raw.githubusercontent.com/aequasi/dotfiles/master/.bash_git
+    if [ -f `brew --prefix`/etc/bash_completion ]; then
+        . `brew --prefix`/etc/bash_completion
     fi
 fi
 
