@@ -193,7 +193,6 @@ noremap <C-K> :set shiftwidth=1<CR>>>:set shiftwidth=4<CR>
 vnoremap <C-K> <ESC>:set shiftwidth=1<CR>gv>:set shiftwidth=4<CR>gv
 inoremap <C-K> <ESC>mq:set shiftwidth=1<CR>>>:set shiftwidth=4<CR>`qa<Right>
 
-
 " NOTE: when in ctrl-p mode, you can use Enter to open in current
 " context, ctrl-s/v/t will split, vsplit, or open in new tab. You can
 " also use ctrl-j and ctrl-k to move up and down, although I'm happy
@@ -205,7 +204,6 @@ noremap <leader>w <c-w>
 noremap <leader>n :NERDTreeToggle<CR>
 noremap <leader>b :CtrlPBuffer<CR>
 noremap <leader>d :CtrlPDir<CR>
-noremap <leader>d :bd<CR>
 noremap <leader>e :e %%
 noremap <leader>f :CtrlP<CR>
 noremap <leader>g :GitGutterToggle<CR>
@@ -213,7 +211,9 @@ noremap <leader>h :CtrlP ~<CR>
 noremap <leader>l :set list!<CR>  " shows whitespace
 noremap <leader>m "*p
 noremap <leader>p "+p
-noremap <leader>r :CtrlPRoot<CR>
+"noremap <leader>r :CtrlPRoot<CR>   ... I never use this
+" often over ssh my vim screen gets cluttered with weird ascii codes
+noremap <leader>r :redraw!<CR>
 noremap <leader>s :source $MYVIMRC<CR>
 noremap <leader>u :CtrlPMRU<CR>
 vnoremap <leader>y "+y

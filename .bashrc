@@ -37,13 +37,16 @@ if [ -x /usr/bin/dircolors ]; then
 
 fi
 
+# tmux has some issues that ktmux_helper solves. ktmux automates
+export PATH=$PATH:$HOME/ktmux
+
 # git aliases
 alias st='git status -s'
 alias ad='git add' #; __git_complete ad _git_add
 alias aa='git add .'
 alias co='git commit'
 alias ch='git checkout' #; __git_complete ch _git_checkout
-alias lo='git log'
+alias lo='git log --abbrev-commit --pretty=oneline'
 alias cl='git clone'
 alias di='git diff'
 alias pu='git push origin master'

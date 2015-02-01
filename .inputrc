@@ -1,2 +1,4 @@
+# these are what make the up and down arrow keys behave like
+# c-R in a default system.
 "\e[A": history-search-backward
 "\e[B": history-search-forward
