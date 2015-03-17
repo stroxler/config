@@ -1,6 +1,7 @@
 
 " vim not vi
 set nocompatible
+set backspace=2
 
 " Set up Vundle
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc
@@ -17,6 +18,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/Vundle'
+Bundle 'fatih/vim-go'
 Bundle 'vim-scripts/bufkill.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'michaeljsmith/vim-indent-object'
