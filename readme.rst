@@ -5,31 +5,29 @@ config
 
 To set up a new computer, use some subset of the following::
 
-    $ apt-get install git
-    $ cd ~
-    $ git clone https://github.com/philips/ghar.git
-    $ export PATH=$PATH:`pwd`/ghar/bin/
-    $ cd ghar
-    $ git clone git@github.com:stroxler/config.git
-    $ cd ~
-    $ rm .bashrc
-    $ ghar install
-    $ ghar install --status
-    $ sh gnome-terminal-colors-solarized/set_light.sh
+    apt-get install -y git
+    cd ~
+    git clone https://github.com/philips/ghar.git
+    export PATH=$PATH:`pwd`/ghar/bin/
+    cd ghar
+    git clone https://github.com/stroxler/config.git
+    cd ~
+    rm .bashrc
+    ghar install
+    ghar install --status
 
 To also install the basic stack for R and numerical python,
 and various productivity tools, use ape::
 
-    $ git clone git@github.com:stroxler/ape.git
+    git clone https://github.com/stroxler/ape.git
     [after reading ape/ape.py to see what it does]
-    $ sudo python ape/ape.py
+    sudo python ape/ape.py
 
 ========
 vim tips
 ========
 
-I know how to insert and save. For everything else I use the arrow keys. These
-vim notes are my journey to salvation.
+A few vim notes, nowhere near complete.
 
 ==================
 copy or move lines

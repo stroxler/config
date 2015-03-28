@@ -48,21 +48,18 @@ Bundle 'scrooloose/syntastic'
     " This isn't normally needed, it checks on write. Every now and then,
     " though, it seems to fail.
     noremap <F3> :SyntasticCheck<CR>
-    " 1. PYTHON SYNTAX CHECKING : this is handled by having pyflakes installed.
-    " 2. R SYNTAX CHECKING
-    " let g:syntastic_r_checkers = ["lint"]
-    " ...This has very strict style rules, and ran into some other errors that
-    " were pretty annoying. The svtools checker is much less picky.
     let g:syntastic_r_checkers = ["svtools"]
+    let g:syntastic_javascript_checkers = ["eslint"]
+    let g:syntastic_python_checkers = ["pyflakes", "pep8"]
     let g:syntastic_enable_r_svtools_checker = 1
-    " 3. C SYNTAX CHECKING
+    " C SYNTAX CHECKING
     " the default (gcc) is pretty good. But it isn't smart enough to scan
     " your makefile for cflags. You can fix this in two ways. For a particluar
     " buffer, you can temporarily fix it by doing:
     "   let b:syntastic_c_flags = '-I/path/to/include/dir'
     " for any nonstandard dir. If you have libraries you regularly use in
     " unexpected places, you can instead do
-    "   let g:syntastic_c)include_dirs = ['/path/to/dir'] or ['path1', 'path2']
+    "   let g:syntastic_c_include_dirs = ['/path/to/dir'] or ['path1', 'path2']
     " ...and to demo, here's where various apr headers live in osx:
     let g:syntastic_c_include_dirs = ['usr/include/apr-1']
 if iCanHazVundle == 0
@@ -202,14 +199,20 @@ inoremap <C-K> <ESC>mq:set shiftwidth=1<CR>>>:set shiftwidth=4<CR>`qa<Right>
 
 " <leader>
 let mapleader="\<Space>"
+noremap <leader>coy :set colorcolumn=80<CR>
+noremap <leader>con :set colorcolumn=<CR>
+noremap <leader>ccy :set cursorcolumn<CR>
+noremap <leader>ccn :set nocursorcolumn<CR>
+noremap <leader>cly :set cursorline<CR>
+noremap <leader>cln :set nocursorline<CR>
 noremap <leader>w <c-w>
 noremap <leader>n :NERDTreeToggle<CR>
+noremap <leader>f :CtrlP<CR>
 noremap <leader>b :CtrlPBuffer<CR>
 noremap <leader>d :CtrlPDir<CR>
-noremap <leader>e :e %%
-noremap <leader>f :CtrlP<CR>
-noremap <leader>g :GitGutterToggle<CR>
 noremap <leader>h :CtrlP ~<CR>
+noremap <leader>e :e %%
+noremap <leader>g :GitGutterToggle<CR>
 noremap <leader>l :set list!<CR>  " shows whitespace
 noremap <leader>m "*p
 noremap <leader>p "+p
