@@ -87,37 +87,10 @@ alias me='meld .'
 alias sb='source ~/.bashrc'
 alias v='vim -c "cd /devel"'
 
-if hash brew 2>/dev/null; then
-    # I'm on a mac, load up the brew git completion and prompt stuff
-    if [ -f `brew --prefix`/etc/bash_prompt ]; then
-        . `brew --prefix`/etc/bash_prompt
-    fi
-    if [ -f `brew --prefix`/etc/bash_completion ]; then
-        . `brew --prefix`/etc/bash_completion
-    fi
-    # Also, use macvim as my terminal vim
-    # why? mostly because "+ doesn't refer to the clipboard in system vim,
-    # but it does in macvim. (Of course if you are sshing into a terminal
-    # it won't matter)
-    #vim()
-    #{
-    #    command mvim -v "$@"
-    #}
-
-else
-    # I'm probably on Ubuntu, which packages git completion with git
-    if [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
-    # or I'm on some other linux, in which case I should wget a copy
-    # of .bash_git, eg
-    # wget https://raw.githubusercontent.com/aequasi/dotfiles/master/.bash_git
-    if [ -f `brew --prefix`/etc/bash_completion ]; then
-        . `brew --prefix`/etc/bash_completion
-    fi
-fi
 
 # Fancy promt
+source ~/.git-prompt.sh
+source ~/.git-completion.sh
 PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\]:\w`__git_ps1`\$\[\033[00m\] '
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
