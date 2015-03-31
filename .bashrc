@@ -53,7 +53,7 @@ alias ad='git add' #; __git_complete ad _git_add
 alias aa='git add .'
 alias co='git commit'
 alias ch='git checkout' #; __git_complete ch _git_checkout
-alias lo='git log --abbrev-commit --pretty=oneline'
+alias lo='git log --abbrev-commit --pretty=oneline -n 15'  # if you tack on another -n, it overrrides :)
 alias cl='git clone'
 alias di='git diff'
 alias pu='git push origin master'
