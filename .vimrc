@@ -110,14 +110,14 @@ if has('gui_running')
     set guifont=Monospace\ 9 " this isn't consistent across gui backends.
                               " this command works in ubuntu but fails in
                               " MacVim.. but I like the MacVim default enough.
+    colors solarized
 else
-    if &term =~ '^\(xterm\|screen\)$' && $COLORTERM == 'gnome-terminal'         
-        set t_Co=256                                                              
-    endif  
+    set t_Co=256                                                              
+    let g:solarized_termcolors=256
     set cursorline
+    colors zenburn
 endif
 
-colors solarized
 
 " highlight current line in insert mode; not command
 autocmd InsertEnter,InsertLeave * set cul!
