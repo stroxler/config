@@ -61,9 +61,6 @@ alias pl='git pull'
 alias br='git branch'
 
 # place aliases
-alias de='cd /devel'
-alias da='cd /data'
-alias dp='cd /usr/local/lib/python2.7/dist-packages'
 alias gh='cd ~/ghar/config'
 
 # cd
@@ -89,7 +86,7 @@ alias m8='make flake8'
 alias py='ipython'
 alias me='meld .'
 alias sb='source ~/.bashrc'
-alias v='vim -c "cd /devel"'
+alias vv='vim +:CtrlP'
 
 
 # Fancy promt

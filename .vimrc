@@ -210,8 +210,8 @@ noremap <leader>cz :colors zenburn<CR>
 noremap <leader>w <c-w>
 noremap <leader>n :NERDTreeToggle<CR>
 noremap <leader>f :CtrlP<CR>
-noremap <leader>b :CtrlPBuffer<CR>
-noremap <leader>d :CtrlPDir<CR>
+noremap <leader>bb :CtrlPBuffer<CR>
+noremap <leader>dd :CtrlPDir<CR>
 noremap <leader>h :CtrlP ~<CR>
 noremap <leader>e :e %%
 noremap <leader>g :GitGutterToggle<CR>
