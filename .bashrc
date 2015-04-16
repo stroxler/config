@@ -3,6 +3,8 @@
 # hack specifically for ubuntu to make mvn happy
 export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-i386"
 
+export EDITOR="vim"
+
 # pdv: default python dev env
 # to make it, run virtualenv pdv in ~
 alias pdv='source ~/pdv/bin/activate'
