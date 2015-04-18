@@ -1,8 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# hack specifically for ubuntu to make mvn happy
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-i386"
-
+source ~/custom.sh
 export EDITOR="vim"
 
 # pdv: default python dev env

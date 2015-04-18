@@ -3,3 +3,5 @@
 .netrwhist
 tags
 .vim/bundle/**
+custom.sh
+.ipython/*
