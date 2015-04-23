@@ -144,3 +144,6 @@ function untracked() {
     git --git-dir="$1" --work-tree="$worktree" ls-files --other \
         --exclude-standard --error-unmatch . >/dev/null 2>&1
 }
+
+# important: this has to run after all aliases defined (hence the bottom of .bashrc makes sense)
+source ~/alias_completions.sh
