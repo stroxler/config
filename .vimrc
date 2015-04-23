@@ -48,6 +48,8 @@ Bundle 'scrooloose/syntastic'
     " This isn't normally needed, it checks on write. Every now and then,
     " though, it seems to fail.
     noremap <F3> :SyntasticCheck<CR>
+    au BufRead,BufNewFile *.json set filetype=json
+    let g:syntastic_json_checkers = ["jsonlint"]
     let g:syntastic_r_checkers = ["svtools"]
     let g:syntastic_javascript_checkers = ["eslint"]
     let g:syntastic_python_checkers = ["pyflakes", "pep8"]
