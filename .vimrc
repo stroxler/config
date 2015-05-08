@@ -18,6 +18,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/Vundle'
+Bundle 'digitaltoad/vim-jade'
 Bundle 'fatih/vim-go'
 Bundle 'vim-scripts/bufkill.vim'
 Bundle 'altercation/vim-colors-solarized'
@@ -88,10 +89,10 @@ syntax on
 
 " editor
 set autoindent
-set tabstop=4
+set tabstop=2
 set expandtab
-set shiftwidth=4  " this gets undone below, in my shift-operator mappings
-set mouse=a
+set shiftwidth=2  " this gets undone below, in my shift-operator mappings
+" set mouse=a
 
 " system
 set confirm
