@@ -1,6 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-source ~/custom.sh
 export EDITOR="vim"
 
 # pdv: default python dev env
