@@ -39,8 +39,8 @@ Bundle 'kien/ctrlp.vim'
     let g:ctrlp_working_path_mode=0
     let g:ctrlp_max_height=20
     let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|vendor)$',
-      \ 'file': '\v\.(exe|so|a|dll)$',
+      \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|vendor|target)$',
+      \ 'file': '\v\.(exe|so|a|dll|pyc|class)$',
       \ }
     noremap <F4> :CtrlPClearCache<CR>
 Bundle 'sjl/gundo.vim'
