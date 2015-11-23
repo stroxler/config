@@ -26,6 +26,9 @@ shopt -s checkwinsize
 # this will need modification per computer
 export PYTHONPATH=$PYTHONPATH:$HOME/kp:$HOME/cc/pathdir
 
+# make R not prompt to save session by defualt
+alias R='R --no-save'
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
