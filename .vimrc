@@ -58,7 +58,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_json_checkers = ["jsonlint"]
     let g:syntastic_r_checkers = ["svtools"]
     let g:syntastic_javascript_checkers = ["eslint"]
-    let g:syntastic_python_checkers = ["pyflakes", "pep8"]
+    let g:syntastic_python_checkers = ["pylint", "pyflakes", "pep8"]
     let g:syntastic_enable_r_svtools_checker = 1
     " C SYNTAX CHECKING
     " the default (gcc) is pretty good. But it isn't smart enough to scan
