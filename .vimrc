@@ -17,6 +17,7 @@ endif
 filetype off 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'gmarik/Vundle'
 Bundle 'digitaltoad/vim-jade'
@@ -120,10 +121,8 @@ if has('gui_running')
     colors solarized
     set background=dark
 else
-    set t_Co=256                                                              
-    let g:solarized_termcolors=256
     set cursorline
-    colors solarized
+    colors zenburn
 endif
 
 

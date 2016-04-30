@@ -16,12 +16,11 @@ To set up a new computer, use some subset of the following::
     ghar install
     ghar install --status
 
-To also install the basic stack for R and numerical python,
-and various productivity tools, use ape::
+The ghar install does *not* define your .bashrc, because it's
+a good place to put machine-specific environment variables and
+aliases. So you need to add the following line::
 
-    git clone https://github.com/stroxler/ape.git
-    [after reading ape/ape.py to see what it does]
-    sudo python ape/ape.py
+    source $HOME/bash-source.sh
 
 ========
 vim tips

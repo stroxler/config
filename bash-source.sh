@@ -4,7 +4,7 @@ export EDITOR="vim"
 
 # pdv: default python dev env
 # to make it, run virtualenv pdv in ~
-alias pdv='source ~/pydev/bin/activate'
+alias grom='git rebase origin/master'
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
