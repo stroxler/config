@@ -17,7 +17,6 @@ endif
 filetype off 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'gmarik/Vundle'
 Bundle 'digitaltoad/vim-jade'
@@ -27,6 +26,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'nvie/vim-flake8'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-fireplace'
 Bundle 'Raimondi/delimitMate'
     let delimitMate_offByDefault = 1 " turn it off... thus far it's a hassle
 Bundle 'hynek/vim-python-pep8-indent'
@@ -114,7 +115,6 @@ filetype plugin indent on
 " vim/gvim setting
 if has('gui_running')
     set guioptions-=T  " hide toolbar
-    " set guioptions-=r  " remove right-hand scroll bar
     colors solarized
     set background=dark
 else
