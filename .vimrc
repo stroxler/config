@@ -115,9 +115,6 @@ filetype plugin indent on
 if has('gui_running')
     set guioptions-=T  " hide toolbar
     " set guioptions-=r  " remove right-hand scroll bar
-    set guifont=Monospace\ 9 " this isn't consistent across gui backends.
-                              " this command works in ubuntu but fails in
-                              " MacVim.. but I like the MacVim default enough.
     colors solarized
     set background=dark
 else
