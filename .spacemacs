@@ -14,7 +14,7 @@
 
    dotspacemacs-configuration-layers
    '(
-     auto-completion
+     osx
      better-defaults
      emacs-lisp
      git
@@ -35,7 +35,21 @@
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     ;; autocomplete config vars courtesey of Jeff Wu
+     ;; (likely they're originally from Jonathan Reem)
+     (auto-completion
+      :variables
+      auto-completion-return-key-behavior 'complete
+      auto-completion-tab-key-behavior 'cycle
+      auto-completion-complete-with-key-sequence nil
+      auto-completion-complete-with-key-sequence-delay 0.1
+      auto-completion-private-snippets-directory nil
+      auto-completion-enable-snippets-in-popup t
+      auto-completion-enable-help-tooltip t
+      auto-completion-enable-sort-by-usage t
+      )
      )
+
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these

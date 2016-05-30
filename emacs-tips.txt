@@ -1,0 +1,52 @@
+General notes
+   - To evaluate any function in any emacs, do M-x and type the function,
+     for example M-x apropos calls (apropos)
+       in spacemacs. <SPC :> gets you to a shell, which is maybe a nicer
+       setting.
+   - To evaluate elisp code, navigate to the closing parantheses (in
+     normal emacs insert mode, place your cursor after; in vim mode + vim
+     state you can be "on" the closing parentheses) and do C-x C-e
+      ... this won't work if you're in a mode, for example cidr mode,
+          that repurposes this command. In that case you'll need to call
+          M-x eval-last-sexpr manually. It works if you're editing txt, e.g.
+              (message "try printing this message")
+              (append (cons 1 (cons 2 (cons 3 '()))) '("a" "b"))
+              (car (cdr '(1 2 3)))
+   - Basically every keystroke is bound to some elisp function call.
+     The next three bullets describe some of how to find out about
+     these bindings...
+   - C-h f = M-x describe-function will usually show you the key binding,
+     if any, associated with a given function
+   - C-h k = M-x describe-key will usually show you the current binding,
+     if any, of the next key sequency you hit in
+   - C-h b = M-x describe-bindings will usually show you all current
+     bindings. It may be a bit overwhelming, esp in spacemacs
+
+If you are in spacemacs, you'll also get a popup of all the options,
+which also includes all the key bindings(!)
+
+Some particularly useful functions:
+      apropos
+      describe-function
+      describe-variable
+
+Some very emacs stuff to know about:
+      buffers
+      modes
+      eval-current-buffer
+      eval-last-sexp
+      edebug
+
+In general, if you look at describe-* you'll find handy stuff
+
+
+=========================
+Elisp syntax notes:
+
+defun for functions; same syntax as clojure defn except args in parens
+set sets variables, whose names must be quoted
+setq is the same but does the quoting for you
+let works as in clojure, except no square brackets plus you need
+          extra parens around each pair inside the let
+unlike clojure, you *do* need to use let* if you want to use let
+          bindings to define later let bindings
