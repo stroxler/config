@@ -10,7 +10,7 @@
 
    dotspacemacs-distribution 'spacemacs
 
-   dotspacemacs-configuration-layer-path '(~/.spacemacs-contribs/)
+   dotspacemacs-configuration-layer-path '("~/.spacemacs-contribs/")
 
    dotspacemacs-configuration-layers
    '(
