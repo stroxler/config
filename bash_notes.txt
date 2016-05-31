@@ -1,0 +1,3 @@
+Here's a handy command: It replaces "dockerid" with "docker_id"
+in all yaml files under the current directory.
+  find . -name *.yaml | xargs sed -i '' 's/dockerid/docker_id/g'
