@@ -17,6 +17,7 @@ endif
 filetype off 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+Bundle 'tpope/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'gmarik/Vundle'
 Bundle 'digitaltoad/vim-jade'
