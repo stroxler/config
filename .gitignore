@@ -6,3 +6,9 @@ tags
 custom.sh
 .ipython/*
 .matplotlib/*
+
+# emacs stuff
+~*
+.\#*
+.!*
+
