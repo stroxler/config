@@ -24,12 +24,14 @@
      c-c++
      latex
      python
+     ipython-notebook
      javascript
      html
      yaml
+     ess ; emacs speaks statistics - really R
      clojure
      haskell
-     org
+     eyebrowse
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -39,9 +41,9 @@
      ;; (likely they're originally from Jonathan Reem)
      (auto-completion
       :variables
-      auto-completion-return-key-behavior 'complete
-      auto-completion-tab-key-behavior 'cycle
-      auto-completion-complete-with-key-sequence nil
+      auto-completion-return-key-behavior nil
+      auto-completion-tab-key-behavior 'complete
+      auto-completion-complete-with-key-sequence "kj"
       auto-completion-complete-with-key-sequence-delay 0.1
       auto-completion-private-snippets-directory nil
       auto-completion-enable-snippets-in-popup t
@@ -79,11 +81,8 @@
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light
                          solarized-light
                          solarized-dark
-                         leuven
-                         monokai
                          zenburn)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
@@ -139,6 +138,20 @@
   "This function is called at the very end of Spacemacs initialization after
    layers configuration.
    Most custom configuration should go here."
+
+  ;; get emacs to consider underscores as part of a word (which is correct for every
+  ;; language I use)
+  (modify-syntax-entry ?_ "w")
+
+  ;; setting a few of my more important vim bindings.
+  ;;   In theory, you can map directly to elisp functions called for ex mode
+  ;;   commands by finding the functions in evil-maps.el, in the evil-ex-define-cmd
+  ;;   section. However, I had trouble getting the binding to work, so instead I'm
+  ;;   using a keyboard macro (which is basically how I'd do it in vim)
+  (define-key evil-normal-state-map [backspace] (kbd ":noh"))
+  ;; [this is the binding that should have worked, but didn't seem to]
+  ;;;(define-key evil-normal-state-map [backspace] 'evil-ex-nohighlight)
+
   )
 
 

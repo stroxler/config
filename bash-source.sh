@@ -2,12 +2,15 @@
 
 export EDITOR="vim"
 
+
 # pdv: default python dev env
 # to make it, run virtualenv pdv in ~
 alias grom='git rebase origin/master'
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
+
+# source shared bash / zsh stuff (mainly aliases)
 
 # prepend to path for homebrew python to supercede system python on mac
 export PATH=/usr/local/bin:$PATH
@@ -24,13 +27,13 @@ shopt -s histappend
 shopt -s checkwinsize
 
 # this will need modification per computer
-export PYTHONPATH=$PYTHONPATH:$HOME/kp:$HOME/cc/pathdir
+export pythonpath=$pythonpath:$home/kp:$home/cc/pathdir
 
-# make R not prompt to save session by defualt
-alias R='R --no-save'
+# make r not prompt to save session by defualt
+alias r='r --no-save'
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(shell=/bin/sh lesspipe)"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -47,70 +50,15 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # tmux has some issues that ktmux_helper solves. ktmux automates
-export PATH=$PATH:$HOME/ktmux
-
-# git aliases
-alias st='git status -s'
-alias ad='git add' #; __git_complete ad _git_add
-alias aa='git add .'
-alias co='git commit'
-alias ch='git checkout' #; __git_complete ch _git_checkout
-alias lo='git log --abbrev-commit --pretty=oneline -n 15'  # if you tack on another -n, it overrrides :)
-alias cl='git clone'
-alias di='git diff'
-alias pu='git push origin master'
-alias pl='git pull'
-alias br='git branch'
-
-# place aliases
-alias gh='cd ~/ghar/config'
-
-# cd
-alias c='cd'
-alias c.='cd ..'
-alias c..='cd ../..'
-alias c...='cd ../../..'
-alias p='cd \-'
-alias n='nautilus .'
-
-# ls aiases
-alias l='ls --ignore="*.pyc"'
-alias ll='ls -lh'
-alias la='ls -lah'
-
-# make aliases
-alias ma='make all'
-alias mt='make test'
-alias mf='make test_full'
-alias m8='make flake8'
-
-# misc aliases
-alias py='ipython'
-alias me='meld .'
-alias sb='source ~/.bashrc'
-alias vv='vim +:CtrlP'
+export path=$path:$home/ktmux
 
 
-# Fancy promt
+# fancy promt
 source ~/.git-prompt.sh
 source ~/.git-completion.sh
 PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\]:\w`__git_ps1`\$\[\033[00m\] '
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
-
-export PATH=$PATH:$HOME/ghar/bin/
-
-# I don't use c-s any more; switched to c-w. This doesn't work on mac,
-# but does on ubuntu.
-# When vim is used in terminal (instead of gui) the terminal should pass
-# through CNTRL-S to vim (for use as 'save') instead of stop scrolling
-#vim()
-#{
-#    local STTYOPTS="$(stty --save)"
-#    stty stop '' -ixoff
-#    command vim "$@"
-#    stty "$STTYOPTS"
-#}
 
 # git status all (sta) -------------------------------------------------------
 #
