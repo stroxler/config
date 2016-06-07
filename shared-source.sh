@@ -23,3 +23,13 @@ alias py='ipython'
 alias c.='cd ..'
 alias c..='cd ../..'
 alias c...='cd ../../..'
+
+# emacs stuff
+alias emg='nohup emacs 2>&1 > /dev/null &'  # gui emacs server
+alias em='emacsclient --tty'  # start in-terminal emacs client
+alias emc='emacsclient'  # start gui emacs client
+
+
+if [[ -s "${HOME}.local/env.sh" ]]; then
+  source "${HOME}/.local/env.sh"
+fi
