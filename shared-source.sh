@@ -11,7 +11,7 @@ alias cdgc='cd ~/ghar/config'
 alias g='git'
 alias gs='git status -s'
 alias gd='git diff'
-alias gl='git log --abre-vocmmit --pretty=oneline -n 15'
+alias gl='git log --abbrev-commit --pretty=oneline -n 15'
 alias gr='git rebase origin/master'
 
 # ls aliases
