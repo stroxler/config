@@ -1,5 +1,7 @@
 .*.swp
 *.pyc
+*.egg-info
+.projectile
 .netrwhist
 tags
 .vim/bundle/**
