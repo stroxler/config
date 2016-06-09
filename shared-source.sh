@@ -29,6 +29,10 @@ alias emg='nohup emacs 2>&1 > /dev/null &'  # gui emacs server
 alias em='emacsclient --tty'  # start in-terminal emacs client
 alias emc='emacsclient'  # start gui emacs client
 
+# emacs + tmux stuff
+alias emtn='tmux new-session -s emacs'
+alias emta='tmux a -t emacs'
+
 
 if [[ -s "${HOME}.local/env.sh" ]]; then
   source "${HOME}/.local/env.sh"

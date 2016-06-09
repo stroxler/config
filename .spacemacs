@@ -139,20 +139,53 @@
    layers configuration.
    Most custom configuration should go here."
 
-  ;; get emacs to consider underscores as part of a word (which is correct for every
-  ;; language I use)
-  (modify-syntax-entry ?_ "w")
+  ;; TODO make myself a spacemacs layer or two and get the logic out of here
 
-  ;; setting a few of my more important vim bindings.
-  ;;   In theory, you can map directly to elisp functions called for ex mode
-  ;;   commands by finding the functions in evil-maps.el, in the evil-ex-define-cmd
-  ;;   section. However, I had trouble getting the binding to work, so instead I'm
-  ;;   using a keyboard macro (which is basically how I'd do it in vim)
+  ;; get emacs to consider underscores as part of a word
+  (modify-syntax-entry ?_ "w" (standard-syntax-table))
+  ;; set backspace to clear highlighting
   (define-key evil-normal-state-map [backspace] (kbd ":noh"))
-  ;; [this is the binding that should have worked, but didn't seem to]
-  ;;;(define-key evil-normal-state-map [backspace] 'evil-ex-nohighlight)
 
-  )
+  ;; ess stuff:
+  ;; disable mapping _ to <-, enable mapping c-, (think c-<) to <-
+  (add-hook 'ess-mode-hook
+            (lambda () (ess-toggle-underscore nil)))
+  (add-hook 'ess-mode-hook
+            (lambda ()  (define-key evil-insert-state-map [(control ?,)]  (kbd "<-"))))
+
+  ;; py2tmux integration
+  ;;
+  ;; TODO
+  ;; - add a line variant (need to save excursion and set mark and point to start/end)
+  ;; - factor this out into a real library / layer, hopefully adding some context-specific
+  ;;   stuff like cpaste boundaries, %run commands, etc.
+  ;; - make it so the same binding, SPC tt, can work in both normal mode (for lines)
+  ;;   and visual selection mode (for regions). This probably requires evil hooks.
+  (defun send-to-tmux (start end session-name)
+    (let ((command (format "py2tmux send-content --session %s" session-name)))
+      (shell-command-on-region start end command))
+      )
+  (defun get-end-of-line ()
+      (save-excursion
+        (end-of-line)
+        (point)))
+  (defun get-beginning-of-line ()
+      (save-excursion
+        (beginning-of-line)
+        (point)))
+  (defun line-to-tmux ()
+    (interactive)
+    (let ((start (get-beginning-of-line))
+          (end   (get-end-of-line)))
+      (send-to-tmux start end "emacs")
+      ))
+  (defun region-to-tmux (start end)
+    (interactive "r")
+    (region-to-tmux start end "emacs")
+    )
+  (spacemacs/set-leader-keys "tt" 'line-to-tmux)
+  (spacemacs/set-leader-keys "ott" 'region-to-tmux)
+)
 
 
 ;; Do not write anything past this comment. This is where Emacs will
