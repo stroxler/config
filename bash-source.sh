@@ -2,15 +2,12 @@
 
 export EDITOR="vim"
 
-
 # pdv: default python dev env
 # to make it, run virtualenv pdv in ~
 alias grom='git rebase origin/master'
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-
-# source shared bash / zsh stuff (mainly aliases)
 
 # prepend to path for homebrew python to supercede system python on mac
 export PATH=/usr/local/bin:$PATH
@@ -25,12 +22,6 @@ shopt -s histappend
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# this will need modification per computer
-export pythonpath=$pythonpath:$home/kp:$home/cc/pathdir
-
-# make r not prompt to save session by defualt
-alias r='r --no-save'
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(shell=/bin/sh lesspipe)"
@@ -56,7 +47,7 @@ export path=$path:$home/ktmux
 # fancy promt
 source ~/.git-prompt.sh
 source ~/.git-completion.sh
-PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\]:\w`__git_ps1`\$\[\033[00m\] '
+PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\] : \w`__git_ps1`\n>\[\033[00m\] '
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 
@@ -94,6 +85,3 @@ function untracked() {
     git --git-dir="$1" --work-tree="$worktree" ls-files --other \
         --exclude-standard --error-unmatch . >/dev/null 2>&1
 }
-
-# important: this has to run after all aliases defined (hence the bottom of .bashrc makes sense)
-source ~/alias_completions.sh

@@ -80,10 +80,11 @@
    dotspacemacs-startup-lists '(recents projects)
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(
                          solarized-light
-                         solarized-dark
-                         zenburn)
+                         spacemacs-dark
+                         zenburn
+                        )
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
                                :size 13
@@ -143,10 +144,16 @@
 
   ;; get emacs to consider underscores as part of a word
   (modify-syntax-entry ?_ "w" (standard-syntax-table))
+
   ;; set backspace to clear highlighting
   (define-key evil-normal-state-map [backspace] (kbd ":noh"))
+  ;; set ' to do what ; traditionally does
+  (define-key evil-normal-state-map (kbd "'") 'evil-repeat-find-char)
+  ;; set ; to do what : traditionally does
+  (define-key evil-normal-state-map (kbd ";") 'evil-ex)
+  ;; set : to do what <Spc>: traditionally does
+  (define-key evil-normal-state-map (kbd ":")  'helm-M-x)
 
-  ;; ess stuff:
   ;; disable mapping _ to <-, enable mapping c-, (think c-<) to <-
   (add-hook 'ess-mode-hook
             (lambda () (ess-toggle-underscore nil)))
@@ -185,6 +192,23 @@
     )
   (spacemacs/set-leader-keys "tt" 'line-to-tmux)
   (spacemacs/set-leader-keys "ott" 'region-to-tmux)
+
+  ;; don't yank to system clipboard by default
+  (turn-off-pbcopy)
+
+  ;; toggle using system clipboard on and off
+  ;;   set the color theme to something I don't like so
+  ;;   that I don't forget I did it
+  (defun toggle-on-pbcopy ()
+    (interactive)
+    (turn-on-pbcopy)
+    (spacemacs/load-theme 'wheatgrass))
+  (defun toggle-off-pbcopy ()
+    (interactive)
+    (turn-off-pbcopy)
+    (spacemacs/load-theme 'solarized-light))
+  (spacemacs/set-leader-keys "ocy" 'toggle-on-pbcopy)
+  (spacemacs/set-leader-keys "ocn" 'toggle-off-pbcopy)
 )
 
 

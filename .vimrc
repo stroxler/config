@@ -1,59 +1,62 @@
-
 " vim not vi
 set nocompatible
 set backspace=2
 
 " Set up Vundle
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc
+
 let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/Vundle ~/.vim/bundle/vundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     let iCanHazVundle=0
 endif
-filetype off 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'tpope/vim-markdown'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'gmarik/Vundle'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'fatih/vim-go'
-Bundle 'vim-scripts/bufkill.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'nvie/vim-flake8'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-fireplace'
-Bundle 'Raimondi/delimitMate'
-    let delimitMate_offByDefault = 1 " turn it off... thus far it's a hassle
-Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'Lokaltog/vim-easymotion'
-    let g:EasyMotion_mapping_w = '<leader>e'
-Bundle 'airblade/vim-gitgutter'
-    let g:gitgutter_enabled = 0
-Bundle 'ervandew/supertab'
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+" colors stuff
+Plugin 'vim-scripts/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+
+" unix tools and fuzzy finders
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-eunuch'
+Plugin 'rking/ag.vim'  " ag is a bit like ack
+
+" undo tree
+Plugin 'mbbill/undotree'
+
+" I should probably learn to use these
+Plugin 'tpope/vim-surround'
+Plugin 'michaeljsmith/vim-indent-object'
+
+
+" fugitive is handy
+Plugin 'tpope/vim-fugitive'
+
+" this is what makes :BW work
+Plugin 'vim-scripts/bufkill.vim'
+
+" nice tab completion
+Plugin 'ervandew/supertab'
     let g:SuperTabDefaultCompletionType="context"
-Bundle 'kien/ctrlp.vim'
-    let g:ctrlp_working_path_mode=0
-    let g:ctrlp_max_height=20
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|vendor|target)$',
-      \ 'file': '\v\.(exe|so|a|dll|pyc|class)$',
-      \ }
-    noremap <F4> :CtrlPClearCache<CR>
-Bundle 'sjl/gundo.vim'
-    nnoremap <F1> :GundoToggle<CR>
-Bundle 'scrooloose/nerdtree'
-    map <F2> :NERDTreeToggle<CR>
-    let NERDTreeIgnore = ['\.pyc$']
-    let NERDTreeShowBookmarks=1
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/syntastic'
+
+" some syntax highlighters
+Plugin 'tpope/vim-markdown'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-fireplace'
+Plugin 'hynek/vim-python-pep8-indent'
+
+Plugin 'scrooloose/syntastic'
     " This isn't normally needed, it checks on write. Every now and then,
     " though, it seems to fail.
     noremap <F3> :SyntasticCheck<CR>
@@ -61,7 +64,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_json_checkers = ["jsonlint"]
     let g:syntastic_r_checkers = ["svtools"]
     let g:syntastic_javascript_checkers = ["eslint"]
-    let g:syntastic_python_checkers = ["pylint", "pyflakes", "pep8"]
+    let g:syntastic_python_checkers = ["pyflakes", "pep8"]
     let g:syntastic_enable_r_svtools_checker = 1
     " C SYNTAX CHECKING
     " the default (gcc) is pretty good. But it isn't smart enough to scan
@@ -73,10 +76,31 @@ Bundle 'scrooloose/syntastic'
     "   let g:syntastic_c_include_dirs = ['/path/to/dir'] or ['path1', 'path2']
     " ...and to demo, here's where various apr headers live in osx:
     let g:syntastic_c_include_dirs = ['usr/include/apr-1']
+
+"" *** these are my old plugins ***
+""Plugin 'kevinw/pyflakes-vim'
+""Plugin 'nvie/vim-flake8'
+""Plugin 'kchmck/vim-coffee-script'
+""Plugin 'Lokaltog/vim-easymotion'
+""    let g:EasyMotion_mapping_w = '<leader>e'
+""Plugin 'kien/ctrlp.vim'
+""    let g:ctrlp_working_path_mode=0
+""    let g:ctrlp_max_height=20
+""    let g:ctrlp_custom_ignore = {
+""      \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|vendor|target)$',
+""      \ 'file': '\v\.(exe|so|a|dll|pyc|class)$',
+""      \ }
+""    noremap <F4> :CtrlPClearCache<CR>
+""Plugin 'sjl/gundo.vim'
+""    nnoremap <F1> :GundoToggle<CR>
+
+call vundle#end()
+filetype plugin indent on
+
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
-    :BundleInstall
+    PluginInstall
 endif
 
 " display
@@ -116,43 +140,21 @@ filetype plugin indent on
 " vim/gvim setting
 if has('gui_running')
     set guioptions-=T  " hide toolbar
-    colors solarized
-    set background=dark
 else
     set cursorline
-    colors zenburn
 endif
 
+" set colors
+colors solarized
 
 " highlight current line in insert mode; not command
 autocmd InsertEnter,InsertLeave * set cul!
 
-" abbreviations
-ab imp import
-ab impn import numpy as np
-ab impb import bottleneck as bn
 
 " directory of current file, in command line
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" Use CTRL-S for saving, also in Insert mode
-noremap <silent> lkj :update<CR>
-vnoremap <silent> lkj <C-C>:update<CR>
-inoremap <silent> lkj <C-[>:update<CR>
-"
-" Add this to .bashrc:
-"
-" When vim is used in terminal (instead of gui) the terminal should pass
-" through CNTRL-S to vim (for use as 'save') instead of stop scrolling
-" vim()
-" {
-"    local STTYOPTS="$(stty --save)"
-"    stty stop '' -ixoff
-"    command vim "$@"
-"    stty "$STTYOPTS"
-"}
-
-" strip trailing whitespace with F6
+" strip trailing whitespace with F5
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
@@ -184,11 +186,8 @@ map Y y$
 " only really need them in code files where the indentation isn't always a
 " multiple of 4 (this generally happens in argument lists), and I use
 " shiftwidth of 4 in all programming languages, so it shouldn't be an issue
-noremap <C-H> <<
-vnoremap <C-H> <
-inoremap <C-H> <C-D>
-noremap <C-L> >>
-vnoremap <C-L> >
+"
+" NOTE: I need to do this for spacemacs.
 inoremap <C-L> <C-T>
 noremap <C-J> :set shiftwidth=1<CR><<:set shiftwidth=4<CR>
 vnoremap <C-J> <ESC>:set shiftwidth=1<CR>gv<:set shiftwidth=4<CR>gv
@@ -196,6 +195,15 @@ inoremap <C-J> <ESC>mq:set shiftwidth=1<CR><<:set shiftwidth=4<CR>`qa
 noremap <C-K> :set shiftwidth=1<CR>>>:set shiftwidth=4<CR>
 vnoremap <C-K> <ESC>:set shiftwidth=1<CR>gv>:set shiftwidth=4<CR>gv
 inoremap <C-K> <ESC>mq:set shiftwidth=1<CR>>>:set shiftwidth=4<CR>`qa<Right>
+noremap <C-H> <<
+vnoremap <C-H> 4<C-J>
+inoremap <C-H> 4<C-D>
+noremap <C-L> >>
+vnoremap <C-L> >
+
+" move ; and  behavior to ' and ", and use ; as :
+
+" make turning highlight off really easy
 
 " NOTE: when in ctrl-p mode, you can use Enter to open in current
 " context, ctrl-s/v/t will split, vsplit, or open in new tab. You can
@@ -204,34 +212,40 @@ inoremap <C-K> <ESC>mq:set shiftwidth=1<CR>>>:set shiftwidth=4<CR>`qa<Right>
 
 " <leader>
 let mapleader="\<Space>"
+" cursor and other term-related stuff
+noremap <leader>r :redraw!<CR>
 noremap <leader>coy :set colorcolumn=80<CR>
 noremap <leader>con :set colorcolumn=<CR>
 noremap <leader>ccy :set cursorcolumn<CR>
 noremap <leader>ccn :set nocursorcolumn<CR>
 noremap <leader>cly :set cursorline<CR>
 noremap <leader>cln :set nocursorline<CR>
-noremap <leader>cs :colors solarized<CR>
-noremap <leader>cz :colors zenburn<CR>
-noremap <leader>w <c-w>
-noremap <leader>n :NERDTreeToggle<CR>
-noremap <leader>f :CtrlP<CR>
-noremap <leader>bb :CtrlPBuffer<CR>
-noremap <leader>dd :CtrlPDir<CR>
-noremap <leader>h :CtrlP ~<CR>
-noremap <leader>e :e %%
-noremap <leader>g :GitGutterToggle<CR>
-noremap <leader>l :set list!<CR>  " shows whitespace
-noremap <leader>m "*p
-noremap <leader>p "+p
-"noremap <leader>r :CtrlPRoot<CR>   ... I never use this
-" often over ssh my vim screen gets cluttered with weird ascii codes
-noremap <leader>r :redraw!<CR>
-noremap <leader>s :source $MYVIMRC<CR>
-noremap <leader>u :CtrlPMRU<CR>
-vnoremap <leader>y "+y
-noremap <leader>z oimport pudb; pudb.set_trace()<ESC>:w<CR>
-noremap <leader>6 :<C-6><CR>
-noremap <leader><Space> :nohlsearch<Bar>:echo<CR>
+" some vim-specific stuff (I should make leader y work in spacemacs)
+" move lines up and down NOTE i should consider porting to spacemacs
 nnoremap <leader><Up> :m-2<CR>==
 nnoremap <leader><Down> :m+<CR>==
+" *** spacemacs section ***
+" opening files and buffers
+noremap <leader>pf :FZF<CR>
+noremap <leader>ff :e %:p:h/
+noremap <leader>fk :FZF /kode<CR>  " fuzzy find in /kode
+noremap <leader>fzf :FZF           " fuzzy find in any directory
+noremap <leader>fzh :FZF %:p:h<CR> " fuzzy version of ff - fuzzy find here
+noremap <leader>bb :Buffers<CR>
+noremap <leader>bp :bp<CR>
+noremap <leader>bn :bn<CR>
+noremap <leader>feR :source $MYVIMRC<CR>
+" color themes
+noremap <leader>Tnz :colors zenburn<CR>
+noremap <leader>Tnl :colors solarized<CR>:set background=light<CR>
+noremap <leader>Tnd :colors solarized<CR>:set background=dark<CR>
+" windows
+noremap <leader>w <C-W>
+" my own customizations
+nnoremap <leader>y "+y
 noremap <BS> :noh<CR>
+noremap ' ;
+noremap " ,
+noremap ; :
+" this is temporary, till I retrain my fingers
+noremap : :echo "oops, use ;"<CR>
