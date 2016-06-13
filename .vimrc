@@ -234,6 +234,7 @@ noremap <leader>fzh :FZF %:p:h<CR> " fuzzy version of ff - fuzzy find here
 noremap <leader>bb :Buffers<CR>
 noremap <leader>bp :bp<CR>
 noremap <leader>bn :bn<CR>
+noremap <leader>fed :e $MYVIMRC<CR>
 noremap <leader>feR :source $MYVIMRC<CR>
 " color themes
 noremap <leader>Tnz :colors zenburn<CR>

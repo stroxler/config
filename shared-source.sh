@@ -1,7 +1,8 @@
 # shared source for bash and zsh; mostly, aliases
 
-# make sure ghar is on the path
+# make sure ghar and ~/bin are in the path
 export PATH=$PATH:$HOME/ghar/bin/
+export PATH=$HOME/bin:$PATH
 
 # cd to ghar/config and .zpresto (my config repos)
 alias cdpr='cd ~/.zprezto'
