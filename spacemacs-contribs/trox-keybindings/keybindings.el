@@ -1,6 +1,3 @@
-
-(evil-ex-nohighlight)
-
 ;; disable mapping _ to <-, enable mapping c-, (think c-<) to <-
 (add-hook 'ess-mode-hook
           (lambda () (ess-toggle-underscore nil)))
@@ -28,15 +25,18 @@
 ;; define a clipboard copy operator with evil
 
 ;; set C-C and C-V to use clipboard in the appropriate states
+;;   [C-C means ctl-shift-c] which is good for linux
+;; also set s-c and s-v to use clipboard, good for osx
 (define-key evil-normal-state-map (kbd "C-C") 'trox/copy-to-clipboard)
 (define-key evil-visual-state-map (kbd "C-C") 'trox/copy-to-clipboard)
 (define-key evil-insert-state-map (kbd "C-V") 'trox/paste-from-clipboard)
 (global-set-key (kbd "C-C") 'trox/copy-to-clipboard)
 (global-set-key (kbd "C-V") 'trox/paste-from-clipboard)
-;; these seem to be less reliable, but still worth a try on mac
-(define-key evil-insert-state-map (kbd "s-V") 'trox/paste-from-clipboard)
-(global-set-key (kbd "C-V") 'trox/paste-from-clipboard)
-
+(define-key evil-normal-state-map (kbd "s-c") 'trox/copy-to-clipboard)
+(define-key evil-visual-state-map (kbd "s-c") 'trox/copy-to-clipboard)
+(define-key evil-insert-state-map (kbd "s-v") 'trox/paste-from-clipboard)
+(global-set-key (kbd "s-c") 'trox/copy-to-clipboard)
+(global-set-key (kbd "s-v") 'trox/paste-from-clipboard)
 
 ;; set osl and osr (send line / send region) to send to tmux
 (spacemacs/set-leader-keys "osl" 'trox/line-to-tmux)

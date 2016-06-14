@@ -144,14 +144,13 @@
   (turn-off-pbcopy)                                      ;; no auto clipboard
 
 
-  ;; Modifications to the vim keymap, plus my noh binding
-  (define-key evil-normal-state-map [backspace] (kbd ":noh"))
+  ;; Modifications to the vim keymap
   (define-key evil-normal-state-map (kbd "'") 'evil-repeat-find-char)
   (define-key evil-normal-state-map (kbd ";") 'evil-ex)
   (define-key evil-normal-state-map (kbd ":")  'helm-M-x)
-  ;; these are your state as of entering the spacemacs buffer
   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
   (define-key evil-motion-state-map (kbd ":")  'helm-M-x)
+  (define-key evil-normal-state-map [backspace] (lambda () (evil-ex-nohighlight)))
 
 )
 
