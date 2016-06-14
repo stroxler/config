@@ -55,17 +55,24 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-fireplace'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'kchmck/vim-coffee-script'
+
+Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'scrooloose/syntastic'
     " This isn't normally needed, it checks on write. Every now and then,
     " though, it seems to fail.
     noremap <F3> :SyntasticCheck<CR>
     au BufRead,BufNewFile *.json set filetype=json
+
     let g:syntastic_json_checkers = ["jsonlint"]
     let g:syntastic_r_checkers = ["svtools"]
     let g:syntastic_javascript_checkers = ["eslint"]
+    " note: I've disabled pylint here 
     let g:syntastic_python_checkers = ["pyflakes", "pep8"]
     let g:syntastic_enable_r_svtools_checker = 1
+
+
     " C SYNTAX CHECKING
     " the default (gcc) is pretty good. But it isn't smart enough to scan
     " your makefile for cflags. You can fix this in two ways. For a particluar
@@ -77,12 +84,6 @@ Plugin 'scrooloose/syntastic'
     " ...and to demo, here's where various apr headers live in osx:
     let g:syntastic_c_include_dirs = ['usr/include/apr-1']
 
-"" *** these are my old plugins ***
-""Plugin 'kevinw/pyflakes-vim'
-""Plugin 'nvie/vim-flake8'
-""Plugin 'kchmck/vim-coffee-script'
-""Plugin 'Lokaltog/vim-easymotion'
-""    let g:EasyMotion_mapping_w = '<leader>e'
 ""Plugin 'kien/ctrlp.vim'
 ""    let g:ctrlp_working_path_mode=0
 ""    let g:ctrlp_max_height=20
@@ -242,7 +243,15 @@ noremap <leader>Tnl :colors solarized<CR>:set background=light<CR>
 noremap <leader>Tnd :colors solarized<CR>:set background=dark<CR>
 " windows
 noremap <leader>w <C-W>
-" my own customizations
+" TODO avy vs easymotion
+"   I like that space space brings both of them up, but the actual
+"   bindings aren't very similar
+"   If I don't wind up using <Space><Space> *that* much in avy, one
+"   option might be to remap it so that <Space><Space> is my avy
+"   prefix.
+
+
+" my own customizations - keep this in sync with spacemacs
 nnoremap <leader>y "+y
 noremap <BS> :noh<CR>
 noremap ' ;
