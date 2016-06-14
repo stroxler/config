@@ -10,35 +10,27 @@
 
    dotspacemacs-distribution 'spacemacs
 
-   dotspacemacs-configuration-layer-path '("~/.spacemacs-contribs/")
+   dotspacemacs-configuration-layer-path '("~/spacemacs-contribs/")
 
    dotspacemacs-configuration-layers
    '(
+     ;; my stuff
+     trox-keybindings
+
+     ;; general stuff
      osx
      better-defaults
-     emacs-lisp
      git
      github
      version-control
-     markdown
-     c-c++
-     latex
-     python
-     ipython-notebook
-     javascript
-     html
-     yaml
-     ess ; emacs speaks statistics - really R
-     clojure
-     haskell
      eyebrowse
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
+
      ;; autocomplete config vars courtesey of Jeff Wu
-     ;; (likely they're originally from Jonathan Reem)
      (auto-completion
       :variables
       auto-completion-return-key-behavior nil
@@ -50,22 +42,29 @@
       auto-completion-enable-help-tooltip t
       auto-completion-enable-sort-by-usage t
       )
-     )
+
+     ;; languages
+     emacs-lisp
+     markdown
+     c-c++
+     latex
+     python
+     ipython-notebook
+     javascript
+     html
+     yaml
+     ess ; emacs speaks statistics - really R
+     clojure
+     haskell
+    )
 
 
-   ;; List of additional packages that will be installed without being
-   ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
 
-   ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
 
-   ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-   ;; are declared in a layer which is not a member of
-   ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages t
+   ))
 
 
 (defun dotspacemacs/init ()
@@ -140,75 +139,12 @@
    layers configuration.
    Most custom configuration should go here."
 
-  ;; TODO make myself a spacemacs layer or two and get the logic out of here
-
-  ;; get emacs to consider underscores as part of a word
+  ;; make underscores be treated as part of a word
   (modify-syntax-entry ?_ "w" (standard-syntax-table))
 
-  ;; set backspace to clear highlighting
-  (define-key evil-normal-state-map [backspace] (kbd ":noh"))
-  ;; set ' to do what ; traditionally does
-  (define-key evil-normal-state-map (kbd "'") 'evil-repeat-find-char)
-  ;; set ; to do what : traditionally does
-  (define-key evil-normal-state-map (kbd ";") 'evil-ex)
-  ;; set : to do what <Spc>: traditionally does
-  (define-key evil-normal-state-map (kbd ":")  'helm-M-x)
-
-  ;; disable mapping _ to <-, enable mapping c-, (think c-<) to <-
-  (add-hook 'ess-mode-hook
-            (lambda () (ess-toggle-underscore nil)))
-  (add-hook 'ess-mode-hook
-            (lambda ()  (define-key evil-insert-state-map [(control ?,)]  (kbd "<-"))))
-
-  ;; py2tmux integration
-  ;;
-  ;; TODO
-  ;; - add a line variant (need to save excursion and set mark and point to start/end)
-  ;; - factor this out into a real library / layer, hopefully adding some context-specific
-  ;;   stuff like cpaste boundaries, %run commands, etc.
-  ;; - make it so the same binding, SPC tt, can work in both normal mode (for lines)
-  ;;   and visual selection mode (for regions). This probably requires evil hooks.
-  (defun send-to-tmux (start end session-name)
-    (let ((command (format "py2tmux send-content --session %s" session-name)))
-      (shell-command-on-region start end command))
-      )
-  (defun get-end-of-line ()
-      (save-excursion
-        (end-of-line)
-        (point)))
-  (defun get-beginning-of-line ()
-      (save-excursion
-        (beginning-of-line)
-        (point)))
-  (defun line-to-tmux ()
-    (interactive)
-    (let ((start (get-beginning-of-line))
-          (end   (get-end-of-line)))
-      (send-to-tmux start end "emacs")
-      ))
-  (defun region-to-tmux (start end)
-    (interactive "r")
-    (region-to-tmux start end "emacs")
-    )
-  (spacemacs/set-leader-keys "tt" 'line-to-tmux)
-  (spacemacs/set-leader-keys "ott" 'region-to-tmux)
-
-  ;; don't yank to system clipboard by default
+  ;; turn of auto-system-clipboard integration
   (turn-off-pbcopy)
 
-  ;; toggle using system clipboard on and off
-  ;;   set the color theme to something I don't like so
-  ;;   that I don't forget I did it
-  (defun toggle-on-pbcopy ()
-    (interactive)
-    (turn-on-pbcopy)
-    (spacemacs/load-theme 'wheatgrass))
-  (defun toggle-off-pbcopy ()
-    (interactive)
-    (turn-off-pbcopy)
-    (spacemacs/load-theme 'solarized-light))
-  (spacemacs/set-leader-keys "ocy" 'toggle-on-pbcopy)
-  (spacemacs/set-leader-keys "ocn" 'toggle-off-pbcopy)
 )
 
 
