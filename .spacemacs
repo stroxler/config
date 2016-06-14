@@ -139,11 +139,19 @@
    layers configuration.
    Most custom configuration should go here."
 
-  ;; make underscores be treated as part of a word
-  (modify-syntax-entry ?_ "w" (standard-syntax-table))
+  ;; changes global emacs behavior
+  (modify-syntax-entry ?_ "w" (standard-syntax-table))   ;; _ is part of word
+  (turn-off-pbcopy)                                      ;; no auto clipboard
 
-  ;; turn of auto-system-clipboard integration
-  (turn-off-pbcopy)
+
+  ;; Modifications to the vim keymap, plus my noh binding
+  (define-key evil-normal-state-map [backspace] (kbd ":noh"))
+  (define-key evil-normal-state-map (kbd "'") 'evil-repeat-find-char)
+  (define-key evil-normal-state-map (kbd ";") 'evil-ex)
+  (define-key evil-normal-state-map (kbd ":")  'helm-M-x)
+  ;; these are your state as of entering the spacemacs buffer
+  (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+  (define-key evil-motion-state-map (kbd ":")  'helm-M-x)
 
 )
 

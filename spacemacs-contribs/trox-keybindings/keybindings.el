@@ -1,11 +1,3 @@
-;; set backspace to clear highlighting
-(define-key evil-normal-state-map [backspace] (kbd ":noh"))
-;; set ' to do what ; traditionally does
-(define-key evil-normal-state-map (kbd "'") 'evil-repeat-find-char)
-;; set ; to do what : traditionally does
-(define-key evil-normal-state-map (kbd ";") 'evil-ex)
-;; set : to do what <Spc>: traditionally does
-(define-key evil-normal-state-map (kbd ":")  'helm-M-x)
 
 (evil-ex-nohighlight)
 
@@ -35,12 +27,15 @@
 
 ;; define a clipboard copy operator with evil
 
-;; set S-s and S-v (S = command on mac) to use clipboard in the appropriate states
-(define-key evil-normal-state-map (kbd "S-c") 'trox/copy-to-clipboard)
-(define-key evil-visual-state-map (kbd "S-c") 'trox/copy-to-clipboard)
-(define-key evil-insert-state-map (kbd "S-v") 'trox/paste-from-clipboard)
-(global-set-key (kbd "S-c") 'trox/copy-to-clipboard)
-(global-set-key (kbd "S-v") 'trox/paste-from-clipboard)
+;; set C-C and C-V to use clipboard in the appropriate states
+(define-key evil-normal-state-map (kbd "C-C") 'trox/copy-to-clipboard)
+(define-key evil-visual-state-map (kbd "C-C") 'trox/copy-to-clipboard)
+(define-key evil-insert-state-map (kbd "C-V") 'trox/paste-from-clipboard)
+(global-set-key (kbd "C-C") 'trox/copy-to-clipboard)
+(global-set-key (kbd "C-V") 'trox/paste-from-clipboard)
+;; these seem to be less reliable, but still worth a try on mac
+(define-key evil-insert-state-map (kbd "s-V") 'trox/paste-from-clipboard)
+(global-set-key (kbd "C-V") 'trox/paste-from-clipboard)
 
 
 ;; set osl and osr (send line / send region) to send to tmux
