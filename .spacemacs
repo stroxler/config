@@ -59,7 +59,9 @@
     )
 
 
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     )
 
    dotspacemacs-excluded-packages '()
 
@@ -142,15 +144,15 @@
   ;; changes global emacs behavior
   (modify-syntax-entry ?_ "w" (standard-syntax-table))   ;; _ is part of word
   (turn-off-pbcopy)                                      ;; no auto clipboard
+  (setq vc-follow-symlinks t)                            ;; auto follow symlinks
 
 
-  ;; Modifications to the vim keymap
+  ;; make ' behave like ;, and ; behave like :. Also map backspace to :noh
+  (spacemacs/set-leader-keys ";" 'helm-M-x)
   (define-key evil-normal-state-map (kbd "'") 'evil-repeat-find-char)
   (define-key evil-normal-state-map (kbd ";") 'evil-ex)
-  (define-key evil-normal-state-map (kbd ":")  'helm-M-x)
   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
-  (define-key evil-motion-state-map (kbd ":")  'helm-M-x)
-  (define-key evil-normal-state-map [backspace] (lambda () (evil-ex-nohighlight)))
+  (define-key evil-normal-state-map [backspace] 'evil-search-highlight-persist-remove-all)
 
 )
 

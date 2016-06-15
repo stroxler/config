@@ -1,5 +1,5 @@
-;;;; NOTE this stuff probably belongs in a package, it's
-;;;; general clipboard-related stuff
+;;;; NOTE if I get evil-system-clipboard working well, this won't
+;;;       be needed anymore.
 
 
 (defun trox/toggle-on-pbcopy ()
@@ -16,26 +16,6 @@
   (interactive)
   (turn-off-pbcopy)
   (spacemacs/load-theme 'solarized-light))
-
-
-(evil-define-operator trox/copy-to-clipboard
-                      (beg end type register yank-handler)
-  "copy to the system clipboard"
-  (turn-on-pbcopy)
-  (evil-yank beg end type register yank-handler)
-  (turn-off-pbcopy)
-  )
-
-(defun trox/paste-from-clipboard (&optional arg)
-  "paste from the system clipboard"
-  (interactive)
-  (turn-on-pbcopy)
-  (yank arg)
-  (turn-off-pbcopy)
-  )
-
-
-
 
 
 ;;;; NOTE this stuff definitely belongs in a package

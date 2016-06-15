@@ -9,9 +9,16 @@
 ;;; License: Unlicense
 
 
-;; most layers import packages. I'll probably want to make a package for
-;; some of the functionality in my package eventually, but for now I'll put
-;; all my code in the layer
-(setq trox-keybindings-packages '())
+(setq trox-keybindings-packages
+  '(
+    (evil-osx-clipboard :location
+      (recipe :fetcher github :repo "stroxler/evil-osx-clipboard.el"))))
 
-
+;; the init is important so the package loads
+(defun trox-keybindings/init-evil-osx-clipboard ()
+  "Set both the osx defaults s-c and s-v, and linux C-C and C-V"
+  (use-package evil-osx-clipboard
+    :defer t
+    :init
+    (progn
+      (evil-osx-clipboard/set-osx-defaults))))
