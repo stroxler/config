@@ -1,23 +1,3 @@
-;;;; NOTE if I get evil-system-clipboard working well, this won't
-;;;       be needed anymore.
-
-
-(defun trox/toggle-on-pbcopy ()
-  "turn on auto-integration with the system clipboard,
-   and set the theme to wheatgrass so that I know about it"
-  (interactive)
-  (turn-on-pbcopy)
-  (spacemacs/load-theme 'wheatgrass))
-
-
-(defun trox/toggle-off-pbcopy ()
-  "turn off auto-integration with the system clipboard,
-   and set the theme to solarized-light"
-  (interactive)
-  (turn-off-pbcopy)
-  (spacemacs/load-theme 'solarized-light))
-
-
 ;;;; NOTE this stuff definitely belongs in a package
 ;;;; it's all my p2tmux integration
 
@@ -59,7 +39,10 @@
 ;; NOTE once again these probably belong in a package
 ;; these functions are from
 ;;  http://emacs.stackexchange.com/questions/653/how-can-i-find-out-in-which-keymap-a-key-is-bound
-;; they won't be needed once emacs 25 comes out
+;;
+;; They won't be needed once emacs 25 comes out, so between
+;; that and the fact that the code isn't mine, I'm not going to make a
+;; package out of them.
 (defun trox/key-binding-at-point (key)
   (mapcar (lambda (keymap) (when (keymapp keymap)
                              (lookup-key keymap key)))
