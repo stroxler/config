@@ -19,7 +19,6 @@
   )
 
 
-;; the init is important so the package loads
 (defun trox-keybindings/init-evil-osx-clipboard ()
   "Set both the osx defaults s-c and s-v, and linux C-C and C-V"
   (use-package evil-osx-clipboard

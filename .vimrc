@@ -202,9 +202,6 @@ inoremap <C-H> 4<C-D>
 noremap <C-L> >>
 vnoremap <C-L> >
 
-" move ; and  behavior to ' and ", and use ; as :
-
-" make turning highlight off really easy
 
 " NOTE: when in ctrl-p mode, you can use Enter to open in current
 " context, ctrl-s/v/t will split, vsplit, or open in new tab. You can
@@ -259,3 +256,4 @@ noremap " ,
 noremap ; :
 " this is temporary, till I retrain my fingers
 noremap : :echo "oops, use ;"<CR>
+
