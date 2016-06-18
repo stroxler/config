@@ -1,11 +1,13 @@
+# vim and general stuff
 .*.swp
 *.pyc
 *.egg-info
 .projectile
 .netrwhist
 tags
+
+# stuff specific to ghar/config
 .vim/bundle/**
-custom.sh
 .ipython/*
 .matplotlib/*
 
@@ -15,5 +17,10 @@ custom.sh
 .!*
 \#*
 *.log
+
+# node stuff
 node_modules
+
+# java stuff
 .idea
+target

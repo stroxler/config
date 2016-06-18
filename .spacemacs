@@ -154,6 +154,17 @@
   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
   (define-key evil-normal-state-map [backspace] 'evil-search-highlight-persist-remove-all)
 
+  ;; make ess mode behave nicer. Note that sometimes you'll have to
+  ;; re-disable underscore stuff; just run M-x ess-toggle-underscore
+  (add-hook 'ess-mode-hook
+            (lambda () (ess-toggle-underscore nil)))
+  (add-hook 'ess-mode-hook
+            (lambda () (define-key evil-insert-state-map [(control ?,)]
+                         (kbd "<-"))))
+
+  ;; some projectile stuff
+  (setq projectile-globally-ignored-file-suffixes
+        '("pyc"))
 )
 
 
