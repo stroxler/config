@@ -111,28 +111,25 @@ set spelllang=en_us
 
 
 " Syntastic configuration
-Plugin 'scrooloose/syntastic'
-    " This isn't normally needed, it checks on write. Every now and then,
-    " though, it seems to fail.
-    noremap <F3> :SyntasticCheck<CR>
-    au BufRead,BufNewFile *.json set filetype=json
-
-    let g:syntastic_json_checkers = ["jsonlint"]
-    let g:syntastic_r_checkers = ["svtools"]
-    let g:syntastic_javascript_checkers = ["eslint"]
-    " note: I've disabled pylint here 
-    let g:syntastic_python_checkers = ["pyflakes", "pep8"]
-    let g:syntastic_enable_r_svtools_checker = 1
-
-
-    " C SYNTAX CHECKING IF YOU HAVE DEPENDENCIES
-    " the default (gcc) is pretty good. But it isn't smart enough to scan
-    " your makefile for cflags. You can fix this in two ways. For a particluar
-    " buffer, you can temporarily fix it by doing:
-    "   let b:syntastic_c_flags = '-I/path/to/include/dir'
-    " for any nonstandard dir. If you have libraries you regularly use in
-    " unexpected places, you can instead do
-    "   let g:syntastic_c_include_dirs = ['/path/to/dir'] or ['path1', 'path2']
+" ========================
+" This isn't normally needed, it checks on write. Every now and then,
+" though, it seems to fail.
+noremap <F3> :SyntasticCheck<CR>
+au BufRead,BufNewFile *.json set filetype=json
+let g:syntastic_json_checkers = ["jsonlint"]
+let g:syntastic_r_checkers = ["svtools"]
+let g:syntastic_javascript_checkers = ["eslint"]
+" note: I've disabled pylint here 
+let g:syntastic_python_checkers = ["pyflakes", "pep8"]
+let g:syntastic_enable_r_svtools_checker = 1
+" C SYNTAX CHECKING IF YOU HAVE DEPENDENCIES
+" the default (gcc) is pretty good. But it isn't smart enough to scan
+" your makefile for cflags. You can fix this in two ways. For a particluar
+" buffer, you can temporarily fix it by doing:
+"   let b:syntastic_c_flags = '-I/path/to/include/dir'
+" for any nonstandard dir. If you have libraries you regularly use in
+" unexpected places, you can instead do
+"   let g:syntastic_c_include_dirs = ['/path/to/dir'] or ['path1', 'path2']
 
 
 " Terminal-related stuff: redraw window when it gets messed up, set up
