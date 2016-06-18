@@ -16,6 +16,7 @@
    '(
      ;; my stuff
      trox-keybindings
+     fzf-layer
 
      ;; general stuff
      osx
@@ -56,17 +57,19 @@
      ess ; emacs speaks statistics - really R
      clojure
      haskell
-    )
+     )
 
 
    dotspacemacs-additional-packages
    '(
+     (fzf :location
+      (recipe :fetcher github :repo "bling/fzf.el"))
      )
 
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages) '()
 
    dotspacemacs-delete-orphan-packages t
-   ))
+   )
 
 
 (defun dotspacemacs/init ()
