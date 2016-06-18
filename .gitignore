@@ -15,3 +15,5 @@ custom.sh
 .!*
 \#*
 *.log
+node_modules
+.idea

@@ -34,8 +34,10 @@ alias c.='cd ..'
 alias c..='cd ../..'
 alias c...='cd ../../..'
 alias ck='cd /kode'
-# this is really ergonomic
+# this is really ergonomic, use `TAB to complete
 export FZF_COMPLETION_TRIGGER='`'
+# make FZF use ag, which respects .gitignore
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # vim + fzf
 function vf() {
