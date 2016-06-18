@@ -1,4 +1,4 @@
-"vim not vi
+" vim not vi
 set nocompatible
 set backspace=2
 
@@ -74,6 +74,42 @@ if iCanHazVundle == 0
 endif
 
 
+" make spacevim work and add some extra stuff
+let mapleader="\<space>"
+" Make Y behave like C and D (spacemacs does this)
+map Y y$
+" color themes - Tn cycles themes in emacs
+noremap <leader>Tnz :colors zenburn<CR>
+noremap <leader>Tnl :colors solarized<CR>:set background=light<CR>
+noremap <leader>Tnd :colors solarized<CR>:set background=dark<CR>
+" override ff with a regular :e command in the current file's directory -
+" important because spacemacs lets you create new files
+noremap <leader>ff :e %:p:h/
+" add some additional bindings that aren't in spacemacs or spacevim
+noremap <leader>fk :FZF /kode<CR>  " fuzzy find in /kode
+noremap <leader>fzf :FZF           " fuzzy find in any directory
+noremap <leader>fzh :FZF %:p:h<CR> " fuzzy version of ff - fuzzy find here
+" syntax highlinging and inc search with highlighting
+syntax on
+set incsearch
+set hlsearch
+" nicer tab completion
+set wildmode=longest,list,full
+set wildmenu
+set wildignore+=*.pyc,*.so,*.swp,.git
+
+" some other random stuff I like
+set expandtab
+set confirm
+set nobackup
+set noswapfile
+set hidden
+set history=200
+set spelllang=en_us
+
+
+
+
 " Syntastic configuration
 Plugin 'scrooloose/syntastic'
     " This isn't normally needed, it checks on write. Every now and then,
@@ -99,95 +135,25 @@ Plugin 'scrooloose/syntastic'
     "   let g:syntastic_c_include_dirs = ['/path/to/dir'] or ['path1', 'path2']
 
 
-let mapleader="\<space>"
+" Terminal-related stuff: redraw window when it gets messed up, set up
+" color lines and columns when I can't find cursor
+noremap <leader>rrr :redraw!<CR>
+noremap <leader>coy :set colorcolumn=80<CR>
+noremap <leader>con :set colorcolumn=<CR>
+noremap <leader>ccy :set cursorcolumn<CR>
+noremap <leader>ccn :set nocursorcolumn<CR>
+noremap <leader>cly :set cursorline<CR>
+noremap <leader>cln :set nocursorline<CR>
 
-
-""" MY OLD STUFF -- much of this may be unnecessary with spacevim
-
-set nowrap
-set number
-set laststatus=2
-set incsearch
-set hlsearch
-if version > 703
-    set colorcolumn=80
-endif
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match Overlength /\%81v.\+/
-set title
-set titleold=""
-syntax on
-
-" editor
-set autoindent
-set tabstop=2
-set expandtab
-set shiftwidth=2  " this gets undone below, in my shift-operator mappings
-" set mouse=a
-
-" system
-set confirm
-set nobackup
-set noswapfile
-set hidden
-set history=200
-set spelllang=en_us
-set wildmode=longest,list,full
-set wildmenu
-set wildignore+=*.pyc,*.so,*.swp,.git
-filetype plugin indent on
-
-" vim/gvim setting
-if has('gui_running')
-    set guioptions-=T  " hide toolbar
-else
-    set cursorline
-endif
-
-" set colors
-colors solarized
 
 " highlight current line in insert mode; not command
+" I find this makes it easier to know which mode I'm in in the terminal
 autocmd InsertEnter,InsertLeave * set cul!
 
 
-" directory of current file, in command line
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" strip trailing whitespace with F5
-nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-" Make Y behave like C and D
-map Y y$
-
-" Indentation is a big issue... make c-h, c-j, c-k, and c-l indentation
-" operators in all three modes, where the outer ones move 4 and the inner
-" ones move 1 space. Note that this causes the default operators
-" >>, <<, c-t, and c-u to only move one space.
-"
-" IN ADDITION, I've made the visual mode one-column indenting commands sticky.
-" I'm making the four-column commands non-sticky for now because it's less
-" often that you need them sticky, plus I want to be reminded of the `gv`
-" command for a while until it's in my long-term memory.
-"
-" Also, the way I do c-j and c-k will cause issues when editing files where
-" I didn't want a shiftwidth of 4. Be aware of this. Fortunately, I should
-" only really need them in code files where the indentation isn't always a
-" multiple of 4 (this generally happens in argument lists), and I use
-" shiftwidth of 4 in all programming languages, so it shouldn't be an issue
-"
-" NOTE: I need to do this for spacemacs.
+" My custom tabbing commands, for when auto-indent isn't cutting it
+" and I need indentation that isn't multiples of 2 or 4: control h j k and l
+" will tab stuff left 4, left 1, right 1, and right 4 spaces respectively.
 inoremap <C-L> <C-T>
 noremap <C-J> :set shiftwidth=1<CR><<:set shiftwidth=4<CR>
 vnoremap <C-J> <ESC>:set shiftwidth=1<CR>gv<:set shiftwidth=4<CR>gv
@@ -202,52 +168,7 @@ noremap <C-L> >>
 vnoremap <C-L> >
 
 
-" NOTE: when in ctrl-p mode, you can use Enter to open in current
-" context, ctrl-s/v/t will split, vsplit, or open in new tab. You can
-" also use ctrl-j and ctrl-k to move up and down, although I'm happy
-" enough with the arrow keys.
-
-" <leader>
-let mapleader="\<Space>"
-" cursor and other term-related stuff
-noremap <leader>r :redraw!<CR>
-noremap <leader>coy :set colorcolumn=80<CR>
-noremap <leader>con :set colorcolumn=<CR>
-noremap <leader>ccy :set cursorcolumn<CR>
-noremap <leader>ccn :set nocursorcolumn<CR>
-noremap <leader>cly :set cursorline<CR>
-noremap <leader>cln :set nocursorline<CR>
-" some vim-specific stuff (I should make leader y work in spacemacs)
-" move lines up and down NOTE i should consider porting to spacemacs
-nnoremap <leader><Up> :m-2<CR>==
-nnoremap <leader><Down> :m+<CR>==
-" *** spacemacs section ***
-" opening files and buffers
-noremap <leader>pf :FZF<CR>
-noremap <leader>ff :e %:p:h/
-noremap <leader>fk :FZF /kode<CR>  " fuzzy find in /kode
-noremap <leader>fzf :FZF           " fuzzy find in any directory
-noremap <leader>fzh :FZF %:p:h<CR> " fuzzy version of ff - fuzzy find here
-noremap <leader>bb :Buffers<CR>
-noremap <leader>bp :bp<CR>
-noremap <leader>bn :bn<CR>
-noremap <leader>fed :e $MYVIMRC<CR>
-noremap <leader>feR :source $MYVIMRC<CR>
-" color themes
-noremap <leader>Tnz :colors zenburn<CR>
-noremap <leader>Tnl :colors solarized<CR>:set background=light<CR>
-noremap <leader>Tnd :colors solarized<CR>:set background=dark<CR>
-" windows
-noremap <leader>w <C-W>
-" TODO avy vs easymotion
-"   I like that space space brings both of them up, but the actual
-"   bindings aren't very similar
-"   If I don't wind up using <Space><Space> *that* much in avy, one
-"   option might be to remap it so that <Space><Space> is my avy
-"   prefix.
-
-
-" my own customizations - keep this in sync with spacemacs
+" My custom leader key stuff
 nnoremap <leader>y "+y
 noremap <BS> :noh<CR>
 noremap ' ;
@@ -255,4 +176,31 @@ noremap " ,
 noremap ; :
 " this is temporary, till I retrain my fingers
 noremap : :echo "oops, use ;"<CR>
+
+
+" strip trailing whitespace with F5
+" (spacevim doesn't seem to auto-strip new edits like spacemacs)
+nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+
+
+" set cursorline in terminal mode, no toolbar in gui mode
+if has('gui_running')
+    set guioptions-=T  " hide toolbar
+else
+    set cursorline
+endif
+
+colors solarized
 
