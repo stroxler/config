@@ -1,4 +1,4 @@
-" vim not vi
+"vim not vi
 set nocompatible
 set backspace=2
 
@@ -20,35 +20,38 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+" spacevim dependencies
+Plugin 'airblade/vim-gitgutter'
+Plugin 'dbakker/vim-projectroot'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/gv.vim'
+Plugin 'mbbill/undotree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-fugitive'
+
+" mis-specified as optional
+Plugin 'hecal3/vim-leader-guide'
+
+" spacevim
+Plugin 'ctjhoa/spacevim'
+
+" spacevim
+Plugin 'haya14busa/incsearch.vim'
+
+" spacevim recommended plugins
+Plugin 'osyo-manga/vim-over'
+Plugin 'tpope/vim-surround'
+Plugin 'Raimondi/delimitMate'
+
 " colors stuff
 Plugin 'vim-scripts/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 
-" unix tools and fuzzy finders
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'tpope/vim-eunuch'
-Plugin 'rking/ag.vim'  " ag is a bit like ack
-
-" undo tree
-Plugin 'mbbill/undotree'
-
-" I should probably learn to use these
-Plugin 'tpope/vim-surround'
-Plugin 'michaeljsmith/vim-indent-object'
-
-
-" fugitive is handy
-Plugin 'tpope/vim-fugitive'
-
-" this is what makes :BW work
-Plugin 'vim-scripts/bufkill.vim'
-
-" nice tab completion
-Plugin 'ervandew/supertab'
-    let g:SuperTabDefaultCompletionType="context"
-
-" some syntax highlighters
+" langages
 Plugin 'tpope/vim-markdown'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'digitaltoad/vim-jade'
@@ -57,8 +60,21 @@ Plugin 'tpope/vim-fireplace'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kchmck/vim-coffee-script'
 
-Plugin 'Lokaltog/vim-easymotion'
+" bonus stuff
+Plugin 'ervandew/supertab'
+Plugin 'vim-scripts/bufkill.vim'
 
+call vundle#end()
+filetype plugin indent on
+
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    PluginInstall
+endif
+
+
+" Syntastic configuration
 Plugin 'scrooloose/syntastic'
     " This isn't normally needed, it checks on write. Every now and then,
     " though, it seems to fail.
@@ -73,7 +89,7 @@ Plugin 'scrooloose/syntastic'
     let g:syntastic_enable_r_svtools_checker = 1
 
 
-    " C SYNTAX CHECKING
+    " C SYNTAX CHECKING IF YOU HAVE DEPENDENCIES
     " the default (gcc) is pretty good. But it isn't smart enough to scan
     " your makefile for cflags. You can fix this in two ways. For a particluar
     " buffer, you can temporarily fix it by doing:
@@ -81,30 +97,13 @@ Plugin 'scrooloose/syntastic'
     " for any nonstandard dir. If you have libraries you regularly use in
     " unexpected places, you can instead do
     "   let g:syntastic_c_include_dirs = ['/path/to/dir'] or ['path1', 'path2']
-    " ...and to demo, here's where various apr headers live in osx:
-    let g:syntastic_c_include_dirs = ['usr/include/apr-1']
 
-""Plugin 'kien/ctrlp.vim'
-""    let g:ctrlp_working_path_mode=0
-""    let g:ctrlp_max_height=20
-""    let g:ctrlp_custom_ignore = {
-""      \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|vendor|target)$',
-""      \ 'file': '\v\.(exe|so|a|dll|pyc|class)$',
-""      \ }
-""    noremap <F4> :CtrlPClearCache<CR>
-""Plugin 'sjl/gundo.vim'
-""    nnoremap <F1> :GundoToggle<CR>
 
-call vundle#end()
-filetype plugin indent on
+let mapleader="\<space>"
 
-if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    PluginInstall
-endif
 
-" display
+""" MY OLD STUFF -- much of this may be unnecessary with spacevim
+
 set nowrap
 set number
 set laststatus=2
