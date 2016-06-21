@@ -47,5 +47,5 @@
       ;;        the projectile root if it finds one
       ;;   fzd = fuzzy finder, choosing a root directory
       (spacemacs/set-leader-keys "fz" 'fzf)
-      (spacemacs/set-leader-keys "fdz" 'fzf/directory)
+      (spacemacs/set-leader-keys "fdz" 'fzf-directory)
       )))

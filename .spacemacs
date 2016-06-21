@@ -168,6 +168,12 @@
   ;; some projectile stuff
   (setq projectile-globally-ignored-file-suffixes
         '("pyc"))
+
+  (defun fzf-kode ()
+    (interactive)
+    (fzf-directory "/kode/"))
+
+  (spacemacs/set-leader-keys "fk" 'fzf-kode)
 )
 
 
