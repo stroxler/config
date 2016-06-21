@@ -121,3 +121,10 @@ fi
 if [[ "$my_shell" == "bash" ]]; then
   source ~/alias_completions.sh
 fi
+
+
+# set up virtualenvs
+if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+  export WORKON_HOME="$HOME/.virtualenvs"
+fi
