@@ -148,6 +148,12 @@ noremap <leader>cln :set nocursorline<CR>
 autocmd InsertEnter,InsertLeave * set cul!
 
 
+" set indentation rules
+set autoindent
+set tabstop=2
+set expandtab
+set shiftwidth=2
+
 " My custom tabbing commands, for when auto-indent isn't cutting it
 " and I need indentation that isn't multiples of 2 or 4: control h j k and l
 " will tab stuff left 4, left 1, right 1, and right 4 spaces respectively.
@@ -200,4 +206,3 @@ else
 endif
 
 colors solarized
-

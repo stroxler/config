@@ -12,13 +12,17 @@ alias cdgc='cd ~/ghar/config'
 alias g='git'
 alias gs='git status -s'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gl='git log --abbrev-commit --pretty=oneline -n 15'
-alias gr='git rebase origin/master'
+alias grom='git rebase origin/master'
 alias gco='git commit'
+alias gcoa='git commit --amend'
 alias gch='git checkout'
+alias gcb='git checkout -b'
 
 # ls aliases
-alias ll='ls -lh'
+alias ll='ls -lhG'
+alias ls='ls -G'
 alias la='ls -lah'
 alias py='ipython'
 
@@ -88,7 +92,7 @@ alias R='R --no-save'
 
 # source machine-specific stuff
 #   (this gets done twice in my current zsh setup, but that's ok)
-if [[ -s "${HOME}.local/env.sh" ]]; then
+if [[ -s "${HOME}/.local/env.sh" ]]; then
   source "${HOME}/.local/env.sh"
 fi
 

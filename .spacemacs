@@ -148,6 +148,9 @@
   (modify-syntax-entry ?_ "w" (standard-syntax-table))   ;; _ is part of word
   (turn-off-pbcopy)                                      ;; no auto clipboard
   (setq vc-follow-symlinks t)                            ;; auto follow symlinks
+  (spacemacs/toggle-smartparens-globally-off)            ;; turn off smartparens by default
+                                                         ;; (space t p will turn back on
+                                                         ;;  in a buffer, I think)
 
 
   ;; make ' behave like ;, and ; behave like :. Also map backspace to :noh
