@@ -64,6 +64,10 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/bufkill.vim'
 
+" ctl-p ... I've found that spacemacs FZF defaults aren't good enough
+" for some purposes
+Plugin 'ctrlpvim/ctrlp.vim'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -78,17 +82,6 @@ endif
 let mapleader="\<space>"
 " Make Y behave like C and D (spacemacs does this)
 map Y y$
-" color themes - Tn cycles themes in emacs
-noremap <leader>Tnz :colors zenburn<CR>
-noremap <leader>Tnl :colors solarized<CR>:set background=light<CR>
-noremap <leader>Tnd :colors solarized<CR>:set background=dark<CR>
-" override ff with a regular :e command in the current file's directory -
-" important because spacemacs lets you create new files
-noremap <leader>ff :e %:p:h/
-" add some additional bindings that aren't in spacemacs or spacevim
-noremap <leader>fk :FZF /kode<CR>  " fuzzy find in /kode
-noremap <leader>fzf :FZF           " fuzzy find in any directory
-noremap <leader>fzh :FZF %:p:h<CR> " fuzzy version of ff - fuzzy find here
 " syntax highlinging and inc search with highlighting
 syntax on
 set incsearch
@@ -206,3 +199,22 @@ else
 endif
 
 colors solarized
+set background=light
+
+" Customize spacevim mappings a big / add some of my own
+" ======================================================
+" color themes - Tn cycles themes in emacs
+noremap <leader>Tnz :colors zenburn<CR>
+noremap <leader>Tnl :colors solarized<CR>:set background=light<CR>
+noremap <leader>Tnd :colors solarized<CR>:set background=dark<CR>
+" override ff with a regular :e command in the current file's directory -
+" important because spacemacs lets you create new files
+" For some reason spacevim seems to frequently override this, so also
+" provide fh ("file here") to do the same thing
+noremap <leader>fh :e %:p:h/
+noremap <leader>ff :e %:p:h/
+" add some additional bindings that aren't in spacemacs or spacevim
+noremap <leader>fk :FZF /kode<CR>  " fuzzy find in /kode
+noremap <leader>fzf :FZF           " fuzzy find in any directory
+noremap <leader>fzh :CtrlP %:p:h<CR> " fuzzy version of ff - fuzzy find here
+noremap <leader>fcp :CtrlP<CR> " fuzzy version of ff - fuzzy find here
