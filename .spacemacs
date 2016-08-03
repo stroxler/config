@@ -85,9 +85,10 @@
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(
-                         solarized-light
                          spacemacs-dark
                          zenburn
+                         solarized-light
+                         solarized-dark
                         )
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"

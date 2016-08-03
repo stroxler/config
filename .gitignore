@@ -4,6 +4,7 @@
 *.egg-info
 .projectile
 .netrwhist
+.cache
 tags
 
 # stuff specific to ghar/config
