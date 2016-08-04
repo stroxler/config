@@ -15,6 +15,7 @@ To set up a new computer, use some subset of the following::
     rm .bashrc
     ghar install
     ghar install --status
+    ~/setup_vim.sh
 
 The ghar install does *not* define your .bashrc, because it's
 a good place to put machine-specific environment variables and

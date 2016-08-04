@@ -1,82 +1,24 @@
 " vim not vi
 set nocompatible
+
+" NOTE: this .vimrc assumes you've run the vim setup (which
+" uses vundle to install a bunch of packages)
+
+so $HOME/vundlerc.vim
 set backspace=2
 
-" Set up Vundle
-" http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc
 
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    let iCanHazVundle=0
-endif
+" My custom leader key stuff
+nnoremap <leader>y "+y
+noremap <BS> :noh<CR>
+noremap ' ;
+noremap " ,
+noremap ; :
+" this is temporary, till I retrain my fingers
+noremap : :echo "oops, use ;"<CR>
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-
-" spacevim dependencies
-Plugin 'airblade/vim-gitgutter'
-Plugin 'dbakker/vim-projectroot'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/gv.vim'
-Plugin 'mbbill/undotree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
-
-" mis-specified as optional
-Plugin 'hecal3/vim-leader-guide'
-
-" spacevim
-Plugin 'ctjhoa/spacevim'
-
-" spacevim
-Plugin 'haya14busa/incsearch.vim'
-
-" spacevim recommended plugins
-Plugin 'osyo-manga/vim-over'
-Plugin 'tpope/vim-surround'
-Plugin 'Raimondi/delimitMate'
-
-" colors stuff
-Plugin 'vim-scripts/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
-
-" langages
-Plugin 'tpope/vim-markdown'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'fatih/vim-go'
-Plugin 'tpope/vim-fireplace'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'kchmck/vim-coffee-script'
-
-" bonus stuff
-Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/bufkill.vim'
-
-" ctl-p ... I've found that spacemacs FZF defaults aren't good enough
-" for some purposes
-Plugin 'ctrlpvim/ctrlp.vim'
-
-call vundle#end()
 filetype plugin indent on
-
-if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    PluginInstall
-endif
-
 
 " make spacevim work and add some extra stuff
 let mapleader="\<space>"
@@ -99,8 +41,6 @@ set noswapfile
 set hidden
 set history=200
 set spelllang=en_us
-
-
 
 
 " Syntastic configuration
@@ -164,16 +104,6 @@ noremap <C-L> >>
 vnoremap <C-L> >
 
 
-" My custom leader key stuff
-nnoremap <leader>y "+y
-noremap <BS> :noh<CR>
-noremap ' ;
-noremap " ,
-noremap ; :
-" this is temporary, till I retrain my fingers
-noremap : :echo "oops, use ;"<CR>
-
-
 " strip trailing whitespace with F5
 " (spacevim doesn't seem to auto-strip new edits like spacemacs)
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
@@ -218,3 +148,4 @@ noremap <leader>fk :FZF /kode<CR>  " fuzzy find in /kode
 noremap <leader>fzf :FZF           " fuzzy find in any directory
 noremap <leader>fzh :CtrlP %:p:h<CR> " fuzzy version of ff - fuzzy find here
 noremap <leader>fcp :CtrlP<CR> " fuzzy version of ff - fuzzy find here
+

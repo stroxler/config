@@ -10,6 +10,7 @@ alias cdgc='cd ~/ghar/config'
 
 # git aliases
 alias g='git'
+alias ga='git add'
 alias gs='git status -s'
 alias gd='git diff'
 alias gdc='git diff --cached'
