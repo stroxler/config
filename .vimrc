@@ -1,5 +1,6 @@
 " vim not vi
 set nocompatible
+set background=light
 
 " NOTE: this .vimrc assumes you've run the vim setup (which
 " uses vundle to install a bunch of packages)
@@ -123,19 +124,19 @@ endfunction
 
 " set cursorline in terminal mode, no toolbar in gui mode
 if has('gui_running')
+    colors codeschool
     set guioptions-=T  " hide toolbar
 else
+    colors zenburn
     set cursorline
 endif
-
-colors zenburn
 
 " Customize spacevim mappings a big / add some of my own
 " ======================================================
 " color themes - Tn cycles themes in emacs
 noremap <leader>Tnz :colors zenburn<CR>
-noremap <leader>Tnl :colors solarized<CR>:set background=light<CR>
-noremap <leader>Tnd :colors solarized<CR>:set background=dark<CR>
+noremap <leader>Tns :colors solarized<CR>:set background=light<CR>
+noremap <leader>Tnc :colors codeschool<CR>:set background=dark<CR>
 " override ff with a regular :e command in the current file's directory -
 " important because spacemacs lets you create new files
 " For some reason spacevim seems to frequently override this, so also

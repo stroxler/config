@@ -34,6 +34,7 @@ Plugin 'Raimondi/delimitMate'
 
 " colors stuff
 Plugin 'stroxler/Zenburn'
+Plugin '29decibel/codeschool-vim-theme'
 Plugin 'altercation/vim-colors-solarized'
 
 " langages
