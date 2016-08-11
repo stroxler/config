@@ -33,7 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 
 " colors stuff
-Plugin 'vim-scripts/Zenburn'
+Plugin 'stroxler/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 
 " langages

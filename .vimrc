@@ -128,8 +128,7 @@ else
     set cursorline
 endif
 
-colors solarized
-set background=light
+colors zenburn
 
 " Customize spacevim mappings a big / add some of my own
 " ======================================================
