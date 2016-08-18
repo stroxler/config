@@ -2,6 +2,12 @@
 
 c = get_config()
 
+# custom extensions
+
+c.InteractiveShellApp.extensions = [
+    'grasp'
+]
+
 #------------------------------------------------------------------------------
 # TerminalIPythonApp configuration
 #------------------------------------------------------------------------------
