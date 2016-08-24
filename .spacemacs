@@ -3,7 +3,6 @@
 ;; It must be stored in your home directory.
 ;;
 ;; to reload, <SPC f e R>
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
   (setq-default
@@ -28,16 +27,18 @@
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     spell-checking
+     (spell-checking :variables spell-checking-enable-by-default nil)
      syntax-checking
 
      ;; autocomplete config vars courtesey of Jeff Wu
+     ;;   note that I'm using kj for completion, because the default
+     ;;   emacs tab   behavior is awesome when doing python code
      (auto-completion
       :variables
       auto-completion-return-key-behavior nil
       auto-completion-tab-key-behavior 'complete
-      auto-completion-complete-with-key-sequence "kj"
-      auto-completion-complete-with-key-sequence-delay 0.1
+      auto-completion-complete-with-key-sequence "lkj"
+      auto-completion-complete-with-key-sequence-delay 0.4
       auto-completion-private-snippets-directory nil
       auto-completion-enable-snippets-in-popup t
       auto-completion-enable-help-tooltip t
@@ -85,10 +86,10 @@
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(
-                         spacemacs-dark
-                         zenburn
-                         solarized-light
                          solarized-dark
+                         solarized-light
+                         zenburn
+                         spacemacs-dark
                         )
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
@@ -149,9 +150,20 @@
   (modify-syntax-entry ?_ "w" (standard-syntax-table))   ;; _ is part of word
   (turn-off-pbcopy)                                      ;; no auto clipboard
   (setq vc-follow-symlinks t)                            ;; auto follow symlinks
-  (spacemacs/toggle-smartparens-globally-off)            ;; turn off smartparens by default
-                                                         ;; (space t p will turn back on
-                                                         ;;  in a buffer, I think)
+
+  ;; turn off smartparens (space t p can turn it on when you want it)
+  (spacemacs/toggle-smartparens-globally-off)
+  (remove-hook 'prog-mode-hook #'smartparens-mode)
+  ;;;; This block is an alternative: leave smartparens on but disable most of it's
+  ;;;; auto-generated symbol pairs (smartparens does do some other cool stuff)
+  ;; (eval-after-load 'smartparens
+  ;;   '(progn
+  ;;      (sp-pair "(" nil :actions :rem)
+  ;;      (sp-pair "[" nil :actions :rem)
+  ;;      (sp-pair "'" nil :actions :rem)
+  ;;      (sp-pair "\"" nil :actions :rem)))
+
+  ;; turn off spellcheck (space t S can turn it on when you want it)
 
 
   ;; make ' behave like ;, and ; behave like :. Also map backspace to :noh
