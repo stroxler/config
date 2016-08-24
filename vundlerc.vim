@@ -28,14 +28,14 @@ Plugin 'ctjhoa/spacevim'
 Plugin 'haya14busa/incsearch.vim'
 
 " spacevim recommended plugins
+"   (note: I removed delimitMate)
 Plugin 'osyo-manga/vim-over'
 Plugin 'tpope/vim-surround'
-Plugin 'Raimondi/delimitMate'
 
 " colors stuff
 Plugin 'stroxler/Zenburn'
-Plugin '29decibel/codeschool-vim-theme'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
+Plugin 'vim-scripts/phd'
 
 " langages
 Plugin 'tpope/vim-markdown'
