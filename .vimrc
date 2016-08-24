@@ -145,6 +145,7 @@ noremap <leader>TnL :colors lucius<CR>:set background=light<CR>
 noremap <leader>Tni :colors iceberg<CR>
 noremap <leader>Tnp :colors phd<CR>
 noremap <leader>Tnc :colors codeschool<CR>:set background=dark<CR>
+noremap <leader>Tng :colors gruvbox<CR>:set background=dark<CR>
 " override ff with a regular :e command in the current file's directory -
 " important because spacemacs lets you create new files
 " For some reason spacevim seems to frequently override this, so also
