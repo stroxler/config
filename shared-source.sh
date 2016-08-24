@@ -91,16 +91,6 @@ function fhr() {
 alias R='R --no-save'
 
 
-# source machine-specific stuff
-#   (this gets done twice in my current zsh setup, but that's ok)
-if [[ -s "${HOME}/.local/env.sh" ]]; then
-  source "${HOME}/.local/env.sh"
-fi
-
-# set up aliases to edit this file and the local env.sh
-alias vle='vim ~/.local/env.sh'
-alias vss='vim ~/shared-source.sh'
-
 # get the shell. It's a little annoying because login shells
 # have a - prepended, so I strip that off.
 my_shell=$(echo $0)
@@ -127,9 +117,23 @@ if [[ "$my_shell" == "bash" ]]; then
   source ~/alias_completions.sh
 fi
 
+# set up aliases to edit this file and the local env.sh
+alias vle='vim ~/.local/env.sh'
+alias vss='vim ~/shared-source.sh'
 
 # set up virtualenvs
 if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
   source /usr/local/bin/virtualenvwrapper.sh
   export WORKON_HOME="$HOME/.virtualenvs"
 fi
+
+# source machine-specific stuff
+#   (this gets done twice in my current zsh setup, but that's ok)
+if [[ -s "${HOME}/.local/env.sh" ]]; then
+  source "${HOME}/.local/env.sh"
+fi
+
+# don't evaluate autocompletion for click, but do make an alias to do
+# call a script in ~/.local. The reason to not insta-evaluate is that it's
+# pretty slow
+alias click-autocomp='source ~/.local/click_autocompletes.sh'
