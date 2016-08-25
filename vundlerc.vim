@@ -37,7 +37,6 @@ Plugin 'stroxler/Zenburn'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-scripts/phd'
 Plugin 'romainl/Apprentice'
-Plugin 'cocopon/iceberg'
 Plugin 'jonathanfilip/vim-lucius'
 
 " langages

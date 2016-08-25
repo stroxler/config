@@ -120,7 +120,11 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-
+" disable the bell (some of these lines may not be needed)
+autocmd! GUIEnter * set vb t_vb=
+set noerrorbells 
+set novisualbell
+set t_vb=
 
 " set cursorline in terminal mode, no toolbar in gui mode
 if has('gui_running')
