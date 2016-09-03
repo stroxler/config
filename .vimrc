@@ -137,6 +137,20 @@ else
     set cursorline
 endif
 
+" Make the completion more closely mirror spacemacs
+" =================================================
+" The best approximation of vim's C-n behavior in
+" spacemacs actually isn't evil's C-n, it's hippie-expand,
+" which gets mapped to C-p (this isn't the whole story,
+" since hippie-expand will complete on more things, like
+" full lines. But it works a lot better than evil-mode!)
+"
+" Because of this, I'm swapping the two commands in vim,
+" since the drop-down menue c-p brings up is too different.
+inoremap <C-P> <C-N>
+inoremap <C-N> <C-P>
+
+
 " Customize spacevim mappings a big / add some of my own
 " ======================================================
 " color themes - Tn cycles themes in emacs

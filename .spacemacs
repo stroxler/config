@@ -16,6 +16,7 @@
      ;; my stuff
      trox-keybindings
      fzf-layer
+     gdrive-conf
 
      ;; general stuff
      osx
@@ -36,14 +37,15 @@
      (auto-completion
       :variables
       auto-completion-return-key-behavior nil
-      auto-completion-tab-key-behavior 'complete
-      auto-completion-complete-with-key-sequence "lkj"
+      auto-completion-tab-key-behavior nil
+      auto-completion-complete-with-key-sequence "kj"
       auto-completion-complete-with-key-sequence-delay 0.4
       auto-completion-private-snippets-directory nil
       auto-completion-enable-snippets-in-popup t
       auto-completion-enable-help-tooltip t
       auto-completion-enable-sort-by-usage t
       )
+     org
 
      ;; languages
      emacs-lisp
@@ -63,6 +65,9 @@
 
    dotspacemacs-additional-packages
    '(
+     ;; ob-ipython, see https://github.com/gregsexton/ob-ipython
+     (ob-ipython)
+     ;; TODO: remove this? I think I have a layer for it now
      (fzf :location
       (recipe :fetcher github :repo "bling/fzf.el"))
      )
@@ -89,7 +94,6 @@
                          solarized-dark
                          solarized-light
                          zenburn
-                         spacemacs-dark
                         )
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
@@ -147,6 +151,7 @@
    Most custom configuration should go here."
 
   ;; changes global emacs behavior
+  (global-auto-revert-mode t)                            ;; reload files
   (modify-syntax-entry ?_ "w" (standard-syntax-table))   ;; _ is part of word
   (turn-off-pbcopy)                                      ;; no auto clipboard
   (setq vc-follow-symlinks t)                            ;; auto follow symlinks
@@ -154,8 +159,9 @@
   ;; turn off smartparens (space t p can turn it on when you want it)
   (spacemacs/toggle-smartparens-globally-off)
   (remove-hook 'prog-mode-hook #'smartparens-mode)
-  ;;;; This block is an alternative: leave smartparens on but disable most of it's
-  ;;;; auto-generated symbol pairs (smartparens does do some other cool stuff)
+  ;;;; This block is an alternative: leave smartparens on but disable specific
+  ;;;; auto-generated symbol pairs (smartparens does do some other cool stuff
+  ;;;; if you learn how to use it
   ;; (eval-after-load 'smartparens
   ;;   '(progn
   ;;      (sp-pair "(" nil :actions :rem)
@@ -173,6 +179,22 @@
   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
   (define-key evil-normal-state-map [backspace] 'evil-search-highlight-persist-remove-all)
 
+  ;;;; set up ob-ipython stuff
+
+  ;; register it with org-babel
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ipython . t)))
+
+  ;; turn off confirm inputs for ipython blocks
+  (defun my-org-confirm-babel-evaluate (lang body)
+    (not (string= lang "ipython")))
+  (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+
+  ;; auto display images inline
+  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+
+
   ;; make ess mode behave nicer. Note that sometimes you'll have to
   ;; re-disable underscore stuff; just run M-x ess-toggle-underscore
   (add-hook 'ess-mode-hook
@@ -185,11 +207,20 @@
   (setq projectile-globally-ignored-file-suffixes
         '("pyc"))
 
+  ;; set up some FZF bindings
+  ;; TODO make a layer for this
+
   (defun fzf-kode ()
     (interactive)
     (fzf-directory "/kode/"))
 
+  (defun fzf-dropbox ()
+    (interactive)
+    (fzf-directory "~/Dropbox/"))
+
   (spacemacs/set-leader-keys "fk" 'fzf-kode)
+  (spacemacs/set-leader-keys "fb" 'fzf-dropbox)
+
 )
 
 
