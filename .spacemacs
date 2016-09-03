@@ -16,7 +16,6 @@
      ;; my stuff
      trox-keybindings
      fzf-layer
-     gdrive-conf
 
      ;; general stuff
      osx
