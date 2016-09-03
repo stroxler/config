@@ -37,10 +37,10 @@
      (auto-completion
       :variables
       auto-completion-return-key-behavior nil
-      auto-completion-tab-key-behavior nil
+      auto-completion-tab-key-behavior 'complete
       auto-completion-complete-with-key-sequence "kj"
       auto-completion-complete-with-key-sequence-delay 0.4
-      auto-completion-private-snippets-directory nil
+      auto-completion-private-snippets-directory "~/spacemacs-snippets/"
       auto-completion-enable-snippets-in-popup t
       auto-completion-enable-help-tooltip t
       auto-completion-enable-sort-by-usage t
@@ -178,6 +178,7 @@
   (define-key evil-normal-state-map (kbd ";") 'evil-ex)
   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
   (define-key evil-normal-state-map [backspace] 'evil-search-highlight-persist-remove-all)
+
 
   ;;;; set up ob-ipython stuff
 

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: python block
+# key: obipy-init
+# --
+#+BEGIN_SRC ipython :session
+%matplotlib inline
+%config InlineBackend.figure_format = 'retina'
+import matplotlib.pyplot as plt
+#+END_SRC
