@@ -4,22 +4,19 @@
 export PATH=$PATH:$HOME/ghar/bin/
 export PATH=$HOME/bin:$PATH
 
-# cd to ghar/config and .zpresto (my config repos)
-alias cdpr='cd ~/.zprezto'
-alias cdgc='cd ~/ghar/config'
-
 # git aliases
-alias g='git'
 alias ga='git add'
 alias gs='git status -s'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gl='git log --abbrev-commit --pretty=oneline -n 15'
+alias gre='git rebase'
 alias grom='git rebase origin/master'
 alias gco='git commit'
 alias gcoa='git commit --amend'
 alias gch='git checkout'
 alias gcb='git checkout -b'
+alias gpu='git push'
 
 # ls aliases
 alias ll='ls -lhG'
@@ -34,13 +31,17 @@ function c() {
   cd $target
   cd $(dirname $(fzf))
 }
+# cd to ghar/config and .zpresto (my config repos)
+alias c='cd'
+alias cem='cd ~/.emacs'
 alias cgc='cd ~/ghar/config'
+alias ck='cd /kode'
+alias cb='cd ~/Dropbox'
 alias c.='cd ..'
 alias c..='cd ../..'
 alias c...='cd ../../..'
-alias ck='cd /kode'
 # this is really ergonomic, use `TAB to complete
-export FZF_COMPLETION_TRIGGER='`'
+export FZF_COMPLETION_TRIGGER="-"
 # make FZF use ag, which respects .gitignore
 export FZF_DEFAULT_COMMAND='ag -g ""'
 

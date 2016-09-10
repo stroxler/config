@@ -36,15 +36,21 @@
      (auto-completion
       :variables
       auto-completion-return-key-behavior nil
-      auto-completion-tab-key-behavior 'complete
+      auto-completion-tab-key-behavior 'cycle
       auto-completion-complete-with-key-sequence "kj"
-      auto-completion-complete-with-key-sequence-delay 0.4
+      auto-completion-complete-with-key-sequence-delay 0.2
       auto-completion-private-snippets-directory "~/spacemacs-snippets/"
       auto-completion-enable-snippets-in-popup t
       auto-completion-enable-help-tooltip t
       auto-completion-enable-sort-by-usage t
       )
      org
+
+     ;; provides better file navigation based on language semantics
+     semantic
+
+     ;; file browsers
+     ranger
 
      ;; languages
      emacs-lisp
@@ -178,6 +184,16 @@
   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
   (define-key evil-normal-state-map [backspace] 'evil-search-highlight-persist-remove-all)
 
+  ;; make avy more powerful for motion across all windows and frames
+  ;;  (there's a tradeoff here because the key sequences get longer, but avy
+  ;;   appears to choose shorter sequences for the active window so it's not much
+  ;;   of a tradeoff)
+  (setq avy-all-windows 'all-frames)
+
+  ;;;; make anaconda-mode use pytest rather than nose
+  ;; NOTE so far this isn't working after reload, but maybe restart will help
+  (setq-default dotspacemacs-configuration-layers
+                '((python :variables python-test-runner 'pytest)))
 
   ;;;; set up ob-ipython stuff
 
