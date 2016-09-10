@@ -47,6 +47,8 @@ Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-fireplace'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-speeddating'
+Plugin 'jceb/vim-orgmode'
 
 " bonus stuff
 Plugin 'ervandew/supertab'
