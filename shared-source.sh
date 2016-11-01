@@ -1,7 +1,7 @@
 # shared source for bash and zsh; mostly, aliases
 
 # make sure ghar and ~/bin are in the path
-export PATH=$PATH:$HOME/ghar/bin/
+export PATH=$PATH:$HOME/ghar/bin
 export PATH=$HOME/bin:$PATH
 
 # git aliases
@@ -17,6 +17,9 @@ alias gcoa='git commit --amend'
 alias gch='git checkout'
 alias gcb='git checkout -b'
 alias gpu='git push'
+alias gbr='git branch'
+alias gre='git rebase'
+alias gfe='git fetch'
 
 # ls aliases
 alias ll='ls -lhG'
@@ -115,7 +118,7 @@ fi
 # zsh completes aliases by default, but this *needs* to go at the
 # very end for bash
 if [[ "$my_shell" == "bash" ]]; then
-  source ~/alias_completions.sh
+  source ~/alias-completions.sh
 fi
 
 # set up aliases to edit this file and the local env.sh
