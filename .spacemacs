@@ -64,6 +64,8 @@
      yaml
      ess ; emacs speaks statistics - really R
      clojure
+     scala ; note: you want to also configure Coursier and Ensime, which
+           ; involves adding some config to your ~/.sbt folder
      haskell
      )
 
@@ -230,12 +232,17 @@
     (interactive)
     (fzf-directory "/kode/"))
 
-  (defun fzf-dropbox ()
+  (defun fzf-dropbox-work ()
     (interactive)
-    (fzf-directory "~/Dropbox/"))
+    (fzf-directory "~/Dropbox/work/"))
+
+  (defun fzf-dropbox-me ()
+    (interactive)
+    (fzf-directory "~/Dropbox/me/"))
 
   (spacemacs/set-leader-keys "fk" 'fzf-kode)
-  (spacemacs/set-leader-keys "fb" 'fzf-dropbox)
+  (spacemacs/set-leader-keys "fww" 'fzf-dropbox-work)
+  (spacemacs/set-leader-keys "fmm" 'fzf-dropbox-me)
 
 )
 

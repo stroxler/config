@@ -38,11 +38,19 @@ function c() {
 alias c='cd'
 alias cem='cd ~/.emacs'
 alias cgc='cd ~/ghar/config'
-alias ck='cd /kode'
 alias cb='cd ~/Dropbox'
 alias c.='cd ..'
 alias c..='cd ../..'
 alias c...='cd ../../..'
+alias ck='cd /kode'
+
+
+
+ckk () {
+  cd /kode
+  cd $( find . -type d | fzf )
+}
+
 # this is really ergonomic, use `TAB to complete
 export FZF_COMPLETION_TRIGGER="-"
 # make FZF use ag, which respects .gitignore
