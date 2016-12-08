@@ -13,7 +13,6 @@ set backspace=2
 nnoremap <leader>y "+y
 noremap <BS> :noh<CR>
 noremap ' ;
-noremap " ,
 noremap ; :
 " this is temporary, till I retrain my fingers
 noremap : :echo "oops, use ;"<CR>
@@ -164,15 +163,16 @@ noremap <leader>Tni :colors iceberg<CR>
 noremap <leader>Tnp :colors phd<CR>
 noremap <leader>Tnc :colors codeschool<CR>:set background=dark<CR>
 noremap <leader>Tng :colors gruvbox<CR>:set background=dark<CR>
-" override ff with a regular :e command in the current file's directory -
-" important because spacemacs lets you create new files
-" For some reason spacevim seems to frequently override this, so also
-" provide fh ("file here") to do the same thing
-noremap <leader>fh :e %:p:h/
-noremap <leader>ff :e %:p:h/
+" fn = find new: lets you open in current directory
+"      (this is an option I miss from spacemacs space ff)
+" fl = find local: use CtrlP instead of fzf
+"      (in macvim it's far more responsive, although in terminal vim
+"       and vimr fzf seems fine)
+noremap <leader>fn :e %:p:h/
+noremap <leader>fl :CtrlP %:p:h/<CR>
 " add some additional bindings that aren't in spacemacs or spacevim
-noremap <leader>fk :FZF /kode<CR>  " fuzzy find in /kode
-noremap <leader>fzf :FZF           " fuzzy find in any directory
-noremap <leader>fzh :CtrlP %:p:h<CR> " fuzzy version of ff - fuzzy find here
-noremap <leader>fcp :CtrlP<CR> " fuzzy version of ff - fuzzy find here
+noremap <leader>fk :FZF /kode<CR>
+noremap <leader>fzf :FZF
+noremap <leader>fmm :FZF ~/Dropbox/me<CR>
+noremap <leader>fww :FZF ~/Dropbox/work<CR>
 

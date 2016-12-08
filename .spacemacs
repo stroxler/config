@@ -64,8 +64,7 @@
      yaml
      ess ; emacs speaks statistics - really R
      clojure
-     scala ; note: you want to also configure Coursier and Ensime, which
-           ; involves adding some config to your ~/.sbt folder
+     (scala :variables scala-enable-eldoc t)
      haskell
      )
 
@@ -240,9 +239,27 @@
     (interactive)
     (fzf-directory "~/Dropbox/me/"))
 
+  ;; set up hard-coded searches
   (spacemacs/set-leader-keys "fk" 'fzf-kode)
   (spacemacs/set-leader-keys "fww" 'fzf-dropbox-work)
   (spacemacs/set-leader-keys "fmm" 'fzf-dropbox-me)
+
+  ;; set up fn and fl as synonyms for ff (these bindings do slightly
+  ;; different things from ff in my vim setup; the helm file finder is
+  ;; more powerful, so they can all map to the same action here)
+  (spacemacs/set-leader-keys "fl" 'spacemacs/helm-find-files)
+  (spacemacs/set-leader-keys "fn" 'spacemacs/helm-find-files)
+
+
+  ;; scala stuff
+  (setq ensime-startup-snapshot-notification nil)
+
+  ;; fix evil and company integration
+  ;;   Note: I found this solution via a combination of
+  ;;   https://github.com/company-mode/company-mode/issues/15
+  ;;   and digging around the spacemacs completion layer source code
+  (mapc #'evil-declare-change-repeat
+        '(spacemacs//auto-completion-key-sequence-end))
 
 )
 

@@ -1,28 +1,37 @@
-# vim and general stuff
-.*.swp
-*.pyc
-*.egg-info
-.projectile
-.netrwhist
-.cache
-tags
-.DS_store
-
 # stuff specific to ghar/config
 .vim/bundle/**
 .ipython/*
 .matplotlib/*
 
-# emacs stuff
+# general stuff
+.DS_store
+*.log
+
+# vim and emacs stuff
+.*.swp
+.projectile
+.netrwhist
+.cache
+tags
 ~*
 .\#*
 .!*
 \#*
-*.log
+
+# python stuff
+MANIFEST
+dist/
+*.egg-info
+*.pyc
 
 # node stuff
 node_modules
 
 # java stuff
 .idea
-target
+target/
+.ensime_cache/
+.ensime
+test-output/
+project/project/
+project/target/
