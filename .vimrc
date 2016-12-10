@@ -126,14 +126,19 @@ set novisualbell
 set t_vb=
 
 " set cursorline in terminal mode, no toolbar in gui mode
-if has('gui_running')
-    set background=dark
-    colors apprentice
-    set guioptions-=T  " hide toolbar
+set background=dark
+
+if has("gui_vimr")
+    set termguicolors
+    colors deep-space
 else
-    set background=dark
-    colors gruvbox
-    set cursorline
+  if has("gui_running")
+      colors shades-of-teal
+      set guioptions-=T  " hide toolbar
+  else
+      colors gruvbox
+      set cursorline
+  endif
 endif
 
 " Make the completion more closely mirror spacemacs

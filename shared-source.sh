@@ -149,3 +149,5 @@ fi
 # call a script in ~/.local. The reason to not insta-evaluate is that it's
 # pretty slow
 alias click-autocomp='source ~/.local/click_autocompletes.sh'
+alias zmacs="emacs --eval \"(spacemacs/load-theme 'zenburn)\""
+alias lmacs="emacs --eval \"(spacemacs/load-theme 'solarized-light)\""

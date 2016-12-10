@@ -52,34 +52,56 @@ Plugin 'vim-scripts/bufkill.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " COLORS ------------------------------
-
-" gruvbox, apprentice, lucius, oceandeep, vydark
-" shades-of-teal, deep-space, mod8, vilight,
-" tender, lucid, termschool
+"
+" NOTES
+"
+" by color
+" --------
+" blueish color themes:
+"   - deepspace [in guis, not terminal]
+"   - shades-of-teal
+" grey-back color themes:
+"   - vydark
+"   - apprentice
+"   - mod8
+"   - tender
+"   - termschool
+"   - deep-space [in terminal]
+" others:
+"   - gruvbox (brown-based; there's light and dark)
+"
+" by terminal behavior
+" --------------------
+" completely good:
+"   - gruvbox
+"   - tender
+"   - termschool
+"   - apprentice
+" pretty good but different from gui:
+"   - deep-space
+" not good:
+"   - vydark
+"   - shades-of-teal
+"   - mod8
 Plugin 'morhetz/gruvbox'
 Plugin 'romainl/Apprentice'
 Plugin 'jonathanfilip/vim-lucius'
-Plugin 'vim-scripts/oceandeep'
 Plugin 'vyshane/vydark-vim-color'
 Plugin 'kristiandupont/shades-of-teal'
 Plugin 'tyrannicaltoucan/vim-deep-space'
 Plugin 'easysid/mod8.vim'
-Plugin 'vim-scripts/vilight.vim'
-Plugin 'jacoborus/tender.vim'
-Plugin 'jlund3/colorschemer'
 Plugin 'marcopaganini/termschool-vim-theme'
-" moonshine* (they are all pretty similar)
-Plugin 'KKPMW/moonshine-vim'
+Plugin 'jacoborus/tender.vim'
 " base16-altier*, base16-ateliersulphurpool was motivation
+"   the other decent one is savanna
 Plugin 'atelierbram/vim-colors_atelier-schemes'
 " flattened-light and flattened-dark (tweaked solarized)
-Plugin 'romainl/flattened'
 
 " colurs I used to use
 " (no zenburn b/c I prefer emacs)
 " Plugin 'stroxler/Zenburn'
-" (no zenburn b/c I prefer emacs)
-" Plugin 'stroxler/Zenburn'
+" (no flattened/solarized b/c I prefer emacs)
+" Plugin 'romainl/flattened'
 
 call vundle#end()
 
