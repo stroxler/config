@@ -1,11 +1,11 @@
 " vim not vi
 set nocompatible
 set colorcolumn=80
+execute pathogen#infect()
 
 " NOTE: this .vimrc assumes you've run the vim setup (which
 " uses vundle to install a bunch of packages)
 
-so $HOME/vundlerc.vim
 set backspace=2
 
 

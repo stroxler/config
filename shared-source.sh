@@ -2,7 +2,13 @@
 
 # make sure ghar and ~/bin are in the path
 export PATH=$PATH:$HOME/ghar/bin
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+
+if [[ -d ~/.go-workspace ]]; then
+  export GOPATH=~/.go-workspace
+  export PATH=$PATH:$GOPATH/bin
+fi
+
 
 # git aliases
 alias ga='git add'
@@ -52,7 +58,7 @@ ckk () {
 }
 
 # this is really ergonomic, use `TAB to complete
-export FZF_COMPLETION_TRIGGER="-"
+export FZF_COMPLETION_TRIGGER=\`
 # make FZF use ag, which respects .gitignore
 export FZF_DEFAULT_COMMAND='ag -g ""'
 

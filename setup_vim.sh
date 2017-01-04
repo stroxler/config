@@ -1,14 +1,25 @@
 #!/usr/bin/env sh
-rm -rf ~/.vim
-mkdir -p ~/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set -e
+set -x
 
-vim -u ~/vundlerc.vim -c PluginInstall -c 'qa!' 2>&1 > /dev/null
+clean=$1
 
-# for whatever reason, the iceberg plugin download prompts for a git username
-# and password. This is pretty annoying, so I get it manually with curl
-mkdir -p ~/.vim/colors
+if [[ "${clean}" == "--clean" ]]; then
+  # wipe out existing vim
+  rm -rf ~/.vim
+fi
 
+if [[ ! -d ~/.vim/autoload/pathogen.vim ]]; then
+  mkdir -p ~/.vim/autoload
+  pushd ~/.vim/autoload
+    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  popd
+fi
+
+# install plugins (including Vundle)
+bash ~/pathogen_packages.sh
+
+# set up neovim
 rm -rf ~/.config/nvim
 rm -rf ~/.vim/init.vim
 ln -s ~/.vim ~/.config/nvim

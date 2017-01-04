@@ -35,6 +35,7 @@ Plugin 'tpope/vim-surround'
 " langages
 Plugin 'tpope/vim-markdown'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'ensime/ensime-vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-fireplace'
@@ -42,6 +43,9 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-speeddating'
 Plugin 'jceb/vim-orgmode'
+Plugin 'eaglemt/ghcmod-vim'
+Plugin 'eaglemt/neco-ghc'
+Plugin 'Sougo/neocomplete.vim'
 
 " bonus stuff
 Plugin 'ervandew/supertab'
