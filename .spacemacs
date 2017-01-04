@@ -54,6 +54,8 @@
 
      ;; languages
      emacs-lisp
+     go
+     haskell
      markdown
      c-c++
      latex
@@ -260,6 +262,11 @@
   ;;   and digging around the spacemacs completion layer source code
   (mapc #'evil-declare-change-repeat
         '(spacemacs//auto-completion-key-sequence-end))
+
+  ;; haskell stuff: uses ~/.local/bin for executables
+  (add-to-list 'exec-path "~/.local/bin/")
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
 
 )
 
