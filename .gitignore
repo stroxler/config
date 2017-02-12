@@ -2,36 +2,3 @@
 .vim/bundle/**
 .ipython/*
 .matplotlib/*
-
-# general stuff
-.DS_store
-*.log
-
-# vim and emacs stuff
-.*.swp
-.projectile
-.netrwhist
-.cache
-tags
-~*
-.\#*
-.!*
-\#*
-
-# python stuff
-MANIFEST
-dist/
-*.egg-info
-*.pyc
-
-# node stuff
-node_modules
-
-# java stuff
-.idea
-target/
-.ensime_cache/
-.ensime
-test-output/
-project/project/
-project/target/

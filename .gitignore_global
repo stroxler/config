@@ -1,0 +1,33 @@
+# general stuff
+.DS_store
+*.log
+
+# editor and ide
+.*.swp
+.projectile
+.netrwhist
+.cache
+tags
+~*
+.\#*
+.!*
+\#*
+.idea
+
+# python stuff
+MANIFEST
+dist/
+*.egg-info
+*.pyc
+
+# node stuff
+node_modules
+
+# java stuff
+.idea
+target/
+.ensime_cache/
+.ensime
+test-output/
+project/project/
+project/target/
