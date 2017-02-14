@@ -26,6 +26,7 @@ alias gpu='git push'
 alias gbr='git branch'
 alias gre='git rebase'
 alias gfe='git fetch'
+alias jcurl='curl -H "Content-Type: application/json"'
 
 # ls aliases
 alias ll='ls -lhG'
