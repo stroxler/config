@@ -35,10 +35,14 @@
      ;;   emacs tab   behavior is awesome when doing python code
      (auto-completion
       :variables
-      auto-completion-return-key-behavior nil
-      auto-completion-tab-key-behavior 'cycle
-      auto-completion-complete-with-key-sequence "kj"
-      auto-completion-complete-with-key-sequence-delay 0.2
+      auto-completion-return-key-behavior 'cycle
+      auto-completion-tab-key-behavior 'complete
+      ;; I'm dropping the completion sequence because it's easier to
+      ;; bounce back and forth with other editors if I use a really standard
+      ;; completion behavior.
+      ;; --------------------
+      ;; auto-completion-complete-with-key-sequence "kj"
+      ;; auto-completion-complete-with-key-sequence-delay 0.2
       auto-completion-private-snippets-directory "~/spacemacs-snippets/"
       auto-completion-enable-snippets-in-popup t
       auto-completion-enable-help-tooltip t
@@ -163,6 +167,7 @@
   (modify-syntax-entry ?_ "w" (standard-syntax-table))   ;; _ is part of word
   (turn-off-pbcopy)                                      ;; no auto clipboard
   (setq vc-follow-symlinks t)                            ;; auto follow symlinks
+  (run-with-timer 0 60 'turn-off-pbcopy)
 
   ;; turn off smartparens (space t p can turn it on when you want it)
   (spacemacs/toggle-smartparens-globally-off)
@@ -176,9 +181,6 @@
   ;;      (sp-pair "[" nil :actions :rem)
   ;;      (sp-pair "'" nil :actions :rem)
   ;;      (sp-pair "\"" nil :actions :rem)))
-
-  ;; turn off spellcheck (space t S can turn it on when you want it)
-
 
   ;; make ' behave like ;, and ; behave like :. Also map backspace to :noh
   (spacemacs/set-leader-keys ";" 'helm-M-x)
@@ -251,7 +253,6 @@
   ;; more powerful, so they can all map to the same action here)
   (spacemacs/set-leader-keys "fl" 'spacemacs/helm-find-files)
   (spacemacs/set-leader-keys "fn" 'spacemacs/helm-find-files)
-
 
   ;; scala stuff
   (setq ensime-startup-snapshot-notification nil)
