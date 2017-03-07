@@ -4,12 +4,15 @@ import shutil
 import datetime
 import time
 
-# utility packages
-import click
-import sh
-import requests
-
-# pydata stack
-import numpy as np
-## (commented because it's slow - it didn't used to be)
-## import pandas as pd
+try:
+    import numpy as np
+except ImportError:
+    pass
+try:
+    import requests
+except ImportError:
+    pass
+# try:
+#    import pandas as pd
+#except ImportError:
+#    pass
