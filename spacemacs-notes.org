@@ -1,0 +1,89 @@
+* golang
+It seems to work out of the box after adding two snippets
+to my config.
+
+First, I need to  make sure I'm loading environment variables;
+by default we only load PATH and MANPATH; I need to add
+GOPATH and GOROOT (and for good measure I add JAVA_HOME)
+
+#+BEGIN_SRC elisp
+(setq exec-path-from-shell-variables
+      '("PATH" "MANPATH" "JAVA_HOME" "GOPATH" "GOROOT"))
+(exec-path-from-shell-initialize)
+#+END_SRC
+
+I need another snippet to handle =gb=-based projects, since
+(a) they keep dependencies in =vendor/src= and (b) for some
+reason emacs doesn't seem to know how to automatically add
+my project directory root. This function does the trick; at
+some point I'd like to either auto-detect the project root
+or at least open a helm directory search:
+#+BEGIN_SRC elisp
+(defun gb--add-to-gopath (project-directory)
+   (interactive "sGo project directory:")
+   (let* ((current-gopath (getenv "GOPATH"))
+          (source-directory project-directory)
+          (vendor-directory (concat project-directory "/" "vendor"))
+          (new-gopath (concat current-gopath
+                              ":" source-directory
+                              ":" vendor-directory)))
+     (setenv "GOPATH" new-gopath)
+     (message (getenv "GOPATH"))
+     ))
+#+END_SRC
+
+Now if I open a go project in emacs, I need only add the project
+root by typing =SPC : gb--add-t-gopath= and typing the full path
+to the root dir; this obviously isn't convenient but it's a pretty
+minor hassle (less than having to reconfigure it in intellij!)
+
+* magit
+spc g = magit
+
+** micro states and such
+*** status
+spc g s = git status view
+spc g . X = magit micro-state commands inside of the status view
+   (you can use this to, e.g., stage / unstage files
+
+*** general notes on pupups:
+You can toggle on/off some options in here to customize behavior
+
+By typing one additional key (e.g. l, see below) you can execute
+any of the "Actions"
+
+*** commit
+spc g c = git commit micro state
+  You can toggle on/
+spc g c c = regular git commit
+spc g c a = git commit ammend
+
+*** log
+spc g l = git log popup
+spc g l l = full git log for this branch
+
+When you're in a log view, you can hit Enter on any line and see
+a diff for that file
+
+*** fetch
+spc g f = git fetch popup
+spc g f a = git fetch all (branches)
+
+*** push
+spc g P = git push popup
+  ... it's slightly fuzzy to me how this works, I might
+      stick to the command line for git push
+
+*** diff
+spc g d = git diff
+spc g d d = seems to give you a "vanilla" diff
+
+(to be honest I'm still not sure I understand how to use git diffs)
+
+*** file-specific commands
+spc g L = git log for just this file
+spc g S / spc g U = stage or unstage current file
+
+**** blame (on a specific file)
+spc g b = git blame micro-state
+spc g b q = exit git blame
