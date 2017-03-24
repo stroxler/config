@@ -268,6 +268,22 @@
   (add-to-list 'exec-path "~/.local/bin/")
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
+  ;; set up vars
+  (setq exec-path-from-shell-variables
+        '("PATH" "MANPATH" "JAVA_HOME" "GOPATH" "GOROOT"))
+  (exec-path-from-shell-initialize)
+
+  (defun gb--add-to-gopath (project-directory)
+    (interactive "sGo project directory:")
+    (let* ((current-gopath (getenv "GOPATH"))
+           (source-directory project-directory)
+           (vendor-directory (concat project-directory "/" "vendor"))
+           (new-gopath (concat current-gopath
+                               ":" source-directory
+                               ":" vendor-directory)))
+      (setenv "GOPATH" new-gopath)
+      (message (getenv "GOPATH"))
+      ))
 
 )
 
