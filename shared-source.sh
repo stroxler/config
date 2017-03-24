@@ -4,9 +4,20 @@
 export PATH=$PATH:$HOME/ghar/bin
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
-if [[ -d ~/.go-workspace ]]; then
-  export GOPATH=~/.go-workspace
-  export PATH=$PATH:$GOPATH/bin
+# search for go. I generally keep my goroot (the standard
+# library and go tools live here) at ~/_go and my gopath
+# (globally-installed third-party packages live here) in ~/_gopath
+if [[ -d ~/_gopath && -d ~/_go ]]; then
+    export GOPATH=$HOME/_gopath
+    export GOROOT=$HOME/_go
+    export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
+
+# if I'm on OSX, this command will find JAVA_HOME for me
+# on linux, /usr/libexec/java_home does not exist
+if [ -x /usr/libexec/java_home ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    export PATH=$PATH:$JAVA_HOME/bin
 fi
 
 
@@ -15,7 +26,7 @@ alias ga='git add'
 alias gs='git status -s'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gl='git log --abbrev-commit --pretty=oneline -n 15'
+alias gl='git log --oneline --decorate -n 15'
 alias gre='git rebase'
 alias grom='git rebase origin/master'
 alias gco='git commit'
