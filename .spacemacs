@@ -18,12 +18,13 @@
      fzf-layer
 
      ;; general stuff
+     sql
      osx
      better-defaults
      git
      github
      version-control
-     eyebrowse
+     ;; eyebrowse
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -86,7 +87,6 @@
 
    dotspacemacs-excluded-packages) '()
 
-   dotspacemacs-delete-orphan-packages t
    )
 
 
@@ -103,9 +103,18 @@
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(
+                         ;; blue
                          solarized-dark
-                         solarized-light
+                         ;; neutral (greys and browns)
                          zenburn
+                         apropospriate-dark
+                         ;; too high-contrast, but nice for pair programming
+                         flatland
+                         solarized-light
+                         ;;                               be good to have around for pair programming
+                         ;; gruvbox                    <- nice, but I'm disabling it b/c I use it for vim
+                         ;; sanityinc-solarized-dark   <- nicer org mode, worse everything else. I do like
+                         ;;                               the use of purple, I could maybe make my own
                         )
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
@@ -284,6 +293,9 @@
       (setenv "GOPATH" new-gopath)
       (message (getenv "GOPATH"))
       ))
+
+  (add-hook 'term-mode-hook 'turn-off-evil-mode)
+  (add-hook 'inferior-python-mode 'turn-off-evil-mode)
 
 )
 
