@@ -1,4 +1,142 @@
-* golang
+* my spacemacs / emacs TODO
+** vanilla emacs stuff that I need to use more
+*** start using magit regularly
+See my extensive notes further down
+*** start running one-off shell commands more often
+If you want to run in dir of current file, use vim-style =:!cmd=
+If you want to run it in the project root (git root) of current file,
+  use the spacemacs bindings:
+=SPC p != for synchronous command in project root
+=SPC p &= for asynchronous command in project root
+
+*** start running an actual shell more often
+=SPC <single-quote>= for a shell in directory of current file
+=SPC p <single-quote>= for a shell in project root
+
+*** start using emacs to run shell commands
+It's likely I'll need to write some custom functions, but basically
+the point is that I want to make it easy to run shell commands
+without typing them into the shell, the same way you can run
+python or clojure
+
+One possibility is to use emacs' ability to shell out for this,
+and run that command while editing .sh files
+
+But maybe a better plan is to start running shells from emacs more
+often, and using a send-region-to-shell-buffer command to get
+repl-like behavior
+
+I think doing this in a lot of different settings would be useful:
+  - having a file of commands when I'm testing out command line
+    tools (e.g. janeway)
+  - possibly having a file full of curl commands (although there may
+    be better options, like using emacs http or integrating with
+    a python/clj/etc command-line tool)
+  - interactively testing out parts of shell scripts that are under
+    development
+
+Also, if my send-to-shell function works really well, I could potentially
+use this the way I was originally trying to use py2tmux, as a way of driving
+arbitrary language repls from emacs without worrying about fancy integrations,
+e.g. sending python code to a python console running in emacs, or sql queries
+to a sql console.
+
+*** look into code folding
+** tmux integration - very high value (probably the highest of anything besides maybe slack)
+*** reread my existing py2tmux and emacs code
+I got an initial thing working; the main issues were
+  - I sent text one line at a time, which was too slow for sending big
+    regions
+  - I need better control over tmux sessions, and more ability to set
+    the target session from emacs (one option for now might
+    be to have my own elisp code directory, so that not everything needs
+    to be hooked up to spacemacs)
+  - I need to be better at tmux itself; unfamiliarity with some
+    operations made me tend to not use it, and for the best effect I
+    really should be using it most or all of the time (that way I don't
+    need to know in advance that I might want to send emacs text to a
+    session
+
+*** review basic tmux - solves one of the above problems if I get good at it
+https://danielmiessler.com/study/tmux/#gs.CniWYs0
+
+*** look at existing emacs + tmux stuff
+Blog on using emacsclient from inside tmux... this isn't my
+target use case, but it might be worth playing with:
+http://perlstalker.vuser.org/blog/2012/10/16/emacsclient-and-tmux/
+
+Tmux manipulation from emacs: this is close to what I want
+https://github.com/syohex/emacs-emamux
+  and an app built on top of it:
+  https://github.com/syohex/emamux-ruby-test/blob/master/emamux-ruby-test.el
+
+Vim + tmux is also potentailly worth learning, if only as a way to
+help me get in the habit of using tmux in the first place...
+https://github.com/jgdavey/tslime.vim
+https://github.com/benmills/vimux/
+
+*** read up on some other resources
+https://dzone.com/articles/scripting-tmux-for-kafka blog post on starting a bunch of sessions
+https://github.com/tony/libtmux <- python lib for tmux, looks pretty handy
+                                   it's just using subprocess, not a direct api
+*** a slightly crazier thing: pymux, a plain python tmux clone
+https://github.com/jonathanslenders/pymux
+
+** other packages / tooling to look into
+*** slack integration https://github.com/yuya373/emacs-slack/blob/master/README.md
+*** eww for web browsing - it's built-in, just use =eww=
+I'm mostly interested in whether this would be usable for documentation searching,
+and whether scriptifying a subset of browser interactions using emacs might
+be worthwhile
+*** email - there are at least two options, gnus seems to be the builtin one
+Look at notes further down for the packages, and their spacemacs layers
+*** tramp mode
+This seems essential to learn sooner or later
+*** org-mode for things beyond note taking
+- using it as a proper todo list (just the basics)
+- pomodoro integration
+- integrating with tools like google calendar
+- using it for proper GTD (or other task-management methods)
+- learning more about babel
+*** eshell - it's worth at least playing with someday
+*** using emacs as a SQL ide
+There are lots of options here
+  - the basic SQLi tool might be enough; I probably need to maintain
+    a directory of elisp code for configuring connections and such
+    (my database creds can't be in version control!)
+  - there is some fancy perl-based thing that looks very IDE-ish
+  - there's a clojure-based tool, which might be really interesting to
+    play with
+*** text editing packages, especially for lisp
+
+** elisp:
+Need to do the following:
+  - create at least two elisp code directories in /kode (or another place
+    that I have fzf bindings for)... this will reduce the barrier to
+    writing useful code a lot
+    - one of them should be for actual tooling that I haven't yet put
+      into a proper package, and should be in git
+    - the other should be a collection of scripts with private data (sort
+      of like saving passwords in .local/env.sh variables)
+  - have a lower bar for using elisp day to day:
+    - tweaking my .spacemacs
+    - writing new functions in my elisp code directories, to use as-needed
+    - playing with it when I'm tired at work
+
+
+
+*** aim to start learning emacs carefully(?)
+I wonder about trying to learn cl.el stuff well, and maybe looking
+at SICP or data structures and algorithms.
+
+A key thing is to view it as a chance to practice lisp editing,
+which would transfer to clojure and guile and such, as well as just
+elisp
+
+I guess learning about testing goes here too
+
+* notes on languages
+** golang
 It seems to work out of the box after adding two snippets
 to my config.
 
@@ -37,53 +175,376 @@ root by typing =SPC : gb--add-t-gopath= and typing the full path
 to the root dir; this obviously isn't convenient but it's a pretty
 minor hassle (less than having to reconfigure it in intellij!)
 
-* magit
-spc g = magit
+** lisps (editing specifically)
+*** smartparens
+Smartparens bindings are under =SPC k=
+...A lot of them are more likely to help you in sinsert mode,
+   in which case you likely want to use =M-m k= instead
 
-** micro states and such
-*** status
-spc g s = git status view
-spc g . X = magit micro-state commands inside of the status view
-   (you can use this to, e.g., stage / unstage files
+Use =SPC ; sp-cheat-sheet= when you need help
 
-*** general notes on pupups:
-You can toggle on/off some options in here to customize behavior
+https://www.youtube.com/watch?v=ykjRUr7FgoI
+https://www.youtube.com/watch?v=efSvfqf3Ykw
 
-By typing one additional key (e.g. l, see below) you can execute
-any of the "Actions"
+https://github.com/Fuco1/smartparens
+https://github.com/luxbock/evil-cleverparens <- can be added to spacemacs
 
-*** commit
-spc g c = git commit micro state
-  You can toggle on/
-spc g c c = regular git commit
-spc g c a = git commit ammend
+*** other lispy stuff
+evil-lisp-state : likely to be at least as useful as smartparens,
+given that I tend to be in vi mode most of the time. I think it ships
+with spacemacs and is activated with =SPC k .=, but I'm not sure
+how to actually /use/ it; I think I may need to set the leader in
+my =.spacemacs= for it to work
+https://github.com/syl20bnr/evil-lisp-state
 
-*** log
-spc g l = git log popup
-spc g l l = full git log for this branch
+parrinfer
+https://github.com/edpaget/parinfer-mode
+okay so I tested this out a little manually by installing it.
+at least two things are immediately cool in a cljs buffer:
+  - tabbing still works as before, becuase spacemacs / evil bindings
+    aren't affected
+  - manually adding spaces - which I normally wouldn't do - kicks in
+    parinfer behaviors.
+  - parinfer-kill-region is awesome. I need to create a binding for it,
+    but basically it fixes the problem of wanting to delete the last
+    part of an sexp... I should totally make a "dd" type command that
+    works this way
 
-When you're in a log view, you can hit Enter on any line and see
-a diff for that file
+* Core development / IDE tools
+** shell and python and such
+*** I've figured out how to disable evil for some modes
+For example, I've now got it off for ansi-term and inferior python
 
-*** fetch
-spc g f = git fetch popup
-spc g f a = git fetch all (branches)
+Here's the snippet:
+#+BEGIN_SRC elisp
+(add-hook 'term-mode-hook 'turn-off-evil-mode)
+(add-hook 'inferior-python-mode 'turn-off-evil-mode)
+#+END_SRC
 
-*** push
-spc g P = git push popup
-  ... it's slightly fuzzy to me how this works, I might
-      stick to the command line for git push
+*** suppose you want to do some copy-pasting from one of these modes?
 
-*** diff
-spc g d = git diff
-spc g d d = seems to give you a "vanilla" diff
+Just run =M-: turn-on-evil-mode= to get evil back, do your copy
+pasting, and then run =M-: turn-off-evil-mode= when you are finished.
 
-(to be honest I'm still not sure I understand how to use git diffs)
+That way you can use the usual yank/paste vim bindings to do
+everything
 
-*** file-specific commands
-spc g L = git log for just this file
-spc g S / spc g U = stage or unstage current file
+*** Once you do that, you might actually start needing some new keybindings
+**** kill (active) buffer the emacs way: =C-x k Enter=
+**** switch to previous window the emacs way: =C-x o=
+**** switch buffer the emacs way: =C-x b=
+**** switch windows the sapacemacs way: =M-m <number>=
+Note that every window, in left hand side of its status bar
+along the bottom, has two numbers in circles: a workspace number
+and a window number. The second number, the window number, is what
+we need for this command to work
 
-**** blame (on a specific file)
-spc g b = git blame micro-state
-spc g b q = exit git blame
+*** There are some ipython issues
+I need to somehow fix this, but it keeps trying to run =ipython -i=
+for the inferior python repl, and I need it to run =ipython --simple-prompt=.
+
+Note that there's no readline support, so if I'm going to use an ipython
+repl I'll have to live with no history
+
+** sql
+*** Stitch Fix resources?
+I should read over sanity, Greg might have a discussion about how to set it
+all up for presto.
+
+*** The basic approach: using SQLi and sql-mode
+https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client
+https://www.acsu.buffalo.edu/~taowei/wiki/emacs_sql.html
+
+*** alternative client: ejc-sql, which uses clojure
+https://github.com/kostafey/ejc-sql
+
+*** another alternative: emacsSQL
+https://github.com/skeeto/emacsql
+** tmux integration ... the emacs side of this actually isn't hard, but I need to habitually use it
+* Cool but less essential [for now] tools
+** emacs ipython notebook
+I liked it pretty well; I'd say the main thing I need to do is
+** Org mode - I should probably try to start learning more
+*** basics - I could use a review
+https://www.youtube.com/watch?v=SzA2YODtgK4
+
+*** workflow systems
+general hub of links http://orgmode.org/worg/org-gtd-etc.html
+
+**** pomodoro
+a general page about it
+https://www.emacswiki.org/emacs/pomodoro
+a from-scratch method
+http://www.freelancingdigest.com/articles/pomodoro-emacs-with-orgmode/
+a package to support pomodoros
+https://github.com/lolownia/org-pomodoro
+
+**** GTD
+newer guide http://members.optusnet.com.au/~charles57/GTD/gtd_workflow.html
+older guide http://members.optusnet.com.au/~charles57/GTD/orgmode.html
+nice blog post http://www.brool.com/post/using-org-mode-with-gtd/http://www.brool.com/post/using-org-mode-with-gtd/
+
+*** advanced stuff
+**** org mode with google calander
+https://www.youtube.com/watch?v=vO_RF2dK7M0
+
+*** org mode and doing things in programming languages
+I know I've seen some stuff about using python with org mode, and
+it actually wasn't bad but maybe emacs ipython notebook is a better
+way to go
+
+Here's an interesting log on using org-mode with C++ for "scripting":
+http://jordiinglada.net/wp/2015/03/25/scripting-in-c-2/
+Also if you follow links from the top, you'll find an interesting book
+on data analysis in C heh
+
+The same approach might work for haskell with turtle and/or shelly
+
+** Email (there's no rush, but I ought to learn this in the next year or so)
+https://www.emacswiki.org/emacs/GnusGmail
+https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Bemail/gnus
+
+http://www.djcbsoftware.nl/code/mu/
+https://www.djcbsoftware.nl/code/mu/mu4e.html
+https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Bemail/mu4e
+
+** browser search integrations with engine-mode
+Searching the Web with engine-mode - YouTube
+* elisp
+** quick guides
+https://learnxinyminutes.com/docs/elisp/
+
+http://ergoemacs.org/emacs/elisp.html
+  basic elisp     http://ergoemacs.org/emacs/elisp.html
+  simple editing  http://ergoemacs.org/emacs/elisp_editing_basics.html
+  simple examples http://ergoemacs.org/emacs/elisp_examples.html <- really good for simple practical usage
+
+https://github.com/chrisdone/elisp-guide
+
+A cookbook with a TOC at the front, pretty handy:
+https://www.emacswiki.org/emacs/ElispCookbook
+
+A fairly practical guide aimed more at reading/exploring than learning the language
+http://emacslife.com/how-to-read-emacs-lisp.html
+
+Emergency elisp, supposedly good for experienced programmers
+http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html
+
+A pretty nice quick guide, discusses hashes and interactive which seem important
+http://y.tsutsumi.io/emacs-from-scratch-part-3-extending-emacs-with-elisp.html
+
+A general set of tips
+http://nic.ferrier.me.uk/blog/2012_07/tips-and-tricks-for-emacslisp
+** specific topics
+
+*** some interesting tidbits on data sturctures and such
+http://nic.ferrier.me.uk/blog/2012_12/streams-to-trees
+*** operations on regions and strings
+http://tonyballantyne.com/tech/3-interactive-functions-that-work-on-regions/
+http://tonyballantyne.com/tech/find-and-replace-in-a-region-strip-smart-quotes-in-a-region/
+http://tonyballantyne.com/tech/manipulating-strings-yodaizer/
+
+*** interactive
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes][interactive codes guide]]
+
+*** lexical binding: =(setq lexical-binding t)=
+
+I think this operates on a per-file basis, even though normally variables are global.
+
+It might technically be a global variable, but it matters only at the time of code
+import and gets reset on every file or something like that
+
+*** list operations
+car / cdr
+cons
+nth
+member -> returns the list or nil, not t or nil
+dolist     (iterate over with side effects) =>  (dolist (varname sequence) ...stuff with varname...)
+mapcar     (iterate over in a map operation) => (mapcar my-fun sequence)
+mapcar*    => synonym for cl-mapcar, which has expanded semantics for multiple sequences
+
+*** testing
+ert = emacs regression testing, it's built-in. Docs: https://www.gnu.org/software/emacs/manual/html_node/ert/
+
+Videos:
+  https://youtu.be/CH0RUrO_oww?t=6m9s    basic intro
+  https://youtu.be/lmTPJB0Musk?t=7m59s   example with some simple list ops
+  https://youtu.be/VqCSbDqHziM?t=8m36s   example with a sum-evens function
+  https://youtu.be/KwBRpS9Bs4U?t=8m      example of testing an interactive function that works on a real buffer
+
+blogs from a serious elisp hacker dude
+ http://nic.ferrier.me.uk/blog/2011_09/elisp_testing
+ http://nic.ferrier.me.uk/blog/2012_04/fakir-for-faking-bits-of-emacs
+*** some ways of interacting with the outside world
+shelling out and using urls: https://www.youtube.com/watch?v=XjKtkEMUYGc
+shelling out asynchronously: http://nic.ferrier.me.uk/blog/2011_10/emacs_lisp_is_good_further_reports_suggest
+
+http clients: https://www.youtube.com/watch?v=puHMpEgojkA
+webservers (wtf!) https://github.com/nicferrier/elnode
+
+*** http support (could totally use this to make domain-specific UIs!)
+
+*** shelling out and doing http GETS via url support - also using json
+** long guides
+*** emacs lisp intro - use the copy that ships with emacs (bonus: people at work won't know)
+To get to it, type =C-h i= and then search for "Emacs Lisp Intro"
+
+Several nice things about it vs the pdf:
+  - it's less likely that people will notice you goofing off heh
+  - it has syntax highlighting
+  - you can copy paste straight into a scratch buffer
+
+To navigate it, use =Enter= to click on a link, =n= and =p= for next and previous,
+and =u= to go up
+
+*** some longish blog posts (some of the ones in "quick guides" should maybe move here)
+http://caiorss.github.io/Emacs-Elisp-Programming/Elisp_Programming.html#sec-1-6-7
+https://github.com/chrisdone/elisp-guide
+
+
+*** shorter videos
+Creating a minor mode - this is from the same dude as all the ert testing examples above
+    the mode auto-capitalizes certain words
+https://www.youtube.com/watch?v=QaX3AaK3_Lk
+
+*** longer videos
+Emacs as a language introductions
+https://www.youtube.com/watch?v=EH_KILXupyU&list=PLfbWimZhNt-EFfB9g9B_3WaVbe8fVo06Q
+
+Emacs development intro video with John Wiegley (around 1 hour)
+https://www.youtube.com/watch?v=QRBcm6jFJ3Q newer video
+https://www.youtube.com/watch?v=RvPFZL6NJNQ an older video
+** elisp + other languages
+*** elisp with clojure
+clomacs is designed to enable this: https://github.com/clojure-emacs/clomacs
+It looks potentially amazing, although the docs are lacking
+(for example, how does emacs know where the jar is?)
+
+But if I need to learn by example, there are at least two:
+ https://github.com/kostafey/cm-test cm-test is a test / example clomacs tool
+ https://github.com/kostafey/ejc-sql ejc-sql, which I've listed elsewhere as well,
+                                     is a clojure-based emacs+jvm sql library
+
+*** elisp with hy (and other interpreted lisps)
+Check out this code:
+#+BEGIN_SRC elisp
+(defmacro hy (body)
+  `(let* ((temporary-file-directory ".")
+          (tempfile (make-temp-file "hy-")))
+     (message (format "code: %S" ,body))
+     (with-temp-file tempfile
+       (mapc (lambda (form) (insert (format "%s" form))) ,body))
+     (read (unwind-protect
+               (shell-command-to-string
+                (format "hy %s" tempfile))
+             (delete-file tempfile)))))
+
+(aref (hy '((import numpy)
+            (setv a (numpy.array [1 2 3]))
+            (setv b (numpy.array [1 2 3]))
+            (print (* a b))))
+      1)
+
+#+END_SRC
+
+The same macro could probably be adapted to read stdout as a string
+into a var instead of doing a read.
+
+I'm not sure what the limits of this approach are; I'd guess you'll
+run into syntax mismatches pretty quickly (e.g. if you start using curly
+braces).
+
+But even so, if you can control the hy environment that gets used,
+this actually could give a useful FFI - write a tiny hy package in a
+virtualenv, then use macros similar to the above to call into it from
+elisp "natively" - if you restrict yourself to FFI, then all lisps
+are sort of easy to embed in one another, since function calls always
+look the same even when other details don't
+
+A similar macro-based method might work for any fast-to-start and
+interpeter-capable lisp VM; in particular clojurescript + plank,
+scheme and racket, and probably even some kind of bootstrapped
+nodejs clojurescript.
+
+If you could adopt the method to work with a unix domain socket,
+it might be easy to adapt to clojure proper although clomacs is
+probably a better bet haha
+
+*** elisp + the shell, with or without piping, to call into other languages
+This is good in general, because then I can use whatever I want for the
+application code
+  - practical choices like python, ruby, go
+  - lisp choices like cljs+node, cljs+plank, hy, schemes, etc
+  - other fun choices like rust, haskell, or C / C++
+  - with a server and named pipe or unix domain socket, using
+    java / scala / clojure apps with emacs becomes more reasonable
+
+My slight bias is toward lisps, since one of my goals with all of this is to
+get better at lisp
+
+See the [[http://kitchingroup.cheme.cmu.edu/blog/2016/03/31/More-on-Hy-and-why-I-think-it-is-a-big-deal/?utm_source=feedburner&utm_medium=twitter&utm_campaign=Feed:+TheKitchinResearchGroup+(The+Kitchin+Research+Group)][kitchen group blog]]
+
+*** try to (re-?)learn basic package development
+
+Things like
+  - how to do practical editing ops
+  - how to write good interactive functions
+  - how to integrate with helm
+  - how to make minor modes
+  - how to make proper elpa packages
+  - how to load them in spacemacs layers
+
+
+try to work very early on at integrating with shell scripts, because
+   that sets a lower bar for "useful" elisp, since I can write python/go/hy/cljs
+   tools that work with emacs
+ - also try to learn how to use unix sockets, since then I can also integrate
+   with longer-running processes, and maybe use clojure with emacs
+
+
+* Use these tools
+** tramp
+I've got the commands I need saved in `misc.el`, you basically
+just use something like =/ssh:ec2-user@10.0.0.1/sudo:root@10.0.0.0:/stitchfix=
+as the "path" with =find-file=. It doesn't seem to play really well with
+helm, so instead of using =C-x C-f=, which spacemacs binds to helm, my advice
+is to do =M-x find-file= directly.
+
+It *does* have some really nice behaviors:
+   - the ssh connection is maintained, so as long as you don't loose
+     connectivity, all later operations are pretty quick
+   - you can open directories, not just files, so you can use it as
+     a kind of poor-man's file browser
+   - the =SPC ff= functionality of spacemacs works with remote files,
+     so opening nearby files is pretty easy
+   - The =SPC singlequote= spacemacs binding *doesn't* work, but just
+     running =M-x shell= *does* work for getting a shell on the remote
+     machine.
+     - I'm pretty sure that the reason for this is that only =term=
+       works with tramp, not =term= or =ansi-term=
+     - Still, even if =shell= is a little limited (wouldn't want to
+       open a curses program in it), it's super handy to have this
+       ability.
+     - FWIW I *think* =eshell= would also work
+** magit
+
+There are other handy key bindings, but the workhorse is =SPC gs=,
+which opens a git status view.
+
+From here, you can hover over files and stage them (=s=) or
+unstage them (=u=), and enter the commit or push popups (=c= and =p=).
+In particular,
+  =cc= will open a regular commit box
+  =ca= will open a commit --amend box
+  =pp= will push the current branch to origin
+  =ds= opens a diff of staged changes (like my gdc alias)
+  =dd= opens a regular diff (like my gd alias)
+
+Most of the rest of the stuff you can do is discoverable from the
+help. But a few tips:
+  If you're on a specific file =SPC gb= opens git blame
+  If you're on a specific file =SPC gfh= opens file-specific git log
+
+
+The only thing left from fugitive that I really miss is :Gdiff; I need to
+figure out how to get an inline file diff view
