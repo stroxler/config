@@ -1,5 +1,4 @@
 # shared source for bash and zsh; mostly, aliases
-
 # make sure ghar and ~/bin are in the path
 export PATH=$PATH:$HOME/ghar/bin
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
@@ -120,7 +119,6 @@ function fhr() {
 # alias R to exit silently
 alias R='R --no-save'
 
-
 # get the shell. It's a little annoying because login shells
 # have a - prepended, so I strip that off.
 my_shell=$(echo $0)
@@ -147,6 +145,7 @@ if [[ "$my_shell" == "bash" ]]; then
   source ~/alias-completions.sh
 fi
 
+
 # set up aliases to edit this file and the local env.sh
 alias vle='vim ~/.local/env.sh'
 alias vss='vim ~/shared-source.sh'
@@ -169,3 +168,4 @@ fi
 alias click-autocomp='source ~/.local/click_autocompletes.sh'
 alias zmacs="emacs --eval \"(spacemacs/load-theme 'zenburn)\""
 alias lmacs="emacs --eval \"(spacemacs/load-theme 'solarized-light)\""
+
