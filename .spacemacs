@@ -297,6 +297,9 @@
   (add-hook 'term-mode-hook 'turn-off-evil-mode)
   (add-hook 'inferior-python-mode 'turn-off-evil-mode)
 
+  (setq py2tmux/active-session "it--0")
+  (setq py2tmux/binary "/usr/local/bin/py2tmux")
+
 )
 
 

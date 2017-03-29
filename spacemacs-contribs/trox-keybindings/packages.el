@@ -33,6 +33,6 @@
     :defer t
     :init
     (progn
-      (spacemacs/set-leader-keys "osl" 'py2tmux/line-to-tmux)
-      (spacemacs/set-leader-keys "osr" 'py2tmux/region-to-tmux)
+      (spacemacs/set-leader-keys "SPC l" 'py2tmux/line-to-tmux)
+      (spacemacs/set-leader-keys "SPC r" 'py2tmux/region-to-tmux)
       )))
