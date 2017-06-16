@@ -14,8 +14,6 @@ nnoremap <leader>y "+y
 noremap <BS> :noh<CR>
 noremap ' ;
 noremap ; :
-" this is temporary, till I retrain my fingers
-noremap : :echo "oops, use ;"<CR>
 
 
 filetype plugin indent on
@@ -133,7 +131,7 @@ if has("gui_vimr")
     colors deep-space
 else
   if has("gui_running")
-      colors shades-of-teal
+      colors apprentice
       set guioptions-=T  " hide toolbar
   else
       colors gruvbox

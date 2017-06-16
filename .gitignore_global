@@ -19,15 +19,21 @@ MANIFEST
 dist/
 *.egg-info
 *.pyc
+# pytest stuff
+__pycache__
+ptl
 
 # node stuff
 node_modules
 
 # java stuff
 .idea
+build/
 target/
 .ensime_cache/
 .ensime
 test-output/
 project/project/
 project/target/
+
+.vagrant

@@ -153,10 +153,7 @@ c.TerminalIPythonApp.display_banner = False
 # c.InteractiveShellApp.code_to_run = ''
 
 # lines of code to run at IPython startup.
-c.InteractiveShellApp.exec_lines = ["import sys",
-                                    "import os",
-                                    "import sh",
-                                    "import subprocess", ]
+c.InteractiveShellApp.exec_lines = []
 
 # A list of dotted module names of IPython extensions to load.
 # c.InteractiveShellApp.extensions = []

@@ -46,32 +46,34 @@ if [[ "${my_shell:0:1}" == "-" ]]; then
   my_shell=${my_shell:1:10}  # the 10 is just "big enough"
 fi
 
-# shell-specific stuff:
-#  - loading fzf integrations
-#  - setting an alias to re-source (after config edits,
-#    which could be in this file, in the .zshrc/.bashrc,
-#    or in `.local/env.sh`
-if [[ "$my_shell" == "bash" ]]; then
-  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-  alias sxrc='source ~/.bashrc'
-else
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-  alias sxrc='source ~/.zshrc'
-fi
-
-# zsh completes aliases by default, but this *needs* to go at the
-# very end for bash
-if [[ "$my_shell" == "bash" ]]; then
-  source ~/alias-completions.sh
-fi
-
-
 # source machine-specific stuff
 #   (this gets done twice in my current zsh setup, but that's ok)
 if [[ -s "${HOME}/.local/env.sh" ]]; then
   source "${HOME}/.local/env.sh"
 fi
 
+if [[ -f /usr/local/etc/profile.d/z.sh ]]; then
+  . /usr/local/etc/profile.d/z.sh
+fi
+
 . ~/_shtools/basics.sh
 . ~/_shtools/set-up-languages.sh
 . ~/_shtools/ttmux.sh
+
+# shell-specific stuff:
+#  - loading fzf integrations
+#  - setting an alias to re-source (after config edits,
+#    which could be in this file, in the .zshrc/.bashrc,
+#    or in `.local/env.sh`
+#  - in bash only, we must source alias completions, and we must do
+#    it at the very end (after all aliases have been defined)
+if [[ "$my_shell" == "bash" ]]; then
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+  alias sxrc='source ~/.bashrc'
+  source ~/_shtools/bash.sh
+  source ~/_shtools/alias-completions.sh
+else
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  alias sxrc='source ~/.zshrc'
+fi
+

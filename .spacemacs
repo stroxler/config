@@ -81,8 +81,8 @@
      ;; ob-ipython, see https://github.com/gregsexton/ob-ipython
      (ob-ipython)
      ;; TODO: remove this? I think I have a layer for it now
-     (fzf :location
-      (recipe :fetcher github :repo "bling/fzf.el"))
+     (fzf
+      :location (recipe :fetcher github :repo "bling/fzf.el"))
      )
 
    dotspacemacs-excluded-packages) '()
@@ -174,9 +174,10 @@
   ;; changes global emacs behavior
   (global-auto-revert-mode t)                            ;; reload files
   (modify-syntax-entry ?_ "w" (standard-syntax-table))   ;; _ is part of word
-  (turn-off-pbcopy)                                      ;; no auto clipboard
   (setq vc-follow-symlinks t)                            ;; auto follow symlinks
-  (run-with-timer 0 60 'turn-off-pbcopy)
+
+  ;; turn off pbcopy, I want to handle that myself
+  (run-with-timer 10 nil 'turn-off-pbcopy)
 
   ;; turn off smartparens (space t p can turn it on when you want it)
   (spacemacs/toggle-smartparens-globally-off)

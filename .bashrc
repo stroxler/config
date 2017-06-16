@@ -1,6 +1,4 @@
-# source my bash config
-source "${HOME}/bash-source.sh"
-
-# source shared config (most aliases and such go here, since
-# I want them in both bash and in zsh)
 source "${HOME}/_shtools/main.sh"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
