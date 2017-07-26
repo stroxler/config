@@ -131,10 +131,11 @@ if has("gui_vimr")
     colors deep-space
 else
   if has("gui_running")
-      colors apprentice
+      colors Atelier_SulphurpoolDark
       set guioptions-=T  " hide toolbar
   else
-      colors gruvbox
+      "colors gruvbox
+      colors apprentice
       set cursorline
   endif
 endif
