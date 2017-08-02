@@ -3,6 +3,8 @@
 export PATH=$PATH:$HOME/ghar/bin
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
+export HISTSIZE=30000
+
 
 
 # this is really ergonomic, use `TAB to complete
