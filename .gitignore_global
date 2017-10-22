@@ -3,6 +3,7 @@
 *.log
 
 # editor and ide
+.vscode
 .*.swp
 .projectile
 .netrwhist
@@ -19,6 +20,7 @@ MANIFEST
 dist/
 *.egg-info
 *.pyc
+.tox
 # pytest stuff
 __pycache__
 ptl
@@ -37,3 +39,4 @@ project/project/
 project/target/
 
 .vagrant
+.python-version
