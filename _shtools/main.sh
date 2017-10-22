@@ -1,10 +1,13 @@
+# prepend to path for homebrew tools to supercede local tools
+# in osx (frequently we want this in linux too for similar reasons)
+export PATH=/usr/local/bin:$PATH
+
 # shared source for bash and zsh; mostly, aliases
 # make sure ghar and ~/bin are in the path
 export PATH=$PATH:$HOME/ghar/bin
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 export HISTSIZE=30000
-
 
 
 # this is really ergonomic, use `TAB to complete

@@ -1,10 +1,3 @@
-
-# set up virtualenvs
-if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
-  source /usr/local/bin/virtualenvwrapper.sh
-  export WORKON_HOME="$HOME/.virtualenvs"
-fi
-
 # search for go. I generally keep my goroot (the standard
 # library and go tools live here) at ~/_go and my gopath
 # (globally-installed third-party packages live here) in ~/_gopath
@@ -21,12 +14,15 @@ if [ -x /usr/libexec/java_home ]; then
     export PATH=$PATH:$JAVA_HOME/bin
 fi
 
+
+# pyenv support
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 # aliases
 alias R='R --no-save'
 alias py='ipython'
-
-# don't evaluate autocompletion for click, but do make an alias to do
-# call a script in ~/.local. The reason to not insta-evaluate is that it's
-# pretty slow
-alias click-autocomp='source ~/.local/click_autocompletes.sh'
-

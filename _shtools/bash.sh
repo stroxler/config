@@ -2,15 +2,9 @@
 
 export EDITOR="vim"
 
-# pdv: default python dev env
-# to make it, run virtualenv pdv in ~
-alias grom='git rebase origin/master'
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# prepend to path for homebrew python to supercede system python on mac
-export PATH=/usr/local/bin:$PATH
 
 # history
 export HISTCONTROL=ignoreboth:erasedups
