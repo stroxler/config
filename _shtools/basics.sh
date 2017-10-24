@@ -45,6 +45,8 @@ alias c..='cd ../..'
 alias c...='cd ../../..'
 alias ck='cd /kode'
 
+# tree aliases
+alias ptree='tree -I "__pycache__|*.pyc|*.egg_info|target"'  # pruned tree
 
 
 ckk () {
