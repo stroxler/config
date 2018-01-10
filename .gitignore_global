@@ -18,18 +18,17 @@ tags
 # python stuff
 MANIFEST
 dist/
+.eggs
 *.egg-info
 *.pyc
 .tox
-# pytest stuff
 __pycache__
 ptl
 
 # node stuff
 node_modules
 
-# java stuff
-.idea
+# java and scala stuff
 build/
 target/
 .ensime_cache/
@@ -38,5 +37,6 @@ test-output/
 project/project/
 project/target/
 
+# vagrant, pyenv, etc
 .vagrant
 .python-version
