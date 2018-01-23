@@ -29,22 +29,6 @@ Plugin() {
     fi
 }
 
-PluginMake() {
-    owner=$1
-    repository=$2
-    if [[ -z $owner ]]; then
-        echo "Usage: Plugin <owner> <repository>"
-        exit 1
-    fi
-    if [[ -z $repository ]]; then
-        echo "Usage: Plugin <owner> <repository>"
-        exit 1
-    fi
-    Plugin "${owner}" "${repository}"
-    pushd "${repository}"
-        make
-    popd
-}
 
 mkdir -p ${PATHOGEN_DIR}
 
