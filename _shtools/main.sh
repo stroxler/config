@@ -18,10 +18,10 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 # vim + fzf
 function vf() {
   if [ "$#" -ne 1 ]; then
-    vim $(fzf)
+    vim "$(fzf)"
   else
-    cd $1
-    vim $(fzf)
+    cd "$1" || exit
+    vim "$(fzf)"
   fi
 }
 function vkf() {
@@ -46,7 +46,7 @@ function fhr() {
 
 # get the shell. It's a little annoying because login shells
 # have a - prepended, so I strip that off.
-my_shell=$(echo $0)
+my_shell="$0"
 if [[ "${my_shell:0:1}" == "-" ]]; then
   my_shell=${my_shell:1:10}  # the 10 is just "big enough"
 fi
@@ -72,12 +72,12 @@ fi
 #    or in `.local/env.sh`
 #  - in bash only, we must source alias completions, and we must do
 #    it at the very end (after all aliases have been defined)
-if [[ "$my_shell" == "bash" ]]; then
+if [[ $my_shell == *bash ]]; then
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
   alias sxrc='source ~/.bashrc'
   source ~/_shtools/bash.sh
   source ~/_shtools/alias-completions.sh
-else
+elif [[ $my_shell == *zsh ]]; then
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   alias sxrc='source ~/.zshrc'
 fi
