@@ -6,8 +6,6 @@
 [core]
   editor = vim
 	excludesfile = /Users/steventroxler/.gitignore_global
-[merge]
-    tool = meld
 [alias]
     # log graph
     lg = log --graph --abbrev-commit --decorate --date=relative\
@@ -18,3 +16,11 @@
 	insteadOf = https://github.com/
 [mergetool]
 	prompt = false
+[merge]
+    tool = kdiff3
+[mergetool "kdiff3"]
+    trustExitCode = false
+[diff]
+    guitool = kdiff3
+[difftool "kdiff3"]
+    trustExitCode = false
