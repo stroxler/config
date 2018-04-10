@@ -1,9 +1,6 @@
-# search for go. I generally keep my goroot (the standard
-# library and go tools live here) at ~/_go and my gopath
-# (globally-installed third-party packages live here) in ~/_gopath
-if [[ -d ~/_gopath && -d ~/_go ]]; then
+if [[ -d ~/_gopath ]]; then
+    export GOROOT=/usr/local/go  # NOTE: this is probably not portable to linux; this is the brew goroot
     export GOPATH=$HOME/_gopath
-    export GOROOT=$HOME/_go
     export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
 

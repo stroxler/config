@@ -5,7 +5,6 @@ export PATH=/usr/local/bin:$PATH
 # shared source for bash and zsh; mostly, aliases
 # make sure ghar and ~/bin are in the path
 export PATH=$PATH:$HOME/ghar/bin
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 export HISTSIZE=30000
 
@@ -51,12 +50,6 @@ if [[ "${my_shell:0:1}" == "-" ]]; then
   my_shell=${my_shell:1:10}  # the 10 is just "big enough"
 fi
 
-# source machine-specific stuff
-#   (this gets done twice in my current zsh setup, but that's ok)
-if [[ -s "${HOME}/.local/env.sh" ]]; then
-  source "${HOME}/.local/env.sh"
-fi
-
 if [[ -f /usr/local/etc/profile.d/z.sh ]]; then
   . /usr/local/etc/profile.d/z.sh
 fi
@@ -82,3 +75,12 @@ elif [[ $my_shell == *zsh ]]; then
   alias sxrc='source ~/.zshrc'
 fi
 
+
+# make sure ~/bin and ~/.local/bin are at the front of the path
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+
+# source machine-specific stuff
+#   (this gets done twice in my current zsh setup, but that's ok)
+if [[ -s "${HOME}/.local/env.sh" ]]; then
+  source "${HOME}/.local/env.sh"
+fi
