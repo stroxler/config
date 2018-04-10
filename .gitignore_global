@@ -25,6 +25,7 @@ dist/
 .tox
 __pycache__
 ptl
+.pytest_cache
 
 # node stuff
 node_modules
