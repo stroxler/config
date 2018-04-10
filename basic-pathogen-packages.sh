@@ -64,8 +64,8 @@ pushd ${PATHOGEN_DIR}
     # langages
     Plugin 'tpope' 'vim-markdown'
     Plugin 'derekwyatt' 'vim-scala'
-    Plugin 'ensime' 'ensime-vim'
     Plugin 'digitaltoad' 'vim-jade'
+    Plugin 'ensime' 'ensime-vim'
     Plugin 'fatih' 'vim-go'
     Plugin 'tpope' 'vim-fireplace'
     Plugin 'hynek' 'vim-python-pep8-indent'
