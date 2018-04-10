@@ -4,7 +4,7 @@
 
 set -e
 PREFIX='git@github.com:'
-PATHOGEN_DIR="${HOME}/.vim/bundle"
+PATHOGEN_DIR="$HOME/basic-vim/$this_dir/bundle"
 
 Plugin() {
     owner=$1
@@ -73,6 +73,9 @@ pushd ${PATHOGEN_DIR}
     Plugin 'tpope' 'vim-speeddating'
     Plugin 'jceb' 'vim-orgmode'
     Plugin 'Shougo' 'neocomplete.vim'
+    Plugin 'Shougo' 'vimproc.vim'
+    Plugin 'eagletmt' 'ghcmod-vim'
+    Plugin 'eagletmt' 'neco-ghc'
 
     # bonus stuff
     Plugin 'ervandew' 'supertab'
@@ -82,59 +85,11 @@ pushd ${PATHOGEN_DIR}
     # for some purposes
     Plugin 'ctrlpvim' 'ctrlp.vim'
 
-    # COLORS ------------------------------
-    #
-    # NOTES
-    #
-    # by color
-    # --------
-    # blueish color themes:
-    #   - deepspace [in guis, not terminal]
-    #   - shades-of-teal
-    # grey-back color themes:
-    #   - vydark
-    #   - apprentice
-    #   - mod8
-    #   - tender
-    #   - termschool
-    #   - deep-space [in terminal]
-    # others:
-    #   - gruvbox brownish, light and dark versions
-    #
-    # by terminal behavior
-    # --------------------
-    # completely good:
-    #   - gruvbox
-    #   - tender
-    #   - termschool
-    #   - apprentice
-    # pretty good but different from gui:
-    #   - deep-space
-    # not good:
-    #   - vydark
-    #   - shades-of-teal
-    #   - mod8
-    Plugin 'morhetz' 'gruvbox'
+    # nondestructive themes
+    Plugin 'lifepillar' 'vim-solarized8'
     Plugin 'romainl' 'Apprentice'
-    Plugin 'jonathanfilip' 'vim-lucius'
-    Plugin 'vyshane' 'vydark-vim-color'
-    Plugin 'kristiandupont' 'shades-of-teal'
-    Plugin 'tyrannicaltoucan' 'vim-deep-space'
-    Plugin 'easysid' 'mod8.vim'
-    Plugin 'marcopaganini' 'termschool-vim-theme'
-    Plugin 'jacoborus' 'tender.vim'
-    # base16-altier*, base16-ateliersulphurpool was motivation
-    #   the other decent one is savanna
-    Plugin 'atelierbram' 'vim-colors_atelier-schemes'
-    # flattened-light and flattened-dark (tweaked solarized)
+    # destructuve (but nice) themes
+    Plugin 'liuchengxu' 'space-vim-dark'
+    Plugin 'morhetz' 'gruvbox'
 
-    # colurs I used to use
-    # (no zenburn b/c I prefer emacs)
-    # Plugin 'stroxler/Zenburn'
-    # (no flattened/solarized b/c I prefer emacs)
-    # Plugin 'romainl' 'flattened'
-
-    Plugin 'Shougo' 'vimproc.vim'
-    Plugin 'eagletmt' 'ghcmod-vim'
-    Plugin 'eagletmt' 'neco-ghc'
 popd

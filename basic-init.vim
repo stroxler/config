@@ -125,19 +125,12 @@ set t_vb=
 
 " set cursorline in terminal mode, no toolbar in gui mode
 set background=dark
-
-if has("gui_vimr")
-    set termguicolors
-    colors deep-space
+if has("gui_running")
+    colors apprentice
+    set guioptions-=T  " hide toolbar
 else
-  if has("gui_running")
-      colors Atelier_SulphurpoolDark
-      set guioptions-=T  " hide toolbar
-  else
-      "colors gruvbox
-      colors apprentice
-      set cursorline
-  endif
+    colors solarized8_dark
+    set cursorline
 endif
 
 " Make the completion more closely mirror spacemacs
@@ -154,19 +147,8 @@ inoremap <C-P> <C-N>
 inoremap <C-N> <C-P>
 
 
-" Customize spacevim mappings a big / add some of my own
+" Customize spacevim mappings a bit / add some of my own
 " ======================================================
-" color themes - Tn cycles themes in emacs
-noremap <leader>Tna :colors apprentice<CR>
-noremap <leader>Tnz :colors zenburn<CR>
-noremap <leader>Tns :colors solarized<CR>:set background=light<CR>
-noremap <leader>TnS :colors solarized<CR>:set background=dark<CR>
-noremap <leader>Tnl :colors lucius<CR>:set background=dark<CR>
-noremap <leader>TnL :colors lucius<CR>:set background=light<CR>
-noremap <leader>Tni :colors iceberg<CR>
-noremap <leader>Tnp :colors phd<CR>
-noremap <leader>Tnc :colors codeschool<CR>:set background=dark<CR>
-noremap <leader>Tng :colors gruvbox<CR>:set background=dark<CR>
 " fn = find new: lets you open in current directory
 "      (this is an option I miss from spacemacs space ff)
 " fl = find local: use CtrlP instead of fzf
