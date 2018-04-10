@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+vimr "$@" --nvim --cmd 'let &rtp = $HOME."/basic-vim,".substitute(&rtp, $HOME."/\.vim", "", "g")' -u "$HOME/basic-vim/init.vim"
