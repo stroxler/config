@@ -81,6 +81,6 @@ export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # source machine-specific stuff
 #   (this gets done twice in my current zsh setup, but that's ok)
-if [[ -s "${HOME}/.local/env.sh" ]]; then
-  source "${HOME}/.local/env.sh"
+if [[ -s "${HOME}/_local/env.sh" ]]; then
+  source "${HOME}/_local/env.sh"
 fi
