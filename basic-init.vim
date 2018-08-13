@@ -1,4 +1,7 @@
 " vim not vi
+let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+
 set nocompatible
 set colorcolumn=80
 execute pathogen#infect()
@@ -124,12 +127,9 @@ set novisualbell
 set t_vb=
 
 " set cursorline in terminal mode, no toolbar in gui mode
-set background=dark
 if has("gui_running")
-    colors apprentice
     set guioptions-=T  " hide toolbar
 else
-    colors solarized8_dark
     set cursorline
 endif
 
@@ -149,16 +149,14 @@ inoremap <C-N> <C-P>
 
 " Customize spacevim mappings a bit / add some of my own
 " ======================================================
-" fn = find new: lets you open in current directory
-"      (this is an option I miss from spacemacs space ff)
-" fl = find local: use CtrlP instead of fzf
-"      (in macvim it's far more responsive, although in terminal vim
-"       and vimr fzf seems fine)
+" ff = find nearby. You can't create new files like this
+"      (unlike in spacemacs), so as a result I also added..
+" fn = find new: lets you easily edit *new* files in current
+"      directory
+noremap <leader>ff :CtrlP %:p:h<CR>
 noremap <leader>fn :e %:p:h/
-noremap <leader>fl :CtrlP %:p:h/<CR>
-" add some additional bindings that aren't in spacemacs or spacevim
-noremap <leader>fk :FZF /kode<CR>
-noremap <leader>fzf :FZF
-noremap <leader>fmm :FZF ~/Dropbox/me<CR>
-noremap <leader>fww :FZF ~/Dropbox/work<CR>
 
+" Colors!
+" Set this at the very bottom so that I can change frequently
+set background=dark
+colors space-vim-dark

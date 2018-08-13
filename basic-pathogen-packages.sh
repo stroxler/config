@@ -38,14 +38,16 @@ pushd ${PATHOGEN_DIR}
     Plugin 'airblade' 'vim-gitgutter'
     Plugin 'dbakker' 'vim-projectroot'
     Plugin 'easymotion' 'vim-easymotion'
-    Plugin 'junegunn' 'fzf'
-    Plugin 'junegunn' 'fzf.vim'
     Plugin 'junegunn' 'gv.vim'
     Plugin 'mbbill' 'undotree'
     Plugin 'scrooloose' 'syntastic'
     Plugin 'tpope' 'vim-commentary'
     Plugin 'tpope' 'vim-eunuch'
     Plugin 'tpope' 'vim-fugitive'
+    # # Commenting this out because fzf vim hasn't worked well for me
+    # # recently, but I don't want to remove it entirely (fzf is awesome!)
+    # Plugin 'junegunn' 'fzf'
+    # Plugin 'junegunn' 'fzf.vim'
 
     # mis-specified as optional
     Plugin 'hecal3' 'vim-leader-guide'
@@ -65,7 +67,7 @@ pushd ${PATHOGEN_DIR}
     Plugin 'tpope' 'vim-markdown'
     Plugin 'derekwyatt' 'vim-scala'
     Plugin 'digitaltoad' 'vim-jade'
-    Plugin 'ensime' 'ensime-vim'
+    ## Plugin 'ensime' 'ensime-vim'  # causes issues in python2 land
     Plugin 'fatih' 'vim-go'
     Plugin 'tpope' 'vim-fireplace'
     Plugin 'hynek' 'vim-python-pep8-indent'
@@ -85,10 +87,8 @@ pushd ${PATHOGEN_DIR}
     # for some purposes
     Plugin 'ctrlpvim' 'ctrlp.vim'
 
-    # nondestructive themes
-    Plugin 'lifepillar' 'vim-solarized8'
+    # color themes
     Plugin 'romainl' 'Apprentice'
-    # destructuve (but nice) themes
     Plugin 'liuchengxu' 'space-vim-dark'
     Plugin 'morhetz' 'gruvbox'
 
