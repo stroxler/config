@@ -3,6 +3,7 @@
 ;;   brew install libressl
 (require 'gnutls)
 (add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
+(setq create-lockfiles nil)
 
 ;; HACK fix use-package
 ;; NOTE: first must run:
