@@ -13,6 +13,7 @@ call SpaceVim#layers#load('lang#swig')
 call SpaceVim#layers#load('lang#tmux')
 call SpaceVim#layers#load('lang#vim')
 call SpaceVim#layers#load('lang#xml')
+call SpaceVim#layers#load('fzf')   
 call SpaceVim#layers#load('shell')   
 call SpaceVim#layers#load('tools#screensaver')
 let g:spacevim_enable_vimfiler_welcome = 1
@@ -36,15 +37,38 @@ endif
 let g:clang2_placeholder_next = ''
 let g:clang2_placeholder_prev = ''
 
-" more color themes to try
-"    heman
+
+let g:spacevim_disabled_plugins=[
+\ ['Shougo/denite.nvim'],
+\ ]
+
+" I cannot embed comments in the list it seems, so I'll describe the
+" groups up here
+"   - first group is stuff that SpaceVim hasn't pulled in properly
+"     in some of my attempts to install
+"   - second group is extra packages I wanted to add
+"   - bottom group is color themes.
 let g:spacevim_custom_plugins = [
 \
-\ ['kien/ctrlp.vim'],
+\ ['ctrlpvim/ctrlp.vim'],
+\ ['andviro/flake8-vim'],
+\ ['scrooloose/syntastic'],
+\
+\ ['vim-scripts/bufkill.vim'],
 \
 \ ['nightsense/stellarized'],
 \ ['nightsense/vimspectr'],
 \ ]
 
 let g:spacevim_colorscheme_bg = 'dark'
-let g:spacevim_colorscheme = 'vimspectrgrey-dark'
+let g:spacevim_colorscheme = 'stellarized_dark'
+
+" For some reason spacevim is trying to use a nonexistant plugin for
+" the 'find file' command. So I just manually override
+noremap <space>ff :CtrlP %:p:h<CR>
+
+" Color theme switching
+"   stellarized is my favorite overall,
+"   but I also really like vimspectr210 thru vimspectr0
+noremap <space>TN :colors stellarized_dark<CR>
+noremap <space>Tn :colors vimspectr0-dark<Left><Left><Left><Left><Left><Left>
