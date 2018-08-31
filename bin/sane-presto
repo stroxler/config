@@ -1,0 +1,133 @@
+#!/usr/bin/env python
+"""
+Original Author: Greg Novak
+Secondary Author: Steven Troxler
+
+This is an adaptation of a Stitch Fix internal script, written
+by Greg Novak (https://github.com/gnovak), that wraps presto in
+python so that it's suitable for use from emacs. The normal
+presto command-line tool does more than just consuming stdin
+and spitting characters to stdout/stderr, which makes emacs
+integration difficult.
+
+This adaptation (mostly so that I can save it in my config files)
+  - abstracts away the presto database url
+  - adds python 3 support
+
+See stroxler/config/emacs-sql-config.el for an example of how
+to use `sane-presto` from emacs.
+
+TODO: wrap presto using a language that compiles to a binary,
+to remove the environment dependencies of sane-presto
+"""
+import os
+import sys
+import datetime
+from subprocess import Popen, PIPE
+
+welcome = """
+Sane front-end for command-line Presto
+Author: Greg Novak
+Date: May 14, 2016
+"""
+comment = '--'
+terminator = ';'
+prompt = "sanity> "
+cmd = "presto"
+args = ["--catalog", "hive",
+        "--schema", "prod",
+        "--server", os.environ["PRESTO_URL"],
+        "--output-format", "ALIGNED",
+        "--source", "sane-presto-cli",
+        "--execute"]
+
+
+# Ugh, global var, don't let this live is this script gets compilcated
+purgatory = ''
+
+
+def read_query():
+    global purgatory
+    query = purgatory
+
+    il = sys.stdin.readline()
+    if not il:  # eof
+        return il
+    if il.find(comment) != -1:  # remove comments
+        il = il[:il.find(comment)]
+    idx = il.find(terminator)
+    
+    while idx == -1:
+        query += il
+        il = sys.stdin.readline()
+        if not il:  # eof
+            return il
+        if il.find(comment) != -1:  # remove comments
+            il = il[:il.find(comment)]
+        idx = il.find(terminator)
+
+    # found terminator, send input
+    query += il[:idx]
+    purgatory = il[idx+1:]
+    return clean_query(query)
+
+
+def clean_query(query):
+    # remove line breaks
+    return query.replace('\n', ' ')
+
+
+def do_query(query):
+    return Popen([cmd] + args + [query], stdout=PIPE, stderr=PIPE)
+
+
+def write_output(pp):
+    ol = pp.stdout.readline()
+
+    while ol:
+        ol_str = ol.decode()
+        if ol_str.endswith('rows)\n'):
+            sys.stdout.write(ol_str)
+        else:
+            sys.stdout.write('|')
+            sys.stdout.write(ol_str.strip('\n'))
+            sys.stdout.write('|\n')
+        sys.stdout.flush()
+        ol = pp.stdout.readline()
+
+    ol = pp.stderr.readline()
+    while ol:
+        sys.stderr.write(ol.decode())
+        ol = pp.stderr.readline()
+
+
+def main():
+    print(welcome)
+    sys.stdout.write(prompt)
+    sys.stdout.flush()
+
+    query = read_query()
+    while query:
+        start = datetime.datetime.now()
+        print()
+        print("Started", start.strftime("%H:%M:%S"))
+        try:
+            pp = do_query(query)
+            print
+            write_output(pp)
+        except KeyboardInterrupt:
+            pp.kill()
+            pp.terminate()
+
+        end = datetime.datetime.now()
+        print("Finished", end.strftime("%H:%M:%S"))
+        minutes, seconds = divmod((end-start).seconds, 60)
+        print("Elapsed %d:%02d" % (minutes, seconds))
+        print()
+        sys.stdout.write(prompt)
+        sys.stdout.flush()
+        query = read_query()
+
+
+if __name__ == '__main__':
+    main()

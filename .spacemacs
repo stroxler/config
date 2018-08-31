@@ -33,7 +33,7 @@ values."
    '(
      html
      ;; basics
-     ivy
+     helm
      auto-completion
      better-defaults
      (shell :variables
