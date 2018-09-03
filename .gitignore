@@ -2,3 +2,4 @@
 .vim/bundle/**
 .ipython/*
 .matplotlib/*
+.config/pudb/saved-breakpoints*
