@@ -159,4 +159,4 @@ noremap <leader>fn :e %:p:h/
 " Colors!
 " Set this at the very bottom so that I can change frequently
 set background=dark
-colors space-vim-dark
+colors gruvbox

@@ -3,4 +3,4 @@
 # NOTE this script is very much tied to OSX at the moment; unlike
 # most of my ~/bin scripts it's completely non-portable :(
 #
-nohup /Applications/kitty.app/Contents/MacOS/kitty sv "$@" 2>&1 &
+nohup /Applications/kitty.app/Contents/MacOS/kitty sv "$@" > ~/_svim.log < /dev/null 2>&1 &
