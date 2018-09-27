@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-nvim --cmd 'let &rtp = $HOME."/SpaceVim-rtp,".substitute(&rtp, $HOME."/\.vim", "", "g")' -u "$HOME/SpaceVim-rtp/init.vim" "$@"
+#
+# NOTE this script is very much tied to OSX at the moment; unlike
+# most of my ~/bin scripts it's completely non-portable :(
+#
+nohup /Applications/kitty.app/Contents/MacOS/kitty sv "$@" 2>&1 &

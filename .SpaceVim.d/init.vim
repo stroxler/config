@@ -61,7 +61,7 @@ let g:spacevim_custom_plugins = [
 \ ]
 
 let g:spacevim_colorscheme_bg = 'dark'
-let g:spacevim_colorscheme = 'stellarized_dark'
+let g:spacevim_colorscheme = 'stellarized'
 
 " For some reason spacevim is trying to use a nonexistant plugin for
 " the 'find file' command. So I just manually override

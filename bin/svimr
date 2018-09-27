@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-vimr  "$@" --nvim --cmd 'let &rtp = $HOME."/SpaceVim-rtp,".substitute(&rtp, $HOME."/\.vim", "", "g")' -u "$HOME/SpaceVim-rtp/init.vim"

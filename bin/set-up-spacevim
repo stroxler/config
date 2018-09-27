@@ -1,6 +1,9 @@
+#!/usr/bin/env bash
 set -e
 set -x
-mv ~/.vim ~/.vim.bak
+if [[ -d ~/.vim ]]; then
+  mv ~/.vim ~/.vim.bak
+fi
 curl -sLf https://spacevim.org/install.sh | bash
 mv ~/.vim ~/SpaceVim-rtp
 mv ~/.vim.bak ~/.vim
