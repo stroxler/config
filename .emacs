@@ -1,6 +1,15 @@
 ;; HACK make ssl stop complaining
 ;; NOTE: first must run
 ;;   brew install libressl
+;; ____________________________________________________________________________
+;; Aquamacs custom-file warning:
+;; Warning: After loading this .emacs file, Aquamacs will also load
+;; customizations from `custom-file' (customizations.el). Any settings there
+;; will override those made here.
+;; Consider moving your startup settings to the Preferences.el file, which
+;; is loaded after `custom-file':
+;; ~/Library/Preferences/Aquamacs Emacs/Preferences
+;; _____________________________________________________________________________
 (require 'gnutls)
 (add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
 (setq create-lockfiles nil)
@@ -16,13 +25,14 @@
 
 
 
-;;; from https://emacs.stackexchange.com/questions/19936/running-spacemacs-alongside-regular-emacs-how-to-keep-a-separate-emacs-d/20508#20508
+;;; adapted from https://emacs.stackexchange.com/questions/19936/running-spacemacs-alongside-regular-emacs-how-to-keep-a-separate-emacs-d/20508#20508
+;;; the aquamacs part is original
 
 ;;; Commentary:
 ;;; This code mimics the behaviour of `startup.el' to let the
 ;;; usage of the custom init directory behave just like the
 ;;; one and only "~/.emacs.d".
-;;;
+;;; one and only "~/.emacs.d".
 ;;; By setting the environment variable `EMACS_USER_DIRECTORY'
 ;;; the user-emacs-directory can be chosen and if there is an
 ;;; `init.el' the configuration from that directory will be used.
@@ -39,21 +49,25 @@
 ;;; start-directory.
 
 ;;; Code:
-(let* ((user-init-dir-default
-    (file-name-as-directory (concat "~" init-file-user "/.emacs.d")))
+(let* ((is-aquamacs
+        (fboundp 'aquamacs-elisp-reference))
+       (user-init-dir-default
+        (file-name-as-directory (if is-aquamacs
+                                    "~/aquamacs.d"
+                                    "~/.emacs.d")))
        (user-init-dir
-    (file-name-as-directory (or (getenv "EMACS_USER_DIRECTORY")
-                    user-init-dir-default)))
+        (file-name-as-directory (or (getenv "EMACS_USER_DIRECTORY")
+                                    user-init-dir-default)))
        (user-init-file-1
-    (expand-file-name "init" user-init-dir)))
+        (expand-file-name "init" user-init-dir)))
   (setq user-emacs-directory user-init-dir)
   (with-eval-after-load "server"
     (setq server-name
-      (let ((server--name (file-name-nondirectory
-                   (directory-file-name user-emacs-directory))))
-        (if (equal server--name ".emacs.d")
-        "server"
-          server--name))))
+          (let ((server--name (file-name-nondirectory
+                               (directory-file-name user-emacs-directory))))
+            (if (equal server--name ".emacs.d")
+                "server"
+              server--name))))
   (setq user-init-file t)
   (load user-init-file-1 t t)
   (when (eq user-init-file t)

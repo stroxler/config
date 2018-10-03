@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-EMACS_USER_DIRECTORY=~/spacemacs.d nohup emacs </dev/null >$HOME/_semacs.log 2>&1 &
+EMACS_USER_DIRECTORY=~/spacemacs.d nohup emacs --debug-init </dev/null >$HOME/_semacs.log 2>&1 &
