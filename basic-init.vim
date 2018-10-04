@@ -155,8 +155,51 @@ inoremap <C-N> <C-P>
 "      directory
 noremap <leader>ff :CtrlP %:p:h<CR>
 noremap <leader>fn :e %:p:h/
+noremap <leader>bb :CtrlPBuffer<CR>
 
 " Colors!
 " Set this at the very bottom so that I can change frequently
 set background=dark
-colors gruvbox
+set termguicolors
+
+" these are my favorite color themses
+"
+"colors deep-space
+"colors base16-gruvbox-dark-pale
+"colors base16-gruvbox-dark-soft
+"colors base16-phd
+"colors base16-mocha
+"colors base16-nord
+"colors base16-flat
+"colors base16-ocean
+"colors base16-oceannext
+"colors base16-bespin
+"colors base16-snazzy
+"colors base16-porple
+"colors base16-circus
+"colors base16-embers
+"colors base16-materia
+"colors base16-material
+"colors base16-material-palenight
+"colors base16-eighties
+"colors base16-paraiso
+"colors base16-darktooth
+"colors base16-onedark
+"colors base16-porple
+"colors base16-woodland
+"colors base16-railscast
+"colors base16-marrakesh
+"colors base16-solarflare
+"colors base16-harmonic-dark
+"colors base16-soloarized-dark
+"
+"colors base16-blackmetal-*
+"colors base16-atelier-*-dark
+"
+"colors apprentice
+"colors stellarized
+"colors hybrid_reverse
+"
+" For now I'm going to go with this because it jives
+" pretty well with a gruvbox-themed terminal:
+colors base16-gruvbox-dark-soft

@@ -56,8 +56,13 @@ let g:spacevim_custom_plugins = [
 \
 \ ['vim-scripts/bufkill.vim'],
 \
+\ ['arcticicestudio/nord-vim'],
+\ ['romainl/Apprentice'],
 \ ['nightsense/stellarized'],
-\ ['nightsense/vimspectr'],
+\ ['kristijanhusak/vim-hybrid-material'],
+\ ['tyrannicaltoucan/vim-deep-space'],
+\
+\ ['chriskempson/base16-vim'],
 \ ]
 
 let g:spacevim_colorscheme_bg = 'dark'
