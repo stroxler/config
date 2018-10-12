@@ -144,7 +144,6 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          nord
-                         darkburn
                          zenburn
                          hc-zenburn
                          solarized-dark
