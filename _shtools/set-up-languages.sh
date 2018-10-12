@@ -28,6 +28,9 @@ export NVM_DIR="$HOME/.nvm"
 # rvm support
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+if command -v opam 1>/dev/null; then
+  eval $(opam env)
+fi
 
 # aliases
 alias R='R --no-save'
