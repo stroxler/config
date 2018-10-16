@@ -165,37 +165,36 @@ set termguicolors
 " these are my favorite color themses
 "
 "colors deep-space
+
+"colors base16-zenburn
+"colors base16-soloarized-dark
+"
 "colors base16-gruvbox-dark-pale
 "colors base16-gruvbox-dark-soft
-"colors base16-phd
-"colors base16-mocha
+"
 "colors base16-nord
 "colors base16-flat
 "colors base16-ocean
 "colors base16-oceannext
-"colors base16-bespin
-"colors base16-snazzy
-"colors base16-porple
-"colors base16-circus
-"colors base16-embers
-"colors base16-materia
-"colors base16-material
-"colors base16-material-palenight
-"colors base16-eighties
-"colors base16-paraiso
-"colors base16-darktooth
-"colors base16-onedark
-"colors base16-porple
-"colors base16-woodland
-"colors base16-railscast
-"colors base16-marrakesh
 "colors base16-solarflare
 "colors base16-harmonic-dark
-"colors base16-soloarized-dark
+"colors base16-phd
+"colors base16-materia
+"colors base16-material
+"colors base16-eighties
 "
-"colors base16-blackmetal-*
-"colors base16-atelier-*-dark
-"
+"colors base16-railscast
+"colors base16-darktooth
+"colors base16-atelier-savanna
+"colors base16-paraiso
+"colors base16-material-palenight
+"colors base16-circus
+"colors base16-embers
+"colors base16-mocha
+"colors base16-atelier-sulpherpool
+"colors base16-atelier-estuary
+"colors base16-porple
+""
 "colors apprentice
 "colors stellarized
 "colors hybrid_reverse
