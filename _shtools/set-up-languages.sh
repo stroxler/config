@@ -31,6 +31,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # cargo (rust) support
 [[ -s "$HOME/.cargo/env" ]] && \. "$HOME/.cargo/env" 
+if which rustc > /dev/null; then
+  export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
 
 # rvm support
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
