@@ -1,2 +1,9 @@
 #!/usr/bin/env bash
+
+# this hack is kind of weird, but I've found that brew cask
+# install emacs on my latest machine produced an `emacs` binary
+# such that the process name did not include `emacs`.
+$emacs=Emacs-x86_64-10_10
+pkill -USR2 $emacs
+$emacs=emacs
 pkill -USR2 emacs
