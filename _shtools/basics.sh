@@ -20,6 +20,8 @@ alias gbr='git branch'
 alias gre='git rebase'
 alias gfe='git fetch'
 
+alias hgl='hg log --style compact --limit 10'
+
 # curl with json headers
 alias jcurl='curl -H "Content-Type: application/json"'
 
@@ -27,6 +29,8 @@ alias jcurl='curl -H "Content-Type: application/json"'
 alias ll='ls -lhG'
 alias ls='ls -G'
 alias la='ls -lah'
+
+
 
 # cd functions and aliases
 function c() {
