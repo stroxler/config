@@ -34,10 +34,6 @@ if [ -x /usr/bin/dircolors ]; then
 
 fi
 
-# tmux has some issues that ktmux_helper solves. ktmux automates
-export path=$path:$home/ktmux
-
-
 # fancy promt
 source ~/.git-prompt.sh
 source ~/.git-completion.sh

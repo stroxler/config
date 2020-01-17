@@ -21,6 +21,7 @@ fi
 
 
 ssh_cmd="ssh -o 'ControlPath=$HOME/.ssh/ctl/%L-%r@%h:%p'"
+
 # NOTE: the trailing slash is important, only on the source (not the target)
 # - with no trailing slash on the source, it will get put *inside* the target
 # - with a trailing slash, it will get put *on top of* (or "as") the target
@@ -31,19 +32,14 @@ ssh_cmd="ssh -o 'ControlPath=$HOME/.ssh/ctl/%L-%r@%h:%p'"
 #   ever (this is one of the points of rsync, it should be idempotent)
 #
 # also, because I symlink from ~/config I have to rsync from the original source
-#rsync -e "$ssh_cmd" -avzh ~/config/ ${devserver}:/home/stroxler/
-#rsync -e "$ssh_cmd" -avzh ~/.ssh/ ${devserver}:/home/stroxler/.ssh
-
-#rsync -e "$ssh_cmd" -avzh ~/_devserver_scripts ${devserver}:/home/stroxler/tryit/_devserver_scripts
-
+rsync -e "$ssh_cmd" -avzh ~/basic-vim/ ${devserver}:/home/stroxler/.vim
 rsync -e "$ssh_cmd" -avzh ~/_devserver_scripts/ ${devserver}:/home/stroxler/_devserver_scripts
-
-# I'm not sure what the problem here is, it won't copy for some reason
-#rsync -e "$ssh_cmd" -avzh ~/basic-vim/ ${devserver}:/home/stroxler/basic-vim
+rsync -e "$ssh_cmd" -avzh ~/config/ ${devserver}:/home/stroxler/
+rsync -e "$ssh_cmd" -avzh ~/.ssh/ ${devserver}:/home/stroxler/.ssh
 
 
 # close the ssh connection
-if [[ "$2" != "--reuse-ssh" ]]; then
+if [[ "$2" != "--reuse-ssh" && "$2" != "--keep-ssh" ]]; then
     ssh -O exit -o ControlPath="$HOME/.ssh/ctl/%L-%r@%h:%p" ${devserver}
 fi
 
