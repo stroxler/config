@@ -13,6 +13,13 @@ fi
 
 
 # pyenv support
+
+# add homebrew's zlib directory to compiler path; pyenv needs this
+if [[ -d /usr/local/opt/zlib ]]; then
+  export LDFLAGS="-L/usr/local/opt/zlib/lib"
+  export CPPFLAGS="-I/usr/local/opt/zlib/include"
+fi
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
