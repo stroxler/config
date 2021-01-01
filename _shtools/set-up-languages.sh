@@ -1,3 +1,20 @@
+# homebrew compiler flags
+#
+# these seemed to be needed by pyenv at the very least to
+# avoid various issues, they may affect other languages
+# as well.
+#
+# in pyenv, if this is working you ought to see lines that
+# look like this when installing a new python version:
+#   python-build: use openssl from homebrew
+#   python-build: use readline from homebrew
+if [[ -d /usr/local/opt/zlib ]]; then
+  export LDFLAGS="-L/usr/local/opt/zlib/lib"
+  export CPPFLAGS="-I/usr/local/opt/zlib/include"
+fi
+export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
+
+
 if [[ -d ~/_gopath ]]; then
     export GOROOT=/usr/local/go  # NOTE: this is probably not portable to linux; this is the brew goroot
     export GOPATH=$HOME/_gopath
@@ -14,11 +31,6 @@ fi
 
 # pyenv support
 
-# add homebrew's zlib directory to compiler path; pyenv needs this
-if [[ -d /usr/local/opt/zlib ]]; then
-  export LDFLAGS="-L/usr/local/opt/zlib/lib"
-  export CPPFLAGS="-I/usr/local/opt/zlib/include"
-fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
