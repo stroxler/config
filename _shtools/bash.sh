@@ -37,9 +37,13 @@ fi
 # fancy promt
 source ~/.git-prompt.sh
 source ~/.git-completion.sh
-PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\] : \w`__git_ps1`\n>\[\033[00m\] '
+GIT_PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\] : \w`__git_ps1`\n>\[\033[00m\] '
+NOGIT_PS1='\[\033[0;34m\]${debian_chroot:+($debian_chroot)}\u@\h\[\033[33m\] : \w\n>\[\033[00m\] '
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
+alias git_prompt='export PS1=$GIT_PS1'
+alias nogit_prompt='export PS1=$NOGIT_PS1'
+nogit_prompt
 
 # git status all (sta) -------------------------------------------------------
 #
