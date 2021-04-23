@@ -33,7 +33,7 @@
 ;;; usage of the custom init directory behave just like the
 ;;; one and only "~/.emacs.d".
 ;;; one and only "~/.emacs.d".
-;;; By setting the environment variable `EMACS_USER_DIRECTORY'
+;;; By setting the environment variable `EMACSDIR
 ;;; the user-emacs-directory can be chosen and if there is an
 ;;; `init.el' the configuration from that directory will be used.
 ;;; If the environment variable is not set or there is no `init.el'
@@ -56,7 +56,7 @@
                                     "~/aquamacs.d"
                                     "~/.emacs.d")))
        (user-init-dir
-        (file-name-as-directory (or (getenv "EMACS_USER_DIRECTORY")
+        (file-name-as-directory (or (getenv "EMACSDIR")
                                     user-init-dir-default)))
        (user-init-file-1
         (expand-file-name "init" user-init-dir)))
