@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+EMACSDIR=~/doom-emacs.d ~/doom-emacs.d/bin/doom install $1

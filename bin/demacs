@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+EMACS_USER_DIRECTORY=~/doom-emacs.d nohup emacs --debug-init </dev/null >$HOME/_semacs.log 2>&1 &
