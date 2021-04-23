@@ -202,6 +202,7 @@ set termguicolors
 "colors stellarized
 "colors hybrid_reverse
 "
-" For now I'm going to go with this because it jives
-" pretty well with a gruvbox-themed terminal:
-colors base16-gruvbox-dark-soft
+" colors base16-gruvbox-dark-soft
+
+" for now, going with desert so it displays in poorly-configured terminals
+colors desert
